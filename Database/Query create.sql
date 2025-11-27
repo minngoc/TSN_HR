@@ -1,101 +1,121 @@
-﻿CREATE TABLE dbo.Branches (
-    BranchID    INT IDENTITY(1,1) PRIMARY KEY,
-    BranchCode  VARCHAR(20)  NOT NULL UNIQUE,      -- VD: TSN
-    BranchName  NVARCHAR(200) NOT NULL,           
-    Address     NVARCHAR(300) NULL,
-    IsActive    BIT NOT NULL DEFAULT 1,           -- 1: còn dùng, 0: ngưng
-    CreatedAt   DATETIME2 NOT NULL DEFAULT SYSDATETIME()
-);
+USE [master]
+GO
 
-CREATE TABLE dbo.Employees (
-    EmployeeID          INT IDENTITY(1,1) PRIMARY KEY,
-    EmployeeCode        VARCHAR(20)   NOT NULL UNIQUE,  -- Mã NV: 000123
-    FirstName           NVARCHAR(50) NOT NULL,          -- Tên
-    LastName            NVARCHAR(50) NOT NULL,          -- Họ + tên lót
-    FullName            AS (LastName + N' ' + FirstName) PERSISTED,
+/****** Object:  Database [TSN_HR]    Script Date: 11/27/2025 9:40:28 PM ******/
+CREATE DATABASE [TSN_HR]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'TSN_HR', FILENAME = N'D:\installed\MSSQL17.SQLEXPRESS\MSSQL\DATA\TSN_HR.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'TSN_HR_log', FILENAME = N'D:\installed\MSSQL17.SQLEXPRESS\MSSQL\DATA\TSN_HR_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
 
-    Gender              NVARCHAR(10) NULL,              -- Nam/Nữ
-    BirthDate           DATE NULL,
-    BirthPlace          NVARCHAR(100) NULL,             -- Nơi sinh
-    NativePlace         NVARCHAR(200) NULL,             -- Nguyên quán
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [TSN_HR].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
 
-    Nation              NVARCHAR(50) NULL,              -- Dân tộc
-    Religion            NVARCHAR(50) NULL,              -- Tôn giáo
+ALTER DATABASE [TSN_HR] SET ANSI_NULL_DEFAULT OFF 
+GO
 
-    IDNumber            VARCHAR(20)  NULL,              -- CMND/CCCD
-    IDIssuedDate        DATE NULL,
-    IDIssuedPlace       NVARCHAR(100) NULL,
+ALTER DATABASE [TSN_HR] SET ANSI_NULLS OFF 
+GO
 
-    PermanentAddress    NVARCHAR(300) NULL,             -- Thường trú
-    TemporaryAddress    NVARCHAR(300) NULL,             -- Tạm trú
+ALTER DATABASE [TSN_HR] SET ANSI_PADDING OFF 
+GO
 
-    Phone               VARCHAR(20)  NULL,
-    Email               VARCHAR(100) NULL,
+ALTER DATABASE [TSN_HR] SET ANSI_WARNINGS OFF 
+GO
 
-    TaxCode             VARCHAR(50)  NULL,              -- Mã số thuế
-    BankAccount         VARCHAR(50)  NULL,
-    BankName            NVARCHAR(100) NULL,
+ALTER DATABASE [TSN_HR] SET ARITHABORT OFF 
+GO
 
-    BranchID            INT NULL,
-    DepartmentID        INT NULL,
-    PositionID          INT NULL,
+ALTER DATABASE [TSN_HR] SET AUTO_CLOSE ON 
+GO
 
-    StartDate           DATE NULL,                      -- Ngày vào làm
-    Status              TINYINT NOT NULL DEFAULT 1,     -- 1: đang làm, 0: nghỉ, 2: thử việc
+ALTER DATABASE [TSN_HR] SET AUTO_SHRINK OFF 
+GO
 
-    CreatedAt           DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
-    UpdatedAt           DATETIME2 NULL
-);
+ALTER DATABASE [TSN_HR] SET AUTO_UPDATE_STATISTICS ON 
+GO
 
-CREATE TABLE dbo.Contracts (
-    ContractID      INT IDENTITY(1,1) PRIMARY KEY,
-    EmployeeID      INT NOT NULL,
-    ContractNo      NVARCHAR(50) NULL,          
-    ContractType    NVARCHAR(50) NULL,          -- Thử việc / XĐTH / KXĐTH...
-    StartDate       DATE NOT NULL,
-    EndDate         DATE NULL,
-    SignedDate      DATE NULL,
-    Notes           NVARCHAR(500) NULL,
-    IsCurrent       BIT NOT NULL DEFAULT 1,     -- 1: HĐ hiện tại
-    CreatedAt       DATETIME2 NOT NULL DEFAULT SYSDATETIME()
-);
+ALTER DATABASE [TSN_HR] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
 
-CREATE TABLE dbo.Departments (
-    DepartmentID    INT IDENTITY(1,1) PRIMARY KEY,
-    DepartmentCode  VARCHAR(20)   NOT NULL UNIQUE,    
-    DepartmentName  NVARCHAR(200) NOT NULL,
-    BranchID        INT NULL,                         
-    IsActive        BIT NOT NULL DEFAULT 1,
-    CreatedAt       DATETIME2 NOT NULL DEFAULT SYSDATETIME()
-);
+ALTER DATABASE [TSN_HR] SET CURSOR_DEFAULT  GLOBAL 
+GO
 
-CREATE TABLE dbo.Positions (
-    PositionID    INT IDENTITY(1,1) PRIMARY KEY,
-    PositionCode  VARCHAR(20)   NOT NULL UNIQUE,   
-    PositionName  NVARCHAR(200) NOT NULL,          
-    IsActive      BIT NOT NULL DEFAULT 1,
-    CreatedAt     DATETIME2 NOT NULL DEFAULT SYSDATETIME()
-);
+ALTER DATABASE [TSN_HR] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
 
---Foreign Key
+ALTER DATABASE [TSN_HR] SET NUMERIC_ROUNDABORT OFF 
+GO
 
-ALTER TABLE dbo.Employees
-ADD CONSTRAINT FK_Employees_Departments
-    FOREIGN KEY (DepartmentID) REFERENCES dbo.Departments(DepartmentID);
+ALTER DATABASE [TSN_HR] SET QUOTED_IDENTIFIER OFF 
+GO
 
-ALTER TABLE dbo.Employees
-ADD CONSTRAINT FK_Employees_Branches
-    FOREIGN KEY (BranchID) REFERENCES dbo.Branches(BranchID);
+ALTER DATABASE [TSN_HR] SET RECURSIVE_TRIGGERS OFF 
+GO
 
-ALTER TABLE dbo.Employees
-ADD CONSTRAINT FK_Employees_Positions
-    FOREIGN KEY (PositionID) REFERENCES dbo.Positions(PositionID);
+ALTER DATABASE [TSN_HR] SET  ENABLE_BROKER 
+GO
 
-ALTER TABLE dbo.Departments
-ADD CONSTRAINT FK_Departments_Branches
-    FOREIGN KEY (BranchID) REFERENCES dbo.Branches(BranchID);
+ALTER DATABASE [TSN_HR] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
 
-ALTER TABLE dbo.Contracts
-ADD CONSTRAINT FK_Contracts_Employees
-    FOREIGN KEY (EmployeeID) REFERENCES dbo.Employees(EmployeeID);
+ALTER DATABASE [TSN_HR] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [TSN_HR] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [TSN_HR] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [TSN_HR] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [TSN_HR] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [TSN_HR] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [TSN_HR] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [TSN_HR] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+
+ALTER DATABASE [TSN_HR] SET OPTIMIZED_LOCKING = OFF 
+GO
+
+ALTER DATABASE [TSN_HR] SET QUERY_STORE = ON
+GO
+
+ALTER DATABASE [TSN_HR] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+
+ALTER DATABASE [TSN_HR] SET  READ_WRITE 
+GO
 
