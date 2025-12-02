@@ -1,0 +1,49 @@
+------Appsetting.json:
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=TSN_HR;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
+
+
+------Install package kết nối EntityFramework core: Tools → NuGet Package Manager → Package Manager Console
+
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package Microsoft.EntityFrameworkCore.Design
+Install-Package Microsoft.AspNetCore.OpenApi
+Install-Package Microsoft.Data.SqlClient
+Install-Package Nlog
+Install-Package Nlog.Database
+Install-Package Nlog.Extensions.Logging
+Install-Package Nlog.Web.AspNetCore
+Install-Package Swashbuckle.AspNetCore
+
+
+------Add folder: solution explorer -> right click project -> new folder (Data, Services, Models)
+right click Data > Add new class > ApplicationDBContext.cs
+using Microsoft.EntityFrameworkCore;
+using TSN_HR_Web.Models;
+
+namespace TSN_HR_Web.Data
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        // TODO: Thêm DbSet cho mỗi bảng
+        public DbSet<NhanVien> NhanViens { get; set; }
+    }
+}
+
+
