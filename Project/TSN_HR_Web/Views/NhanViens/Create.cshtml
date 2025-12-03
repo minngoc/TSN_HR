@@ -1,10 +1,10 @@
 ﻿@model TSN_HR_Web.Models.NhanVien
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nhập Thông Tin Nhân Viên";
 }
 
-<h1>Create</h1>
+<h1>Nhập thông tin nhân viên</h1>
 
 <h4>NhanVien</h4>
 <hr />
@@ -16,11 +16,6 @@
                 <label asp-for="MaNhanVien" class="control-label"></label>
                 <input asp-for="MaNhanVien" class="form-control" />
                 <span asp-validation-for="MaNhanVien" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoYeuLyLichId" class="control-label"></label>
-                <input asp-for="SoYeuLyLichId" class="form-control" />
-                <span asp-validation-for="SoYeuLyLichId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MaThongTinBaoHiem" class="control-label"></label>
@@ -35,7 +30,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Quay lại danh sách</a>
 </div>
 
 @section Scripts {

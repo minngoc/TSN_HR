@@ -1,45 +1,37 @@
 ﻿@model IEnumerable<TSN_HR_Web.Models.NhanVien>
 
 @{
-    ViewData["Title"] = "Nhan Vien";
+    ViewData["Title"] = "Danh Sach Nhan Vien";
 }
 
-<h1>Index</h1>
+<h1 class="mb-3">Danh sách nhân viên</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">
+        + Thêm nhân viên
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-striped table-bordered table-sm mt-3">
+    <thead class="table-light">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MaNhanVien)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoYeuLyLichId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaThongTinBaoHiem)
-            </th>
-            <th></th>
+            <th>Mã Nhân Viên</th>
+            <th>Họ tên</th>
+            <th>Phòng ban</th>
+            <th style="width: 150px;">Thao tác</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
+            <td>@item.MaNhanVien</td>
+            @* <td>@item.SoYeuLyLich?.HoTenDayDu</td>
+            <td>@item.BoPhanChinh?.TenBoPhan</td> sau này mình map navigation *@
             <td>
-                @Html.DisplayFor(modelItem => item.MaNhanVien)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoYeuLyLichId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaThongTinBaoHiem)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Chi tiết</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
             </td>
         </tr>
 }

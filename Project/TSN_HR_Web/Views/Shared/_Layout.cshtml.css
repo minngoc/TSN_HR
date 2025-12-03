@@ -7,6 +7,39 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.custom-navbar {
+    background-color: #0b0f1a !important;
+    padding: 12px 25px;
+}
+
+.custom-navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-right: 20px;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #d4a017 !important; /* gold hover */
+}
+
+.navbar-brand img {
+    filter: brightness(1.1);
+}
+
+.custom-navbar .dropdown-menu {
+    background-color: #0f1420;
+}
+
+.custom-navbar .dropdown-item {
+    color: white;
+}
+
+.custom-navbar .dropdown-item:hover {
+    background-color: #1b2233;
+    color: #d4a017;
+}
+
 a {
   color: #0077cc;
 }
@@ -45,4 +78,8 @@ button.accept-policy {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+}
+
+.navbar-brand img {
+    filter: brightness(1.1);
 }

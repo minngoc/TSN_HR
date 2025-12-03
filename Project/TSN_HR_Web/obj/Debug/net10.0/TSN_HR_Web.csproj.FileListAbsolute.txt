@@ -203,7 +203,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rjsmcshtml.dsw
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\bundle\TSN_HR_Web.styles.css
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\projectbundle\TSN_HR_Web.bundle.scp.css
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\obwv8bu8jf-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\2co8vy93mz-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -272,7 +271,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebasset
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.csproj.Up2Date
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\refint\TSN_HR_Web.dll
@@ -402,3 +400,4 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\ru\Microsoft.C
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-yj1t4fe2nh-yj1t4fe2nh.gz

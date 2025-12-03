@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\tsn_hr_web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -33,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\migrations\\20251202075442_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:migrations\\20251202075442_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|c:\\users\\ngoc\\desktop\\tsn_hr\\project\\tsn_hr_web\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7913EFE2-C86A-4DE8-DFE7-508590FFFAF5}|TSN_HR_Web.csproj|solutionrelative:models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,24 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\NhanViens\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\NhanViens\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\NhanViens\\Index.cshtml",
-              "RelativeToolTip": "Views\\NhanViens\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-02T09:38:07.669Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "NhanViensController.cs",
               "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Controllers\\NhanViensController.cs",
               "RelativeDocumentMoniker": "Controllers\\NhanViensController.cs",
@@ -72,32 +59,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T09:28:24.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAIwAwAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-02T09:10:07.678Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T07:27:19.167Z",
               "EditorCaption": ""
             },
             {
@@ -115,46 +76,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ApplicationDBContext.cs",
               "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Data\\ApplicationDBContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDBContext.cs",
               "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Data\\ApplicationDBContext.cs",
               "RelativeToolTip": "Data\\ApplicationDBContext.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T07:24:35.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TSN_HR_Web.csproj",
-              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
-              "RelativeDocumentMoniker": "TSN_HR_Web.csproj",
-              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
-              "RelativeToolTip": "TSN_HR_Web.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-02T08:05:16.067Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20251202075442_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Migrations\\20251202075442_InitialCreate.cs",
-              "RelativeDocumentMoniker": "Migrations\\20251202075442_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Migrations\\20251202075442_InitialCreate.cs",
-              "RelativeToolTip": "Migrations\\20251202075442_InitialCreate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T07:54:52.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "NhanVien.cs",
               "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Models\\NhanVien.cs",
               "RelativeDocumentMoniker": "Models\\NhanVien.cs",
@@ -164,6 +99,69 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-02T07:30:30.635Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T07:27:19.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAIwAwAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-02T09:10:07.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\NhanViens\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\NhanViens\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Views\\NhanViens\\Index.cshtml",
+              "RelativeToolTip": "Views\\NhanViens\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-02T09:38:07.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TSN_HR_Web.csproj",
+              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
+              "RelativeDocumentMoniker": "TSN_HR_Web.csproj",
+              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
+              "RelativeToolTip": "TSN_HR_Web.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-02T08:05:16.067Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "20251202075442_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Migrations\\20251202075442_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Migrations\\20251202075442_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\Migrations\\20251202075442_InitialCreate.cs",
+              "RelativeToolTip": "Migrations\\20251202075442_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T07:54:52.197Z"
             }
           ]
         }

@@ -10,8 +10,16 @@ namespace TSN_HR_Web.Data
         {
         }
 
-        // TODO: Thêm DbSet cho mỗi bảng
+        // TODO: Add DbSet for each object
+
+        //DBSet for Nhan Vien
         public DbSet<NhanVien> NhanViens { get; set; }
+
+        // DbSet for Co So
+        public DbSet<CoSo> CoSos { get; set; }
+        //DbSet for Bo Phan
+        public DbSet<BoPhan> BoPhans { get; set; }
+
     }
 }
 
