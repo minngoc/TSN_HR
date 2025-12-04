@@ -1,0 +1,36 @@
+@model TSN_HR_Web.Models.CoSo
+
+@{
+    ViewData["Title"] = "Chi tiết Danh sách cụm";
+}
+
+<h3>Danh sách Cụm</h3>
+
+<div>
+    <h4>Cụm</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaCoSo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaCoSo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenCoSo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenCoSo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>

@@ -1,0 +1,36 @@
+@model TSN_HR_Web.Models.BoPhan
+
+@{
+    ViewData["Title"] = "Danh sách Phòng Ban";
+}
+
+<h3>Danh sách Phòng Ban</h3>
+
+<div>
+    <h4>Phòng Ban</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaBoPhan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaBoPhan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenBoPhan)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenBoPhan)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CoSoId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CoSoId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>

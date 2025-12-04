@@ -264,8 +264,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\hn8
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\hd1lmdmf4v-{0}-muycvpuwrr-muycvpuwrr.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\n9nvmxmd7p-{0}-87fc7y1x7t-87fc7y1x7t.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\wxt00t7zr1-{0}-mlv21k5csn-mlv21k5csn.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\jcdl6nk3jx-{0}-g6m0mo8g5l-g6m0mo8g5l.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\v8ncpyv4f1-{0}-g6m0mo8g5l-g6m0mo8g5l.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\staticwebassets.development.json
@@ -401,3 +399,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\tr\Microsoft.C
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-yj1t4fe2nh-yj1t4fe2nh.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\jcdl6nk3jx-{0}-fep4kx5l42-fep4kx5l42.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\v8ncpyv4f1-{0}-fep4kx5l42-fep4kx5l42.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\cevc3tt0sl-{0}-qtwf1l3t14-qtwf1l3t14.gz

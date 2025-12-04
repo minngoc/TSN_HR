@@ -1,3 +1,16 @@
-bin/
-obj
-.vs
+Project/TSN_HR_Web/bin/
+Project/TSN_HR_Web/obj/
+
+# Ignore VS settings
+.vs/
+**/.vs/
+
+# Ignore user-specific files
+*.user
+*.rsuser
+
+# Ignore development appsettings
+Project/TSN_HR_Web/appsettings.Development.json
+
+# Ignore node modules (if ever used)
+node_modules/

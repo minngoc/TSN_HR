@@ -1,0 +1,37 @@
+@model IEnumerable<TSN_HR_Web.Models.ChucVu>
+
+@{
+    ViewData["Title"] = "Danh Sach chuc vu";
+}
+
+<h3 class="mb-3">Danh sách các chức vụ Phòng ban Tân Sơn Nhất Hotel</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        + Thêm mới
+    </a>
+</p>
+
+<table class="table table-striped table-bordered table-sm mt-3">
+    <thead class="table-light">
+        <tr>
+            <th>Mã Chức Vụ</th>
+            <th>Tên Chức Vụ</th>
+            <th style="width: 150px;">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@item.MaChucVu</td>
+            <td>@item.TenChucVu</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Chi tiết</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
