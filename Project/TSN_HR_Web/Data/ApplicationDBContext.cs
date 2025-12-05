@@ -19,8 +19,14 @@ namespace TSN_HR_Web.Data
         public DbSet<CoSo> CoSos { get; set; }
         //DbSet for Bo Phan
         public DbSet<BoPhan> BoPhans { get; set; }
-        //SbSet for ChucVu
+        // DbSet for ChucVu
         public DbSet<ChucVu> ChucVus { get; set; }
+        // DbSet for Ngach cong vien chuc
+        public DbSet<NgachCongVienChuc> NgachCongVienChucs { get; set; }
+        // DbSet for Muc Luong
+        public DbSet<MucLuong> MucLuongs { get; set; }
+        // DbSet for Luong
+        //public DbSet<Luong> Luongs { get; set; }
 
     }
 }

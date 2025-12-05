@@ -1,0 +1,45 @@
+@model TSN_HR_Web.Models.MucLuong
+
+@{
+    ViewData["Title"] = "Muc luong theo ngach";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaMucLuong" class="control-label"></label>
+                <input asp-for="MaMucLuong" class="form-control" />
+                <span asp-validation-for="MaMucLuong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgachCongVienChucId" class="control-label"></label>
+                <input asp-for="NgachCongVienChucId" class="form-control" />
+                <span asp-validation-for="NgachCongVienChucId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BacLuong" class="control-label"></label>
+                <input asp-for="BacLuong" class="form-control" />
+                <span asp-validation-for="BacLuong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeSoLuong" class="control-label"></label>
+                <input asp-for="HeSoLuong" class="form-control" />
+                <span asp-validation-for="HeSoLuong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

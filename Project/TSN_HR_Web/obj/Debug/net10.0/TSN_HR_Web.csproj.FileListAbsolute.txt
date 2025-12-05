@@ -398,7 +398,7 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\ru\Microsoft.C
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-yj1t4fe2nh-yj1t4fe2nh.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\jcdl6nk3jx-{0}-fep4kx5l42-fep4kx5l42.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\v8ncpyv4f1-{0}-fep4kx5l42-fep4kx5l42.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\cevc3tt0sl-{0}-qtwf1l3t14-qtwf1l3t14.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-ri8pf0ajve-ri8pf0ajve.gz
