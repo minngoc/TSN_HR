@@ -28,6 +28,12 @@ namespace TSN_HR_Web.Data
         // DbSet for Luong
         //public DbSet<Luong> Luongs { get; set; }
 
+        // DbSet for So yeu ly lich
+        public DbSet<SoYeuLyLich> SoYeuLyLichs { get; set; }
+
+        //DbSet for Hop Dong
+        public DbSet<HopDong> HopDongs { get; set; }
+
     }
 }
 
