@@ -1,37 +1,37 @@
+/* ========== BASE ========== */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
-}
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}
-
-body {
+    height: 100%;
+    margin: 0;
     background-color: #f7f7f7;
+    overflow: hidden; /* chỉ content scroll */
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
 }
 
 h1, h2, h3 {
@@ -47,6 +47,193 @@ h1, h2, h3 {
     border-color: #007bff;
 }
 
+/* Footer */
+
 .tsn-footer {
-    background-color: #c9b300; 
+    background-color: #c9b300;
 }
+
+/* ========== LAYOUT WRAPPER ========== */
+
+/* Phần chứa sidebar + content */
+.tsn-wrapper {
+    display: flex;
+    height: calc(100% - 40px); /* chừa chỗ cho footer ~40px */
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Content bên phải */
+#mainContent {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+/* ========== SIDEBAR ========== */
+
+.tsn-sidebar {
+    width: 260px;
+    background-color: #020b1a;
+    color: #ffffff;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+/* Collapsed width */
+.tsn-sidebar.collapsed {
+    width: 80px;
+}
+
+/* Header trong sidebar */
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    width: 100%;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header img {
+    height: 40px;
+    margin-right: 8px;
+}
+
+.sidebar-title {
+    font-size: 0.95rem;
+}
+
+/* Khi collapsed: thu nhỏ logo, ẩn title để nút không bị tràn */
+.tsn-sidebar.collapsed .sidebar-title {
+    display: none;
+}
+
+.tsn-sidebar.collapsed .sidebar-header img {
+    height: 28px;
+    margin-right: 0;
+}
+
+/* Nút toggle sidebar */
+
+.btn-toggle {
+    background: transparent;
+    border: none;
+    padding: 2px 4px;
+    line-height: 1;
+}
+
+.btn-toggle i {
+    font-size: 1.2rem;
+}
+
+/* ========== MENU TRONG SIDEBAR ========== */
+
+.tsn-sidebar .nav-link {
+    border-radius: 0;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.tsn-sidebar .nav-link:hover,
+.tsn-sidebar .nav-link:focus {
+    background-color: #0d47a1;
+    color: #ffffff;
+}
+
+/* Icon bên trái mỗi menu */
+.menu-icon {
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Ẩn text khi collapsed (chỉ còn icon) */
+.tsn-sidebar.collapsed .menu-text {
+    display: none;
+}
+
+/* Submenu */
+
+.tsn-nav-toggle {
+    background: transparent;
+    border: none;
+}
+
+.tsn-sub-link {
+    color: #f1f1f1;
+    font-size: 0.9rem;
+    padding: 0.35rem 1rem 0.35rem 2.5rem;
+}
+
+.tsn-sub-link:hover {
+    background-color: #12325b;
+    color: #ffffff;
+}
+
+/* Khi sidebar collapsed: ẩn luôn phần submenu */
+.tsn-sidebar.collapsed .collapse {
+    display: none !important;
+}
+
+/* ========== ICON MŨI TÊN SUBMENU ========== */
+
+.tsn-nav-toggle::after {
+    font-family: "bootstrap-icons";
+    content: "\f285"; /* bi-chevron-right */
+    font-size: 1rem;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+.tsn-nav-toggle[aria-expanded="true"]::after {
+    transform: rotate(90deg);
+}
+
+.tsn-sidebar.collapsed .tsn-nav-toggle::after {
+    display: none;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+    .tsn-sidebar {
+        width: 220px;
+    }
+
+    .tsn-sidebar.collapsed {
+        width: 70px;
+    }
+}
+
+/* FIX: Sidebar collapsed - không để hover làm tràn ra ngoài */
+/* .tsn-sidebar.collapsed .nav-link,
+.tsn-sidebar.collapsed .tsn-nav-toggle {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+} */
+
+/* FIX: Button toggle trong header khi collapsed */
+/* .tsn-sidebar.collapsed .sidebar-header {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+} */
+
+/* FIX: Không cho menu icon / button vượt width */
+/* .tsn-sidebar,
+.tsn-sidebar * {
+    max-width: 100%;
+    overflow-x: hidden !important;
+} */
+
+/* FIX: Xoá hoàn toàn scroll ngang toàn trang */
+/* html, body, #mainContent, .tsn-wrapper {
+    overflow-x: hidden !important;
+} */
