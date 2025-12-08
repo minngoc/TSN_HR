@@ -18,8 +18,11 @@ body {
     overflow: hidden; /* chỉ content scroll */
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
-.form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -34,7 +37,9 @@ body {
     text-align: start;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 600;
 }
 
@@ -119,19 +124,6 @@ h1, h2, h3 {
     margin-right: 0;
 }
 
-/* Nút toggle sidebar */
-
-.btn-toggle {
-    background: transparent;
-    border: none;
-    padding: 2px 4px;
-    line-height: 1;
-}
-
-.btn-toggle i {
-    font-size: 1.2rem;
-}
-
 /* ========== MENU TRONG SIDEBAR ========== */
 
 .tsn-sidebar .nav-link {
@@ -145,12 +137,6 @@ h1, h2, h3 {
 .tsn-sidebar .nav-link:focus {
     background-color: #0d47a1;
     color: #ffffff;
-}
-
-/* Icon bên trái mỗi menu */
-.menu-icon {
-    min-width: 24px;
-    text-align: center;
 }
 
 /* Ẩn text khi collapsed (chỉ còn icon) */
@@ -181,24 +167,6 @@ h1, h2, h3 {
     display: none !important;
 }
 
-/* ========== ICON MŨI TÊN SUBMENU ========== */
-
-.tsn-nav-toggle::after {
-    font-family: "bootstrap-icons";
-    content: "\f285"; /* bi-chevron-right */
-    font-size: 1rem;
-    margin-left: auto;
-    transition: transform 0.2s ease;
-}
-
-.tsn-nav-toggle[aria-expanded="true"]::after {
-    transform: rotate(90deg);
-}
-
-.tsn-sidebar.collapsed .tsn-nav-toggle::after {
-    display: none;
-}
-
 /* ========== RESPONSIVE ========== */
 
 @media (max-width: 768px) {
@@ -210,30 +178,3 @@ h1, h2, h3 {
         width: 70px;
     }
 }
-
-/* FIX: Sidebar collapsed - không để hover làm tràn ra ngoài */
-/* .tsn-sidebar.collapsed .nav-link,
-.tsn-sidebar.collapsed .tsn-nav-toggle {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-    text-align: center !important;
-    justify-content: center !important;
-} */
-
-/* FIX: Button toggle trong header khi collapsed */
-/* .tsn-sidebar.collapsed .sidebar-header {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-} */
-
-/* FIX: Không cho menu icon / button vượt width */
-/* .tsn-sidebar,
-.tsn-sidebar * {
-    max-width: 100%;
-    overflow-x: hidden !important;
-} */
-
-/* FIX: Xoá hoàn toàn scroll ngang toàn trang */
-/* html, body, #mainContent, .tsn-wrapper {
-    overflow-x: hidden !important;
-} */

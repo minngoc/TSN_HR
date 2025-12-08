@@ -19,109 +19,105 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = TSN_HR_Web
 build_property.RootNamespace = TSN_HR_Web
-build_property.ProjectDir = D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\
+build_property.ProjectDir = C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web
+build_property.MSBuildProjectDirectory = C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9QaGFuc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Details.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9QaGFuc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/BoPhans/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9QaGFuc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/ChucVus/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/ChucVus/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2h1Y1Z1c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/ChucVus/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/ChucVus/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2h1Y1Z1c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29Tb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Details.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29Tb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/CoSos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29Tb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/Home/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/MucLuongs/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/MucLuongs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVjTHVvbmdzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/MucLuongs/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/MucLuongs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXVjTHVvbmdzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NgachCongVienChucs/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NgachCongVienChucs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmdhY2hDb25nVmllbkNodWNzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NgachCongVienChucs/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NgachCongVienChucs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmdhY2hDb25nVmllbkNodWNzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Create.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Delete.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Details.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Edit.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Index.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/NhanViens/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhblZpZW5zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/Shared/Error.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/_ViewImports.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/_ViewStart.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Minngoc Workspace/TSN_HR/Project/TSN_HR_Web/Views/Shared/_Layout.cshtml]
+[C:/Users/Ngoc/Desktop/TSN_HR/Project/TSN_HR_Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2u25g07i82

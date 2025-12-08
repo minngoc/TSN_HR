@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TSN_HR_Web.Data;
 using TSN_HR_Web.Models;
+using TSN_HR_Web.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
@@ -19,13 +20,49 @@ namespace TSN_HR_Web.Controllers
             _context = context;
         }
 
-        // GET: NhanViens
-        public async Task<IActionResult> Index()
+        // ================== GET: NhanViens ==================
+        // Hiển thị bảng Nhân viên với TEMP DATA
+        public IActionResult Index()
         {
-            return View(await _context.NhanViens.ToListAsync());
+            // TEMP DATA – chỉ để test UI, sau này xoá và thay bằng data từ DB
+            var tempData = new List<NhanVienListItemViewModel>
+            {
+                new NhanVienListItemViewModel
+                {
+                    Id = 1,
+                    MaNhanVien = "NV001",
+                    HoVaTen = "Nguyễn Văn A",
+                    SoYeuLyLichId = 1001,
+                    ThongTinBaoHiemId = 2001,
+                    HopDongId = 3001,
+                    MaLuongId = 4001,
+                },
+                new NhanVienListItemViewModel
+                {
+                    Id = 2,
+                    MaNhanVien = "NV002",
+                    HoVaTen = "Trần Thị B",
+                    SoYeuLyLichId = 1002,
+                    ThongTinBaoHiemId = 2002,
+                    HopDongId = 3002,
+                    MaLuongId = 4002,
+                },
+                new NhanVienListItemViewModel
+                {
+                    Id = 3,
+                    MaNhanVien = "NV003",
+                    HoVaTen = "Lê Văn C",
+                    SoYeuLyLichId = 1003,
+                    ThongTinBaoHiemId = 2003,
+                    HopDongId = 3003,
+                    MaLuongId = 4003,
+                },
+            };
+
+            return View(tempData);
         }
 
-        // GET: NhanViens/Details/5
+        // ================== GET: NhanViens/Details/5 ==================
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,8 +70,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var nhanVien = await _context.NhanViens
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var nhanVien = await _context.NhanViens.FirstOrDefaultAsync(m => m.Id == id);
             if (nhanVien == null)
             {
                 return NotFound();
@@ -43,18 +79,19 @@ namespace TSN_HR_Web.Controllers
             return View(nhanVien);
         }
 
-        // GET: NhanViens/Create
+        // ================== GET: NhanViens/Create ==================
         public IActionResult Create()
         {
+            // View Create vẫn dùng model NhanVien bình thường
             return View();
         }
 
-        // POST: NhanViens/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // ================== POST: NhanViens/Create ==================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MaNhanVien,SoYeuLyLichId,MaThongTinBaoHiem")] NhanVien nhanVien)
+        public async Task<IActionResult> Create(
+            [Bind("Id,MaNhanVien,SoYeuLyLichId,MaThongTinBaoHiem")] NhanVien nhanVien
+        )
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +102,7 @@ namespace TSN_HR_Web.Controllers
             return View(nhanVien);
         }
 
-        // GET: NhanViens/Edit/5
+        // ================== GET: NhanViens/Edit/5 ==================
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +118,13 @@ namespace TSN_HR_Web.Controllers
             return View(nhanVien);
         }
 
-        // POST: NhanViens/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // ================== POST: NhanViens/Edit/5 ==================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MaNhanVien,SoYeuLyLichId,MaThongTinBaoHiem")] NhanVien nhanVien)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("Id,MaNhanVien,SoYeuLyLichId,MaThongTinBaoHiem")] NhanVien nhanVien
+        )
         {
             if (id != nhanVien.Id)
             {
@@ -116,7 +154,7 @@ namespace TSN_HR_Web.Controllers
             return View(nhanVien);
         }
 
-        // GET: NhanViens/Delete/5
+        // ================== GET: NhanViens/Delete/5 ==================
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,8 +162,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var nhanVien = await _context.NhanViens
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var nhanVien = await _context.NhanViens.FirstOrDefaultAsync(m => m.Id == id);
             if (nhanVien == null)
             {
                 return NotFound();
@@ -134,7 +171,7 @@ namespace TSN_HR_Web.Controllers
             return View(nhanVien);
         }
 
-        // POST: NhanViens/Delete/5
+        // ================== POST: NhanViens/Delete/5 ==================
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

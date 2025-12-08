@@ -1,0 +1,32 @@
+/* ICON DEFAULT STYLE */
+.menu-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    color: white;              /* default icon color */
+}
+
+/* Hover effect */
+.nav-link:hover .menu-icon {
+    color: #ffffff;            /* yellow on hover */
+    transition: 0.2s ease;
+}
+
+/* Optional: icon inside collapsed menu items */
+.tsn-sub-link:hover .menu-icon {
+    color: #192b46;            /* blue */
+}
+/*CSS for arrow icon*/
+.menu-chevron {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    color: white;
+    transition: transform 0.25s ease;
+}
+.nav-link[aria-expanded="true"] .menu-chevron {
+    transform: rotate(90deg);
+}
+
+
+

@@ -1,0 +1,18 @@
+/* ===== Nhân viên table: sticky header + scroll ===== */
+.table-wrapper {
+    max-height: 700px;      /* chiều cao vùng scroll */
+    overflow-y: auto;
+}
+
+/* Sticky header */
+.table-sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #f8f9fa; /* giữ nền để nhìn rõ khi scroll */
+}
+
+/* Giữ hàng action gọn */
+.table-sticky td.text-nowrap {
+    white-space: nowrap;
+}

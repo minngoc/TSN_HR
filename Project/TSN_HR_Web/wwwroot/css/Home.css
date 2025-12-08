@@ -1,0 +1,11 @@
+/* Full-page background image with NO text, NO border */
+.home-fullscreen {
+    position: relative;
+    background-image: url('/Images/Banner_TSN.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+   height: calc(100vh - 56px - 40px);     /* full screen minus navbar */
+   width: 100%;
+}
