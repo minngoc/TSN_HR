@@ -1,43 +1,32 @@
-@model TSN_HR_Web.Models.BoPhan
+@model TSN_HR_Web.ViewModels.BoPhanCreateViewModel
 
 @{
-    ViewData["Title"] = "Phòng ban";
+    Layout = null;
 }
 
-<h3>Thêm mới Phòng ban</h3>
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
 
-<h4>Phòng ban</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MaBoPhan" class="control-label"></label>
-                <input asp-for="MaBoPhan" class="form-control" />
-                <span asp-validation-for="MaBoPhan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TenBoPhan" class="control-label"></label>
-                <input asp-for="TenBoPhan" class="form-control" />
-                <span asp-validation-for="TenBoPhan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CoSoId" class="control-label"></label>
-                <input asp-for="CoSoId" class="form-control" />
-                <span asp-validation-for="CoSoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row g-3 mb-3">
+        <div>
+            <label class="form-label fw-bold">Mã Phòng Ban</label>
+            <input asp-for="MaBoPhan" class="form-control"/>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Quay lại danh sách</a>
-</div>
+    <div class="row g-3 mb-3">
+        <div>
+            <label class="form-label fw-bold">Tên Phòng Ban</label>
+            <input asp-for="TenBoPhan" class="form-control"/>
+        </div>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="row g-3 mb-3">
+        <div>
+            <label class="form-label fw-bold">Mã Cụm</label>
+            <input asp-for="MaCoSo" class="form-control"/>
+        </div>
+    </div>
+
+</form>
+

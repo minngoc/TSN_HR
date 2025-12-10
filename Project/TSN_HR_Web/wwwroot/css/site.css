@@ -1,4 +1,8 @@
 /* ========== BASE ========== */
+html, body, * {
+    font-family: 'Inter', sans-serif !important;
+}
+
 
 html {
     font-size: 14px;
@@ -161,11 +165,63 @@ h3 {
     background-color: #12325b;
     color: #ffffff;
 }
+.submenu-arrow {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+}
+
+/* Khi menu đang mở (aria-expanded="true") thì quay mũi tên 90deg */
+.submenu-toggle[aria-expanded="true"] .submenu-arrow {
+    transform: rotate(90deg);
+}
 
 /* Khi sidebar collapsed: ẩn luôn phần submenu */
 .tsn-sidebar.collapsed .collapse {
     display: none !important;
 }
+
+/* ========== SPINNING ========== */
+.tsn-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+}
+
+.tsn-loading .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Container của data table */
+.table-wrapper {
+    position: relative; 
+}
+
+/* Spinner overlay */
+.tsn-table-spinner {
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    display: none; /* ẩn mặc định */
+    pointer-events: none;
+}
+
+/* Khi đang loading thì hiện spinner */
+.table-wrapper.tsn-table-loading .tsn-table-spinner {
+    display: flex;
+}
+
+
 
 /* ========== RESPONSIVE ========== */
 
@@ -178,3 +234,4 @@ h3 {
         width: 70px;
     }
 }
+

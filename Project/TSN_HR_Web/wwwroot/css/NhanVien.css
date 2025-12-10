@@ -16,3 +16,7 @@
 .table-sticky td.text-nowrap {
     white-space: nowrap;
 }
+
+label {
+    font-weight: 600 !important;
+}

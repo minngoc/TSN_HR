@@ -5,229 +5,197 @@
 }
 
 <form asp-action="Create" method="post">
-
     @Html.AntiForgeryToken()
 
-    <h5>Sơ yếu lý lịch</h5>
-    <div class="mb-3">
-        <label>Mã nhân viên</label>
-        @* <input asp-for="MaNhanVien" class="form-control" /> *@
-    </div>
+    <h4>Sơ yếu lý lịch</h4>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Họ và Tên Đệm</span>
-        <input asp-for="HoVaTenDem" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Tên</span>
-        <input asp-for="Ten" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Giới tính</span>
-        <select asp-for="GioiTinh" class="form-select" aria-label="Default select example">
-            <option selected>Giới tính</option>
-            <option value="1">Nam</option>
-            <option value="2">Nữ</option>
-        </select>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
-            <label class="form-check-label" for="radioDefault1">
-                Nam
-            </label>
+    <!-- Họ tên + Giới tính -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label fw-bold">Họ và Tên Đệm</label>
+            <input asp-for="HoVaTenDem" class="form-control" />
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
-            <label class="form-check-label" for="radioDefault2">
-                Nữ
-            </label>
+        <div class="col-md-4">
+            <label class="form-label">Tên</label>
+            <input asp-for="Ten" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Giới tính</label>
+            <select asp-for="GioiTinh" class="form-select">
+                <option value=""></option>
+                <option value="1">Nam</option>
+                <option value="2">Nữ</option>
+            </select>
         </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Ngày Sinh</span>
-        <input asp-for="NgaySinh" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Nơi Sinh</span>
-        <input asp-for="NoiSinh" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Nguyên Quán</span>
-        <input asp-for="NguyenQuan" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Ngày sinh / Nơi sinh / Nguyên quán -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label">Ngày Sinh</label>
+            <input asp-for="NgaySinh" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Nơi Sinh</label>
+            <input asp-for="NoiSinh" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Nguyên Quán</label>
+            <input asp-for="NguyenQuan" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Dân Tộc</span>
-        <input asp-for="DanToc" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Tôn Giáo</span>
-        <input asp-for="TonGiao" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Dân tộc / Tôn giáo -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Dân Tộc</label>
+            <input asp-for="DanToc" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Tôn Giáo</label>
+            <input asp-for="TonGiao" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">CMND/CCCD</span>
-        <input asp-for="CMND" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Ngày Cấp</span>
-        <input asp-for="NgayCap" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- CMND / Ngày cấp -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">CMND/CCCD</label>
+            <input asp-for="CMND" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Ngày Cấp</label>
+            <input asp-for="NgayCap" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ thường trú</span>
-        <input asp-for="DiaChiThuongTru" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Địa chỉ: full width -->
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <label class="form-label">Địa chỉ thường trú</label>
+            <input asp-for="DiaChiThuongTru" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label class="form-label">Địa chỉ tạm trú</label>
+            <input asp-for="DiaChiTamTru" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ tạm trú</span>
-        <input asp-for="DiaChiTamTru" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Điện thoại -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Số điện thoại nhà</label>
+            <input asp-for="SoDienThoaiNha" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Số điện thoại cá nhân</label>
+            <input asp-for="SoDienThoai" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại nhà</span>
-        <input asp-for="SoDienThoaiNha" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại cá nhân</span>
-        <input asp-for="SoDienThoai" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Ngân hàng -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Số tài khoản ngân hàng</label>
+            <input asp-for="SoTaiKhoan" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Tên ngân hàng</label>
+            <input asp-for="NganHang" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số tài khoản ngân hàng</span>
-        <input asp-for="SoTaiKhoan" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Tên ngân hàng</span>
-        <input asp-for="NganHang" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Mã Số Thuế</span>
-        <input asp-for="MaSoThue" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Mã số thuế -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Mã Số Thuế</label>
+            <input asp-for="MaSoThue" class="form-control" />
+        </div>
     </div>
 
     <hr />
 
     <h5>Thông tin bảo hiểm</h5>
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Học Vấn</span>
-        <select asp-for="HocVan" class="form-select" aria-label="Default select example">
-            <option value="1">Tiểu học (5/12)</option>
-            <option value="2">Trung học cơ sở (9/12)</option>
-            <option value="3">Trung học phổ thông (12/12)</option>
-            <option value="4">Trung Cấp</option>
-            <option value="5">Cao Đẳng</option>
-            <option value="6">Đại Học</option>
-            <option value="6">Thạc Sĩ</option>
-            <option value="6">Tiến Sĩ</option>
-        </select>
+
+    <!-- Học vấn / Trình độ -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Học Vấn</label>
+            <select asp-for="HocVan" class="form-select">
+                <option value="1">Tiểu học (5/12)</option>
+                <option value="2">Trung học cơ sở (9/12)</option>
+                <option value="3">Trung học phổ thông (12/12)</option>
+                <option value="4">Trung Cấp</option>
+                <option value="5">Cao Đẳng</option>
+                <option value="6">Đại Học</option>
+                <option value="7">Thạc Sĩ</option>
+                <option value="8">Tiến Sĩ</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Trình Độ</label>
+            <select asp-for="TrinhDo" class="form-select">
+                <option value="1">Tiểu học (5/12)</option>
+                <option value="2">Trung học cơ sở (9/12)</option>
+                <option value="3">Trung học phổ thông (12/12)</option>
+                <option value="4">Trung Cấp</option>
+                <option value="5">Cao Đẳng</option>
+                <option value="6">Đại Học</option>
+                <option value="7">Thạc Sĩ</option>
+                <option value="8">Tiến Sĩ</option>
+            </select>
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Trình Độ</span>
-        <select asp-for="TrinhDo" class="form-select" aria-label="Default select example">
-            <option value="1">Tiểu học (5/12)</option>
-            <option value="2">Trung học cơ sở (9/12)</option>
-            <option value="3">Trung học phổ thông (12/12)</option>
-            <option value="4">Trung Cấp</option>
-            <option value="5">Cao Đẳng</option>
-            <option value="6">Đại Học</option>
-            <option value="6">Thạc Sĩ</option>
-            <option value="6">Tiến Sĩ</option>
-        </select>
+    <!-- Chuyên ngành -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Chuyên ngành</label>
+            <input asp-for="ChuyenNganh" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Chuyên ngành</span>
-        <input asp-for="ChuyenNganh" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Mã/Tên KCB cũ & mới -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Mã Khám Chữa Bệnh Cũ</label>
+            <input asp-for="MaKhamChuaBenhCu" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Tên Khám Chữa Bệnh Cũ</label>
+            <input asp-for="TenKhamChuaBenhCu" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Mã Khám Chữa Bệnh Cũ</span>
-        <input asp-for="MaKhamChuaBenhCu" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Tên Khám Chữa Bệnh Cũ</span>
-        <input asp-for="TenKhamChuaBenhCu" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Mã Khám Chữa Bệnh Mới</label>
+            <input asp-for="MaKhamChuaBenhMoi" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Tên Khám Chữa Bệnh Mới</label>
+            <input asp-for="TenKhamChuaBenhMoi" class="form-control" />
+        </div>
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Mã Khám Chữa Bệnh Mới</span>
-        <input asp-for="MaKhamChuaBenhMoi" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Tên Khám Chữa Bệnh Mới</span>
-        <input asp-for="TenKhamChuaBenhMoi" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
+    <!-- Số BHXH / BHYT / Khám sức khỏe -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label">Số Bảo Hiểm Xã Hội</label>
+            <input asp-for="SoBaoHiemXaHoi" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Số Bảo Hiểm Y Tế</label>
+            <input asp-for="SoBaoHiemYTe" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Số Khám Sức Khỏe</label>
+            <input asp-for="SoKhamSucKhoe" class="form-control" />
+        </div>
     </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số Bảo Hiểm Xã Hội</span>
-        <input asp-for="SoBaoHiemXaHoi" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số Bảo Hiểm Y Tế</span>
-        <input asp-for="SoBaoHiemYTe" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        <span class="input-group-text" id="inputGroup-sizing-default">Số Khám Sức Khỏe</span>
-        <input asp-for="SoKhamSucKhoe" type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    @* <h5>Bộ phận</h5>
-    <div class="mb-3">
-        <select asp-for="PhongBanId" asp-items="ViewBag.PhongBanList" class="form-select"></select>
-    </div>
-
-    <h5>Hợp đồng</h5>
-    <div class="mb-3">
-        <input asp-for="LoaiHopDong" class="form-control" />
-    </div> *@
 
     <div class="modal-footer">
-        <button type="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         <button type="submit" class="btn btn-primary">Lưu</button>
     </div>
 </form>
-
-
-
-@* @model TSN_HR_Web.Models.NhanVien
-
-@{
-    ViewData["Title"] = "Nhập Thông Tin Nhân Viên";
-}
-
-<h1>Nhập thông tin nhân viên</h1>
-
-<h4>NhanVien</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MaNhanVien" class="control-label"></label>
-                <input asp-for="MaNhanVien" class="form-control" />
-                <span asp-validation-for="MaNhanVien" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaThongTinBaoHiem" class="control-label"></label>
-                <input asp-for="MaThongTinBaoHiem" class="form-control" />
-                <span asp-validation-for="MaThongTinBaoHiem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Quay lại danh sách</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@

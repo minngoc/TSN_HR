@@ -24,6 +24,7 @@ namespace TSN_HR_Web.Controllers
         // Hiển thị bảng Nhân viên với TEMP DATA
         public IActionResult Index()
         {
+            
             // TEMP DATA – chỉ để test UI, sau này xoá và thay bằng data từ DB
             var tempData = new List<NhanVienListItemViewModel>
             {
@@ -60,6 +61,7 @@ namespace TSN_HR_Web.Controllers
             };
 
             return View(tempData);
+            
         }
 
         // ================== GET: NhanViens/Details/5 ==================
