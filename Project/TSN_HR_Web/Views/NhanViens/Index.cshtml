@@ -72,12 +72,20 @@
     </div>
 </div>
 
+@section Scripts {
 <script>
-    function loadCreateForm() {
-        $.get("/NhanViens/Create", function (html) {
-            $("#createModalBody").html(html);
-            var modal = new bootstrap.Modal(document.getElementById('createNhanVienModal'));
-            modal.show();
-        });
-    }
+  window.loadCreateForm = function () {
+      console.log("loadCreateForm called");
+
+      $("#createModalBody").load("/NhanViens/Create", function (response, status, xhr) {
+          if (status === "error") {
+              console.error("error loading form", xhr.status);
+              return;
+          }
+
+          var modal = new bootstrap.Modal(document.getElementById('createNhanVienModal'));
+          modal.show();
+      });
+  };
 </script>
+}
