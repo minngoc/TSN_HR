@@ -727,10 +727,7 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rjsmcshtml.dswa
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\bundle\TSN_HR_Web.styles.css
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\scopedcss\projectbundle\TSN_HR_Web.bundle.scp.css
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-ri8pf0ajve-ri8pf0ajve.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\obwv8bu8jf-{0}-61n19gt1b8-61n19gt1b8.gz
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\cevc3tt0sl-{0}-klh5vsnxje-klh5vsnxje.gz
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\2co8vy93mz-{0}-t1cqhe9u97-t1cqhe9u97.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\o1u51kwtwk-{0}-c2jlpeoesf-c2jlpeoesf.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vqdzwy7g2f-{0}-sejl45xvog-sejl45xvog.gz
@@ -812,3 +809,12 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swg
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\y2hy3a4g8i-{0}-n2bofdy14o-n2bofdy14o.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\3akbckkefs-{0}-1cal4x33ky-1cal4x33ky.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-afzfup8e6l-afzfup8e6l.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\abhupzi9x3-{0}-yhdduuqf8m-yhdduuqf8m.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-ov429lbw6u-ov429lbw6u.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\6h00n2yain-{0}-7582piewg0-7582piewg0.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\nop6e83uqd-{0}-ug23jz7fye-ug23jz7fye.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2od65uu-{0}-afzfup8e6l-afzfup8e6l.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\686znykzc9-{0}-6inx71wcvi-6inx71wcvi.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\y2hy3a4g8i-{0}-n2bofdy14o-n2bofdy14o.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-3g1l94jz9o-3g1l94jz9o.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\3akbckkefs-{0}-rc8pdzzceh-rc8pdzzceh.gz

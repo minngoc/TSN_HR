@@ -16,6 +16,7 @@ namespace TSN_HR_Web.ViewModels
         public string? TonGiao { get; set; }
         public string? CMND { get; set; }
         public DateTime? NgayCap { get; set; }
+        public string? NoiCap { get; set; }
         public string? DiaChiThuongTru { get; set; }
         public string? DiaChiTamTru { get; set; }
         public string? SoDienThoaiNha { get; set; }

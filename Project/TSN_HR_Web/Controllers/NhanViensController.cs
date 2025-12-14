@@ -37,6 +37,7 @@ namespace TSN_HR_Web.Controllers
                     ThongTinBaoHiemId = 2001,
                     HopDongId = 3001,
                     MaLuongId = 4001,
+                    TenChucVu = "Bếp trưởng"
                 },
                 new NhanVienListItemViewModel
                 {
@@ -47,6 +48,7 @@ namespace TSN_HR_Web.Controllers
                     ThongTinBaoHiemId = 2002,
                     HopDongId = 3002,
                     MaLuongId = 4002,
+                    TenChucVu = "Kế Toán"
                 },
                 new NhanVienListItemViewModel
                 {
@@ -57,6 +59,7 @@ namespace TSN_HR_Web.Controllers
                     ThongTinBaoHiemId = 2003,
                     HopDongId = 3003,
                     MaLuongId = 4003,
+                    TenChucVu = "Hành chính"
                 },
             };
 

@@ -7378,23 +7378,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ngoc\\.nuget\\packages\\": {},
+    "C:\\Users\\Laptop\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
+      "projectUniqueName": "D:\\Minngoc Workspace\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
       "projectName": "TSN_HR_Web",
-      "projectPath": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
-      "packagesPath": "C:\\Users\\Ngoc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ngoc\\Desktop\\TSN_HR\\Project\\TSN_HR_Web\\obj\\",
+      "projectPath": "D:\\Minngoc Workspace\\TSN_HR\\Project\\TSN_HR_Web\\TSN_HR_Web.csproj",
+      "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
+      "outputPath": "D:\\Minngoc Workspace\\TSN_HR\\Project\\TSN_HR_Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Ngoc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -1,196 +1,165 @@
 ﻿@model TSN_HR_Web.ViewModels.NhanVienCreateViewModel
-
 @{
     Layout = null;
 }
 
-<form asp-action="Create" method="post">
+<form asp-controller="NhanViens" asp-action="Create" method="post" class="nhanvien-create-form">
     @Html.AntiForgeryToken()
 
-    <h4>Sơ yếu lý lịch</h4>
+    <div asp-validation-summary="ModelOnly"
+     class="text-danger mb-3"></div>
 
-    <!-- Họ tên + Giới tính -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-4">
-            <label class="form-label fw-bold">Họ và Tên Đệm</label>
-            <input asp-for="HoVaTenDem" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Tên</label>
-            <input asp-for="Ten" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Giới tính</label>
-            <select asp-for="GioiTinh" class="form-select">
-                <option value=""></option>
-                <option value="1">Nam</option>
-                <option value="2">Nữ</option>
-            </select>
+    <!-- ================= HEADER ================= -->
+    <div class="mb-3">
+        <h4 class="fw-semibold mb-2">Thông tin nhân viên</h4>
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active">Sơ yếu lý lịch</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-muted">Thông tin bảo hiểm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-muted">Hợp đồng</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ================= CONTENT ================= -->
+    <div class="pt-4">
+        <div class="row">
+            <!-- ===== AVATAR ===== -->
+            <div class="col-md-3 text-center">
+                <div class="avatar-wrapper mb-3">
+                    <img src="https://via.placeholder.com/120" class="rounded-circle img-fluid" alt="avatar" />
+                    <button type="button" class="btn btn-primary btn-sm avatar-edit">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== FORM ===== -->
+            <div class="col-md-9">
+
+                <!-- HỌ TÊN / NGÀY SINH -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Họ và Tên đệm</label>
+                        <input asp-for="HoVaTenDem" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Tên</label>
+                        <input asp-for="Ten" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Ngày sinh</label>
+                        <input asp-for="NgaySinh" type="date" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+                <!-- GIỚI TÍNH -->
+                <div class="mb-3">
+                    <label class="form-label d-block">Giới tính</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="GioiTinh" value="1" />
+                        <label class="form-check-label">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="GioiTinh" value="2" />
+                        <label class="form-check-label">Nữ</label>
+                    </div>
+                </div>
+
+                <!-- NƠI SINH / NGUYÊN QUÁN -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Nơi sinh</label>
+                        <input asp-for="NoiSinh" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nguyên quán</label>
+                        <input asp-for="NguyenQuan" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+                <!-- DÂN TỘC / TÔN GIÁO -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Dân tộc</label>
+                        <input asp-for="DanToc" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tôn giáo</label>
+                        <input asp-for="TonGiao" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+                <!-- CCCD -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Số CCCD/CMND</label>
+                        <input asp-for="CMND" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Ngày cấp</label>
+                        <input asp-for="NgayCap" type="date" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Nơi cấp</label>
+                        <input asp-for="NoiCap" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+                <!-- ĐIỆN THOẠI -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Số điện thoại cá nhân</label>
+                        <input asp-for="SoDienThoai" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Số điện thoại nhà</label>
+                        <input asp-for="SoDienThoaiNha" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+                <!-- ĐỊA CHỈ -->
+                <div class="mb-3">
+                    <label class="form-label">Địa chỉ thường trú</label>
+                    <input asp-for="DiaChiThuongTru" class="form-control rounded-pill" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Địa chỉ tạm trú</label>
+                    <input asp-for="DiaChiTamTru" class="form-control rounded-pill" />
+                </div>
+
+                <!-- NGÂN HÀNG -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Số tài khoản</label>
+                        <input asp-for="SoTaiKhoan" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Ngân hàng</label>
+                        <input asp-for="NganHang" class="form-control rounded-pill" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mã số thuế</label>
+                        <input asp-for="MaSoThue" class="form-control rounded-pill" />
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- Ngày sinh / Nơi sinh / Nguyên quán -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-4">
-            <label class="form-label">Ngày Sinh</label>
-            <input asp-for="NgaySinh" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Nơi Sinh</label>
-            <input asp-for="NoiSinh" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Nguyên Quán</label>
-            <input asp-for="NguyenQuan" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Dân tộc / Tôn giáo -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Dân Tộc</label>
-            <input asp-for="DanToc" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Tôn Giáo</label>
-            <input asp-for="TonGiao" class="form-control" />
-        </div>
-    </div>
-
-    <!-- CMND / Ngày cấp -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">CMND/CCCD</label>
-            <input asp-for="CMND" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Ngày Cấp</label>
-            <input asp-for="NgayCap" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Địa chỉ: full width -->
-    <div class="row g-3 mb-3">
-        <div class="col-12">
-            <label class="form-label">Địa chỉ thường trú</label>
-            <input asp-for="DiaChiThuongTru" class="form-control" />
-        </div>
-        <div class="col-12">
-            <label class="form-label">Địa chỉ tạm trú</label>
-            <input asp-for="DiaChiTamTru" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Điện thoại -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Số điện thoại nhà</label>
-            <input asp-for="SoDienThoaiNha" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Số điện thoại cá nhân</label>
-            <input asp-for="SoDienThoai" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Ngân hàng -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Số tài khoản ngân hàng</label>
-            <input asp-for="SoTaiKhoan" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Tên ngân hàng</label>
-            <input asp-for="NganHang" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Mã số thuế -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Mã Số Thuế</label>
-            <input asp-for="MaSoThue" class="form-control" />
-        </div>
-    </div>
-
-    <hr />
-
-    <h5>Thông tin bảo hiểm</h5>
-
-    <!-- Học vấn / Trình độ -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Học Vấn</label>
-            <select asp-for="HocVan" class="form-select">
-                <option value="1">Tiểu học (5/12)</option>
-                <option value="2">Trung học cơ sở (9/12)</option>
-                <option value="3">Trung học phổ thông (12/12)</option>
-                <option value="4">Trung Cấp</option>
-                <option value="5">Cao Đẳng</option>
-                <option value="6">Đại Học</option>
-                <option value="7">Thạc Sĩ</option>
-                <option value="8">Tiến Sĩ</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Trình Độ</label>
-            <select asp-for="TrinhDo" class="form-select">
-                <option value="1">Tiểu học (5/12)</option>
-                <option value="2">Trung học cơ sở (9/12)</option>
-                <option value="3">Trung học phổ thông (12/12)</option>
-                <option value="4">Trung Cấp</option>
-                <option value="5">Cao Đẳng</option>
-                <option value="6">Đại Học</option>
-                <option value="7">Thạc Sĩ</option>
-                <option value="8">Tiến Sĩ</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Chuyên ngành -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Chuyên ngành</label>
-            <input asp-for="ChuyenNganh" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Mã/Tên KCB cũ & mới -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Mã Khám Chữa Bệnh Cũ</label>
-            <input asp-for="MaKhamChuaBenhCu" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Tên Khám Chữa Bệnh Cũ</label>
-            <input asp-for="TenKhamChuaBenhCu" class="form-control" />
-        </div>
-    </div>
-
-    <div class="row g-3 mb-3">
-        <div class="col-md-6">
-            <label class="form-label">Mã Khám Chữa Bệnh Mới</label>
-            <input asp-for="MaKhamChuaBenhMoi" class="form-control" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Tên Khám Chữa Bệnh Mới</label>
-            <input asp-for="TenKhamChuaBenhMoi" class="form-control" />
-        </div>
-    </div>
-
-    <!-- Số BHXH / BHYT / Khám sức khỏe -->
-    <div class="row g-3 mb-3">
-        <div class="col-md-4">
-            <label class="form-label">Số Bảo Hiểm Xã Hội</label>
-            <input asp-for="SoBaoHiemXaHoi" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Số Bảo Hiểm Y Tế</label>
-            <input asp-for="SoBaoHiemYTe" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="form-label">Số Khám Sức Khỏe</label>
-            <input asp-for="SoKhamSucKhoe" class="form-control" />
-        </div>
+    <!-- ================= FOOTER ================= -->
+    <div class="d-flex justify-content-end gap-3 mt-4">
+        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+            Hủy
+        </button>
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+            Lưu
+        </button>
     </div>
 </form>

@@ -5,17 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Tan Son Nhat Hotel</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/icons.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TSN_HR_Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TSN_HR_Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" />
-
-
-
     @RenderSection("Styles", required: false)
 </head>
 
@@ -28,17 +21,12 @@
         <nav id="sidebar" class="tsn-sidebar d-flex flex-column">
 
             <!-- Sidebar Header -->
-            <div class="d-flex align-items-center justify-content-between px-3 py-3 sidebar-header">
-                <div class="d-flex align-items-center">
-                    <img src="~/Images/TSN_Logo.png" height="40" class="me-2" />
-                    <span class="sidebar-title fw-bold text-white">Tan Son Nhat Hotel</span>
-                </div>
+            <div class="sidebar-header d-flex align-items-center px-3 py-3">
+                <img src="~/Images/TSN_Logo.png" height="40" class="me-2" />
+                <span class="sidebar-title fw-bold text-white flex-grow-1">Tan Son Nhat Hotel</span>
 
-                <!-- Toggle Button -->
-                <button id="sidebarToggle" class="btn btn-sm text-white">
-                    <svg class="menu-icon me-2" width="20" height="20">
-                        <use href="@Url.Content("~/icons/icons.svg#icon-sidebar")"></use>
-                    </svg>
+                <button id="sidebarToggle" class="btn btn-sm btn-toggle text-white ms-1">
+                    <i class="bi bi-list"></i>
                 </button>
             </div>
 
@@ -47,37 +35,23 @@
                 <!-- Trang chủ -->
                 <li class="nav-item">
                     <a class="nav-link text-white fw-semibold d-flex align-items-center" href="/">
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-home")"></use>
-                        </svg>
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text">Trang Chủ</span>
                     </a>
                 </li>
 
                 <!-- Nhân viên -->
                 <li class="nav-item">
-                    <a class=" nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuNhanVien" aria-expanded="false">
-
-                        <!-- Left icon -->
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-people")"></use>
-                        </svg>
-
-                        <!-- Text -->
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text flex-grow-1">Nhân Viên</span>
-
-                        <!-- Right arrow -->
-                        <svg class="ms-auto submenu-arrow" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-chevron-right")"></use>
-                        </svg>
-                    </a>
+                    </button>
 
                     <div class="collapse" id="menuNhanVien">
                         <ul class="nav flex-column ms-3 mb-2">
                             <li class="nav-item">
-                                <a class="nav-link js-ajax-link tsn-sub-link" asp-controller="NhanViens"
-                                    asp-action="Index">
+                                <a class="nav-link tsn-sub-link" asp-controller="NhanViens" asp-action="Index">
                                     Danh sách nhân viên
                                 </a>
                             </li>
@@ -85,24 +59,19 @@
                     </div>
                 </li>
 
-
                 <!-- Phòng ban -->
                 <li class="nav-item">
-                    <a class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuPhongBan" aria-expanded="false">
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-stack")"></use>
-                        </svg>
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text flex-grow-1">Phòng Ban</span>
-                    </a>
+                    </button>
 
                     <div class="collapse" id="menuPhongBan">
                         <ul class="nav flex-column ms-3 mb-2">
-                            <li><a class="nav-link js-ajax-link tsn-sub-link" asp-controller="BoPhans"
-                                    asp-action="Index">Danh sách
+                            <li><a class="nav-link tsn-sub-link" asp-controller="BoPhans" asp-action="Index">Danh sách
                                     phòng ban</a></li>
-                            <li><a class="nav-link js-ajax-link tsn-sub-link" asp-controller="ChucVus"
-                                    asp-action="Index">Danh sách
+                            <li><a class="nav-link tsn-sub-link" asp-controller="ChucVus" asp-action="Index">Danh sách
                                     chức vụ</a></li>
                         </ul>
                     </div>
@@ -110,22 +79,19 @@
 
                 <!-- Lương -->
                 <li class="nav-item">
-                    <a class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuLuong" aria-expanded="false">
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-wallet")"></use>
-                        </svg>
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text flex-grow-1">Lương</span>
-                    </a>
+                    </button>
 
                     <div class="collapse" id="menuLuong">
                         <ul class="nav flex-column ms-3 mb-2">
-                            <li><a class="nav-link js-ajax-link tsn-sub-link" asp-controller="NgachCongVienChucs"
+                            <li><a class="nav-link tsn-sub-link" asp-controller="NgachCongVienChucs"
                                     asp-action="Index">Ngạch Công Viên Chức</a></li>
-                            <li><a class="nav-link js-ajax-link tsn-sub-link" asp-controller="MucLuongs"
-                                    asp-action="Index">Mức
+                            <li><a class="nav-link tsn-sub-link" asp-controller="MucLuongs" asp-action="Index">Mức
                                     Lương</a></li>
-                            <li><a class="nav-link js-ajax-link tsn-sub-link" asp-controller="LuongNhanViens"
+                            <li><a class="nav-link tsn-sub-link" asp-controller="LuongNhanViens"
                                     asp-action="Index">Lương</a></li>
                         </ul>
                     </div>
@@ -133,21 +99,17 @@
 
                 <!-- Bảo hiểm -->
                 <li class="nav-item">
-                    <a class="nav-link js-ajax-link text-white fw-semibold d-flex align-items-center" href="#">
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-medical")"></use>
-                        </svg>
+                    <a class="nav-link text-white fw-semibold d-flex align-items-center" href="#">
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text">Bảo Hiểm</span>
                     </a>
                 </li>
 
                 <!-- Cơ sở -->
                 <li class="nav-item">
-                    <a class="nav-link js-ajax-link text-white fw-semibold d-flex align-items-center"
-                        asp-controller="CoSos" asp-action="Index">
-                        <svg class="menu-icon me-2" width="20" height="20">
-                            <use href="@Url.Content("~/icons/icons.svg#icon-building")"></use>
-                        </svg>
+                    <a class="nav-link text-white fw-semibold d-flex align-items-center" asp-controller="CoSos"
+                        asp-action="Index">
+                        <span class="menu-icon me-2">ICON</span>
                         <span class="menu-text">Cơ Sở</span>
                     </a>
                 </li>
@@ -167,106 +129,21 @@
         </div>
 
     </div>
-    <div id="tsn-loading" class="tsn-loading d-none">
-        <div class="spinner-border text-primary" role="status"></div>
-    </div>
 
-
-    @* <!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="tsn-footer mt-auto">
         <div class="container text-center py-2 text-white">
             &copy; 2025 - Tan Son Nhat Hotels Group Human Resource Managemnent |
             Design and coded by TMN | All rights reserved.
         </div>
-    </footer> *@
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        (function () {
-
-            function showLoading() {
-                document.getElementById("tsn-loading").classList.remove("d-none");
-            }
-
-            function hideLoading() {
-                document.getElementById("tsn-loading").classList.add("d-none");
-            }
-
-            function ajaxNavigate(url, addToHistory = true) {
-
-                showLoading();
-
-                fetch(url, {
-                    headers: { "X-Requested-With": "XMLHttpRequest" }
-                })
-                    .then(response => response.text())
-                    .then(html => {
-
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, "text/html");
-
-                        const newContent = doc.querySelector("#mainContent");
-                        const currentContent = document.querySelector("#mainContent");
-
-                        if (newContent && currentContent) {
-                            currentContent.innerHTML = newContent.innerHTML;
-                        }
-
-                        if (doc.title) {
-                            document.title = doc.title;
-                        }
-
-                        if (addToHistory) {
-                            history.pushState({ url: url }, "", url);
-                        }
-
-                    })
-                    .catch(err => console.error("AJAX navigation error:", err))
-                    .finally(() => {
-                        hideLoading();
-                    });
-            }
-
-
-            document.addEventListener("DOMContentLoaded", function () {
-
-                // Click handler
-                document.addEventListener("click", function (e) {
-                    const link = e.target.closest("a.js-ajax-link");
-                    if (!link) return;
-
-                    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
-                        return;
-                    }
-
-                    e.preventDefault();
-                    const url = link.href;
-
-                    ajaxNavigate(url, true);
-
-                    document.querySelectorAll(".js-ajax-link.active")
-                        .forEach(a => a.classList.remove("active"));
-                    link.classList.add("active");
-                });
-
-                // Browser back/forward
-                window.addEventListener("popstate", function (e) {
-                    const url = (e.state && e.state.url) ? e.state.url : location.href;
-                    ajaxNavigate(url, false);
-                });
-            });
-
-        })();
-    </script>
-
-
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 
 </html>

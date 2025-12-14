@@ -10,5 +10,6 @@ namespace TSN_HR_Web.ViewModels
         public int ThongTinBaoHiemId { get; set; }  // Mã thông tin bảo hiểm
         public int HopDongId { get; set; }          // Mã hợp đồng
         public int MaLuongId { get; set; }          // Mã lương
+        public string? TenChucVu { get; set; }
     }
 }
