@@ -28,6 +28,26 @@
         </li>
         <li class="nav-item">
             <a class="nav-link text-muted" href="#">
+                Học vấn
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted" href="#">
+                Gia đình
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted" href="#">
+                Trong nước
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted" href="#">
+                Ngoài nước
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted" href="#">
                 Nhân viên đã nghỉ
             </a>
         </li>
@@ -111,13 +131,21 @@
 
 <!-- ===== MODAL CREATE ===== -->
 <div class="modal fade" id="createNhanVienModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-nhanvien-wide modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm nhân viên</h5>
+                <h5 class="modal-title">Thông tin nhân viên</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="createModalBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                    Lưu
+                </button>
+            </div>
         </div>
     </div>
 </div>

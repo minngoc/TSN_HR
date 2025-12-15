@@ -1,12 +1,35 @@
-/* ========== BASE ========== */
-html, body, * {
-    font-family: 'Inter', sans-serif !important;
+/* =========================================================
+   TSN HR – BRAND VARIABLES (GLOBAL)
+========================================================= */
+:root {
+    /* Brand */
+    --brand-primary: #123288;
+    --brand-primary-hover: #0f2a70;
+    --brand-primary-active: #0c215a;
+
+    /* Text / Border */
+    --brand-text: #123288;
+    --brand-border: #123288;
+
+    /* Effects */
+    --brand-focus-ring: rgba(18, 50, 136, 0.25);
+
+    /* Typography (BOOTSTRAP CORE) */
+    --bs-body-font-family: 'Inter', system-ui, -apple-system,
+        BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Arial, sans-serif;
 }
 
+/* =========================================================
+   BASE
+========================================================= */
+html,
+body {
+    height: 100%;
+}
 
 html {
     font-size: 14px;
-    height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -16,29 +39,12 @@ html {
 }
 
 body {
-    height: 100%;
     margin: 0;
     background-color: #f7f7f7;
     overflow: hidden; /* chỉ content scroll */
-}
-
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-.form-floating > .form-control-plaintext::placeholder,
-.form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder,
-.form-floating > .form-control:focus::placeholder {
-    text-align: start;
+    font-family: 'Inter', system-ui, -apple-system,
+        BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Arial, sans-serif;
 }
 
 h1,
@@ -48,31 +54,94 @@ h3 {
 }
 
 .table {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
+/* =========================================================
+   BOOTSTRAP OVERRIDES – BUTTON
+========================================================= */
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    --bs-btn-bg: var(--brand-primary);
+    --bs-btn-border-color: var(--brand-primary);
+
+    --bs-btn-hover-bg: var(--brand-primary-hover);
+    --bs-btn-hover-border-color: var(--brand-primary-hover);
+
+    --bs-btn-active-bg: var(--brand-primary-active);
+    --bs-btn-active-border-color: var(--brand-primary-active);
 }
 
-/* Footer */
+/* =========================================================
+   BOOTSTRAP OVERRIDES – FOCUS / INPUT
+========================================================= */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.btn:focus,
+.btn:active:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 0.2rem var(--brand-focus-ring);
+}
 
+/* =========================================================
+   BOOTSTRAP OVERRIDES – PAGINATION
+========================================================= */
+.pagination {
+    --bs-pagination-color: var(--brand-primary);
+    --bs-pagination-bg: #fff;
+    --bs-pagination-border-color: #e5e7eb;
+
+    --bs-pagination-hover-color: #fff;
+    --bs-pagination-hover-bg: var(--brand-primary);
+    --bs-pagination-hover-border-color: var(--brand-primary);
+
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: var(--brand-primary);
+    --bs-pagination-active-border-color: var(--brand-primary);
+
+    --bs-pagination-focus-color: var(--brand-primary);
+    --bs-pagination-focus-bg: rgba(18, 50, 136, 0.15);
+    --bs-pagination-focus-box-shadow: 0 0 0 0.2rem var(--brand-focus-ring);
+
+    --bs-pagination-disabled-color: #9ca3af;
+    --bs-pagination-disabled-bg: #f3f4f6;
+    --bs-pagination-disabled-border-color: #e5e7eb;
+}
+
+/* Paging */
+
+.pagination .page-item:first-child .page-link {
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+}
+
+.pagination .page-item:last-child .page-link {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+}
+
+.pagination .page-link {
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 .tsn-footer {
     background-color: #c9b300;
 }
 
-/* ========== LAYOUT WRAPPER ========== */
-
-/* Phần chứa sidebar + content */
+/* =========================================================
+   LAYOUT WRAPPER
+========================================================= */
 .tsn-wrapper {
     display: flex;
-    height: calc(100% - 40px); /* chừa chỗ cho footer ~40px */
+    height: 100vh;
     min-height: 0;
     overflow: hidden;
 }
 
-/* Content bên phải */
 #mainContent {
     flex: 1 1 auto;
     height: 100%;
@@ -81,30 +150,28 @@ h3 {
     background-color: #f7f7f7;
 }
 
-/* ========== SIDEBAR ========== */
-
+/* =========================================================
+   SIDEBAR
+========================================================= */
 .tsn-sidebar {
     width: 260px;
     background-color: #020b1a;
-    color: #ffffff;
+    color: #fff;
     flex-shrink: 0;
     height: 100%;
     overflow-y: auto;
     transition: width 0.3s ease;
 }
 
-/* Collapsed width */
 .tsn-sidebar.collapsed {
     width: 80px;
 }
 
-/* Header trong sidebar */
-
+/* Sidebar header */
 .sidebar-header {
     display: flex;
     align-items: center;
     padding: 8px 10px;
-    width: 100%;
     white-space: nowrap;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -113,12 +180,17 @@ h3 {
     height: 40px;
     margin-right: 8px;
 }
+.menu-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
 
 .sidebar-title {
     font-size: 0.95rem;
 }
 
-/* Khi collapsed: thu nhỏ logo, ẩn title để nút không bị tràn */
 .tsn-sidebar.collapsed .sidebar-title {
     display: none;
 }
@@ -128,28 +200,25 @@ h3 {
     margin-right: 0;
 }
 
-/* ========== MENU TRONG SIDEBAR ========== */
-
+/* Sidebar menu */
 .tsn-sidebar .nav-link {
-    border-radius: 0;
     padding: 0.6rem 1rem;
     font-size: 0.95rem;
-    color: #ffffff;
+    color: #fff;
 }
 
 .tsn-sidebar .nav-link:hover,
 .tsn-sidebar .nav-link:focus {
     background-color: #0d47a1;
-    color: #ffffff;
+    color: #fff;
 }
 
-/* Ẩn text khi collapsed (chỉ còn icon) */
+/* Hide text when collapsed */
 .tsn-sidebar.collapsed .menu-text {
     display: none;
 }
 
 /* Submenu */
-
 .tsn-nav-toggle {
     background: transparent;
     border: none;
@@ -163,24 +232,25 @@ h3 {
 
 .tsn-sub-link:hover {
     background-color: #12325b;
-    color: #ffffff;
+    color: #fff;
 }
+
 .submenu-arrow {
     display: inline-flex;
     transition: transform 0.2s ease;
 }
 
-/* Khi menu đang mở (aria-expanded="true") thì quay mũi tên 90deg */
 .submenu-toggle[aria-expanded="true"] .submenu-arrow {
     transform: rotate(90deg);
 }
 
-/* Khi sidebar collapsed: ẩn luôn phần submenu */
 .tsn-sidebar.collapsed .collapse {
     display: none !important;
 }
 
-/* ========== SPINNING ========== */
+/* =========================================================
+   LOADING / SPINNER
+========================================================= */
 .tsn-loading {
     position: fixed;
     top: 50%;
@@ -198,33 +268,29 @@ h3 {
     display: none !important;
 }
 
-/* Container của data table */
+/* Table loading overlay */
 .table-wrapper {
-    position: relative; 
+    position: relative;
 }
 
-/* Spinner overlay */
 .tsn-table-spinner {
     position: absolute;
-    inset: 0; /* top:0; right:0; bottom:0; left:0 */
-    display: flex;
+    inset: 0;
+    display: none;
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.7);
     z-index: 10;
-    display: none; /* ẩn mặc định */
     pointer-events: none;
 }
 
-/* Khi đang loading thì hiện spinner */
 .table-wrapper.tsn-table-loading .tsn-table-spinner {
     display: flex;
 }
 
-
-
-/* ========== RESPONSIVE ========== */
-
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 @media (max-width: 768px) {
     .tsn-sidebar {
         width: 220px;
@@ -234,4 +300,3 @@ h3 {
         width: 70px;
     }
 }
-

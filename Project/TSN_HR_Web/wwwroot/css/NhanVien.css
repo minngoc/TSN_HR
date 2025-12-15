@@ -1,11 +1,20 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
 label {
-    font-weight: 600 !important;
+    font-weight: 600;
 }
+
+/* =========================================================
+   NHAN VIEN PAGE
+========================================================= */
 .nhanvien-page {
     background: #f8fafc;
 }
 
-/* Table */
+/* =========================================================
+   TABLE
+========================================================= */
 .table {
     border-collapse: separate;
     border-spacing: 0;
@@ -22,12 +31,16 @@ label {
     border-bottom: 1px solid #f1f5f9;
 }
 
-/* Card wrapper */
+/* =========================================================
+   CARD
+========================================================= */
 .card {
     border-radius: 16px;
 }
 
-/* Tabs */
+/* =========================================================
+   TABS
+========================================================= */
 .nav-tabs .nav-link {
     border: none;
     color: #64748b;
@@ -35,12 +48,18 @@ label {
 }
 
 .nav-tabs .nav-link.active {
-    color: #1d4ed8;
-    border-bottom: 2px solid #1d4ed8;
+    color: var(--brand-primary, #123288);
+    border-bottom: 2px solid var(--brand-primary, #123288);
     background: transparent;
 }
-
-/* Buttons */
+#createNhanVienModal .modal-body {
+    min-height: 600px;  /* chỉnh theo tab cao nhất */
+    max-height: 80vh;   /* không vượt quá màn hình */
+    overflow-y: auto;
+}
+/* =========================================================
+   BUTTONS
+========================================================= */
 .btn-pill {
     border-radius: 999px;
     padding: 4px 14px;
@@ -68,23 +87,89 @@ label {
     background: #db2777;
     color: #fff;
 }
-/* ===== CREATE NHAN VIEN ===== */
+
+/* =========================================================
+   CREATE NHAN VIEN – MODAL
+========================================================= */
+.modal-nhanvien-wide {
+    max-width: 92vw;
+}
+
+.modal-nhanvien-wide .modal-body {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+/* =========================================================
+   CREATE NHAN VIEN – FORM
+========================================================= */
 .nhanvien-create-form .form-control,
 .nhanvien-create-form .form-select {
     font-size: 14px;
 }
 
+.nhanvien-create-form label {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   AVATAR
+========================================================= */
 .avatar-wrapper {
     position: relative;
     width: 120px;
     margin: auto;
 }
 
+
 .avatar-edit {
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 8px;
     border-radius: 50%;
     padding: 6px 8px;
 }
 
+/* =========================================================
+   GRID HR FORM 
+========================================================= */
+.nv-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(3, 1fr);
+    gap: 12px 16px;
+    align-items: start;
+}
+
+.nv-avatar {
+    grid-row: span 4;
+    text-align: center;
+}
+
+.nv-field label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.nv-span-3 {
+    grid-column: span 3;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
+    .nv-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nv-avatar {
+        grid-row: auto;
+    }
+
+    .nv-span-3 {
+        grid-column: span 1;
+    }
+}

@@ -4,162 +4,265 @@
 }
 
 <form asp-controller="NhanViens" asp-action="Create" method="post" class="nhanvien-create-form">
+
     @Html.AntiForgeryToken()
 
-    <div asp-validation-summary="ModelOnly"
-     class="text-danger mb-3"></div>
-
-    <!-- ================= HEADER ================= -->
-    <div class="mb-3">
-        <h4 class="fw-semibold mb-2">Thông tin nhân viên</h4>
-
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active">Sơ yếu lý lịch</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-muted">Thông tin bảo hiểm</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-muted">Hợp đồng</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- ================= CONTENT ================= -->
-    <div class="pt-4">
-        <div class="row">
-            <!-- ===== AVATAR ===== -->
-            <div class="col-md-3 text-center">
-                <div class="avatar-wrapper mb-3">
-                    <img src="https://via.placeholder.com/120" class="rounded-circle img-fluid" alt="avatar" />
-                    <button type="button" class="btn btn-primary btn-sm avatar-edit">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ===== FORM ===== -->
-            <div class="col-md-9">
-
-                <!-- HỌ TÊN / NGÀY SINH -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Họ và Tên đệm</label>
-                        <input asp-for="HoVaTenDem" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Tên</label>
-                        <input asp-for="Ten" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Ngày sinh</label>
-                        <input asp-for="NgaySinh" type="date" class="form-control rounded-pill" />
-                    </div>
-                </div>
-
-                <!-- GIỚI TÍNH -->
-                <div class="mb-3">
-                    <label class="form-label d-block">Giới tính</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" asp-for="GioiTinh" value="1" />
-                        <label class="form-check-label">Nam</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" asp-for="GioiTinh" value="2" />
-                        <label class="form-check-label">Nữ</label>
+    <!-- ===== TABS ===== -->
+    <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-soyeulylich" type="button"
+                role="tab">
+                Sơ yếu lý lịch
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Thông tin bảo hiểm
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Học vấn
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Gia đình
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Trong nước
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Ngoài nước
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-hopdong" type="button" role="tab">
+                Hợp đồng
+            </button>
+        </li>
+    </ul>
+    <!-- ===== CONTENT ===== -->
+    <div class="tab-content">
+        <div class="container-fluid px-0 tab-pane fade show active" id="tab-soyeulylich" role="tabpanel">
+            <div class="row g-3 align-items-start">
+                <!-- ===== AVATAR ===== -->
+                <div class="col-lg-2 col-md-3 text-center">
+                    <div class="avatar-wrapper">
+                        <img src="https://via.placeholder.com/120" class="rounded-circle img-fluid mb-2" />
+                        <button type="button" class="btn btn-primary btn-sm avatar-edit">
+                            <i class="bi bi-pencil"></i>
+                        </button>
                     </div>
                 </div>
+                <!-- ===== SƠ YẾU LÝ LỊCH ===== -->
+                <div class="col-lg-10 col-md-9">
+                    <!-- HỌ TÊN / NGÀY SINH / NƠI SINH -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Họ và Tên đệm</label>
+                            <input asp-for="HoVaTenDem" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tên</label>
+                            <input asp-for="Ten" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày sinh</label>
+                            <input asp-for="NgaySinh" type="date" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Nơi sinh</label>
+                            <input asp-for="NoiSinh" class="form-control rounded-pill" />
+                        </div>
 
-                <!-- NƠI SINH / NGUYÊN QUÁN -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Nơi sinh</label>
-                        <input asp-for="NoiSinh" class="form-control rounded-pill" />
+                        <div class="col-lg-2 col-md-6">
+                            <label>Nguyên quán</label>
+                            <input asp-for="NguyenQuan" class="form-control rounded-pill" />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Nguyên quán</label>
-                        <input asp-for="NguyenQuan" class="form-control rounded-pill" />
+                    <!-- GIỚI TÍNH / NGUYÊN QUÁN / CCCD -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label class="d-block">Giới tính</label>
+                            <label class="me-2">
+                                <input type="radio" asp-for="GioiTinh" value="1" /> Nam
+                            </label>
+                            <label>
+                                <input type="radio" asp-for="GioiTinh" value="2" /> Nữ
+                            </label>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số CCCD/CMND</label>
+                            <input asp-for="CMND" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày cấp</label>
+                            <input asp-for="NgayCap" type="date" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Nơi cấp</label>
+                            <input asp-for="NoiCap" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <!-- NƠI CẤP / DÂN TỘC / TÔN GIÁO / ĐIỆN THOẠI -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Dân tộc</label>
+                            <input asp-for="DanToc" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tôn giáo</label>
+                            <input asp-for="TonGiao" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>SĐT cá nhân</label>
+                            <input asp-for="SoDienThoai" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>SĐT nhà</label>
+                            <input asp-for="SoDienThoaiNha" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <!-- ĐỊA CHỈ -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Địa chỉ thường trú</label>
+                            <input asp-for="DiaChiThuongTru" class="form-control rounded-4"></textarea>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Địa chỉ tạm trú</label>
+                            <input asp-for="DiaChiTamTru" class="form-control rounded-4"></textarea>
+                        </div>
+                    </div>
+                    <!-- NGÂN HÀNG -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số tài khoản</label>
+                            <input asp-for="SoTaiKhoan" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Tên ngân hàng</label>
+                            <input asp-for="NganHang" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã số thuế</label>
+                            <input asp-for="MaSoThue" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <!-- HỌC VẤN -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Học vấn</label>
+                            <input asp-for="HocVan" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Trình độ</label>
+                            <input asp-for="TrinhDo" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Chuyên ngành</label>
+                            <input asp-for="ChuyenNganh" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <!-- TRANG PHỤC -->
+                    <div class="row g-3">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã trang phục</label>
+                            <input asp-for="MaTrangPhuc" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã giày</label>
+                            <input asp-for="MaGiay" class="form-control rounded-pill" />
+                        </div>
                     </div>
                 </div>
-
-                <!-- DÂN TỘC / TÔN GIÁO -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Dân tộc</label>
-                        <input asp-for="DanToc" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Tôn giáo</label>
-                        <input asp-for="TonGiao" class="form-control rounded-pill" />
-                    </div>
-                </div>
-
-                <!-- CCCD -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Số CCCD/CMND</label>
-                        <input asp-for="CMND" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Ngày cấp</label>
-                        <input asp-for="NgayCap" type="date" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Nơi cấp</label>
-                        <input asp-for="NoiCap" class="form-control rounded-pill" />
-                    </div>
-                </div>
-
-                <!-- ĐIỆN THOẠI -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Số điện thoại cá nhân</label>
-                        <input asp-for="SoDienThoai" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Số điện thoại nhà</label>
-                        <input asp-for="SoDienThoaiNha" class="form-control rounded-pill" />
-                    </div>
-                </div>
-
-                <!-- ĐỊA CHỈ -->
-                <div class="mb-3">
-                    <label class="form-label">Địa chỉ thường trú</label>
-                    <input asp-for="DiaChiThuongTru" class="form-control rounded-pill" />
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Địa chỉ tạm trú</label>
-                    <input asp-for="DiaChiTamTru" class="form-control rounded-pill" />
-                </div>
-
-                <!-- NGÂN HÀNG -->
-                <div class="row g-3 mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Số tài khoản</label>
-                        <input asp-for="SoTaiKhoan" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Ngân hàng</label>
-                        <input asp-for="NganHang" class="form-control rounded-pill" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Mã số thuế</label>
-                        <input asp-for="MaSoThue" class="form-control rounded-pill" />
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
+        <!-- ===== TAB: THÔNG TIN BẢO HIỂM ===== -->
+        <div class="container-fluid px-0 tab-pane fade" id="tab-baohiem" role="tabpanel">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-11 mx-auto">
+                    <div class="row g-3 mb-3 d-flex justify-content-around">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số sổ BHXH</label>
+                            <input asp-for="SoBaoHiemXaHoi" class="form-control rounded-pill" />
+                        </div>
 
-    <!-- ================= FOOTER ================= -->
-    <div class="d-flex justify-content-end gap-3 mt-4">
-        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
-            Hủy
-        </button>
-        <button type="submit" class="btn btn-primary rounded-pill px-4">
-            Lưu
-        </button>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số KSK</label>
+                            <input asp-for="SoKhamSucKhoe" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số BHYT</label>
+                            <input asp-for="SoBaoHiemYTe" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số thẻ Công đoàn</label>
+                            <input asp-for="SoTheCongDoan" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3 d-flex justify-content-around">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã KCB cũ</label>
+                            <input asp-for="MaKhamChuaBenhCu" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tên KCB cũ</label>
+                            <input asp-for="TenKhamChuaBenhCu" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã KCB mới</label>
+                            <input asp-for="MaKhamChuaBenhMoi" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tên KCB mới</label>
+                            <input asp-for="TenKhamChuaBenhMoi" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <div class="row g-3 d-flex justify-content-around">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày BHTN</label>
+                            <input asp-for="NgayTinhBaoHiemTaiNan" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày BHXH</label>
+                            <input asp-for="NgayTinhBaoHiemXaHoi" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày thử việc</label>
+                            <input asp-for="NgayThuViec" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày vào chính thức</label>
+                            <input asp-for="NgayVaoChinhThuc" type="date" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0 tab-pane fade" id="tab-hopdong" role="tabpanel">
+            <div class="d-flex justify-content-end mb-3">
+                <button type="button" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1"
+                    onclick="printTab('tab-baohiem')">
+
+                    <svg class="menu-icon">
+                        <use href="@Url.Content("~/icons/icons.svg#icon-print")"
+                            xlink:href="@Url.Content("~/icons/icons.svg#icon-print")"></use>
+                    </svg>
+
+                    <span>In</span>
+                </button>
+            </div>
+        </div>
     </div>
 </form>

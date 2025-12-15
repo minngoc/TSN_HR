@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TSN_HR_Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     @RenderSection("Styles", required: false)
 </head>
 
@@ -35,18 +39,26 @@
                 <!-- Trang chủ -->
                 <li class="nav-item">
                     <a class="nav-link text-white fw-semibold d-flex align-items-center" href="/">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-home")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text">Trang Chủ</span>
                     </a>
                 </li>
 
                 <!-- Nhân viên -->
                 <li class="nav-item">
-                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <a class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuNhanVien" aria-expanded="false">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-people")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text flex-grow-1">Nhân Viên</span>
-                    </button>
+                    </a>
 
                     <div class="collapse" id="menuNhanVien">
                         <ul class="nav flex-column ms-3 mb-2">
@@ -55,17 +67,31 @@
                                     Danh sách nhân viên
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link tsn-sub-link" asp-controller="NhanViens" asp-action="Index">
+                                    Khen thưởng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tsn-sub-link" asp-controller="NhanViens" asp-action="Index">
+                                    Kỷ luật
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
 
                 <!-- Phòng ban -->
                 <li class="nav-item">
-                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <a class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuPhongBan" aria-expanded="false">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-stack")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text flex-grow-1">Phòng Ban</span>
-                    </button>
+                    </a>
 
                     <div class="collapse" id="menuPhongBan">
                         <ul class="nav flex-column ms-3 mb-2">
@@ -79,11 +105,15 @@
 
                 <!-- Lương -->
                 <li class="nav-item">
-                    <button class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
+                    <a class="nav-link tsn-nav-toggle text-start text-white fw-semibold d-flex align-items-center"
                         data-bs-toggle="collapse" data-bs-target="#menuLuong" aria-expanded="false">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-wallet")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text flex-grow-1">Lương</span>
-                    </button>
+                    </a>
 
                     <div class="collapse" id="menuLuong">
                         <ul class="nav flex-column ms-3 mb-2">
@@ -100,7 +130,11 @@
                 <!-- Bảo hiểm -->
                 <li class="nav-item">
                     <a class="nav-link text-white fw-semibold d-flex align-items-center" href="#">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-medical")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text">Bảo Hiểm</span>
                     </a>
                 </li>
@@ -109,7 +143,11 @@
                 <li class="nav-item">
                     <a class="nav-link text-white fw-semibold d-flex align-items-center" asp-controller="CoSos"
                         asp-action="Index">
-                        <span class="menu-icon me-2">ICON</span>
+                        <svg class="menu-icon me-2">
+                            <use href="@Url.Content("~/icons/icons.svg#icon-building")"
+                                xlink:href="@Url.Content("~/icons/icons.svg#icon-people")">
+                            </use>
+                        </svg>
                         <span class="menu-text">Cơ Sở</span>
                     </a>
                 </li>
@@ -117,8 +155,6 @@
             </ul>
 
         </nav>
-
-
         <!-- CONTENT -->
         <div id="mainContent" class="expanded flex-grow-1 d-flex flex-column">
             <main role="main" class="pb-3 tsn-main-content">
@@ -129,14 +165,6 @@
         </div>
 
     </div>
-
-    <!-- FOOTER -->
-    <footer class="tsn-footer mt-auto">
-        <div class="container text-center py-2 text-white">
-            &copy; 2025 - Tan Son Nhat Hotels Group Human Resource Managemnent |
-            Design and coded by TMN | All rights reserved.
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -24,6 +24,8 @@ namespace TSN_HR_Web.ViewModels
         public string? SoTaiKhoan { get; set; }
         public string? NganHang { get; set; }
         public string? MaSoThue { get; set; }
+        public string? MaTrangPhuc {get;set;}
+        public string? MaGiay {get;set;}
         public string? Avata { get; set; }
 
         // ============================
@@ -33,6 +35,7 @@ namespace TSN_HR_Web.ViewModels
         public string? TrinhDo { get; set; }
         public string? ChuyenNganh { get; set; }
         public string? LoaiKyKet { get; set; }
+        public string? SoTheCongDoan { get; set; }
         public string? MaKhamChuaBenhCu { get; set; }
         public string? MaKhamChuaBenhMoi { get; set; }
         public string? TenKhamChuaBenhCu { get; set; }
