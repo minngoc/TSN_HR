@@ -1,4 +1,4 @@
-@model TSN_HR_Web.Models.BoPhan
+@model TSN_HR_Web.Models.Entities.bo_phan
 
 @{
     ViewData["Title"] = "Danh sách Phòng Ban";
@@ -11,26 +11,26 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaBoPhan)
+            @Html.DisplayNameFor(model => model.ma_bo_phan)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaBoPhan)
+            @Html.DisplayFor(model => model.ma_bo_phan)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TenBoPhan)
+            @Html.DisplayNameFor(model => model.ten_bo_phan)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TenBoPhan)
+            @Html.DisplayFor(model => model.ten_bo_phan)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CoSoId)
+            @Html.DisplayNameFor(model => model.co_so_id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CoSoId)
+            @Html.DisplayFor(model => model.co_so_id)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Sửa</a>
     <a asp-action="Index">Quay lại danh sách</a>
 </div>

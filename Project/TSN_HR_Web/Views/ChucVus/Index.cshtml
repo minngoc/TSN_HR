@@ -1,45 +1,106 @@
-@model IEnumerable<TSN_HR_Web.Models.ChucVu>
-
-@{
-    ViewData["Title"] = "Danh Sach chuc vu";
-}
+@model IEnumerable<TSN_HR_Web.Models.ViewModels.ChucVuListItemViewModel>
 
 @section Styles {
     <link rel="stylesheet" href="~/css/ChucVu.css" />
 }
 
-<h3 class="mb-3">Danh sách các chức vụ Phòng ban Tân Sơn Nhất Hotel</h3>
+@{
+    ViewData["Title"] = "Danh sách Chức vụ";
+}
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">
-        + Thêm mới
-    </a>
-</p>
+<div class="chucvu-page">
 
-<div class="table-wrapper table-respomsive">
-    <table class="table table-striped table-bordered table-sm mt-3">
-        <thead class="table-light">
-            <tr>
-                <th>Mã Chức Vụ</th>
-                <th>Tên Chức Vụ</th>
-                <th style="width: 150px;">Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MaChucVu</td>
-                    <td>@item.TenChucVu</td>
-                    <td class="text-nowrap">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Chi
-                            tiết</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-semibold mb-0">Danh Sách Chức Vụ</h3>
+
+        <button type="button" class="btn btn-primary rounded-pill px-4" onclick="loadCreateForm()">
+            + Thêm mới Chức Vụ
+        </button>
+    </div>
+    <!-- TABLE -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center">Mã Chức Vụ</th>
+                        <th class="text-center">Tên Chức Vụ</th>
+                        <th class="text-center">Mã Phòng Ban</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.ma_chuc_vu</td>
+                            <td class="text-center">@item.ten_chuc_vu</td>
+                            <td class="text-center">@item.ma_bo_phan</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGINATION  -->
+    <nav class="mt-4 d-flex justify-content-end">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link">Trước</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">Sau</a>
+            </li>
+        </ul>
+    </nav>
 
 </div>
+
+<!-- ===== MODAL CREATE ===== -->
+<div class="modal fade" id="createChucVuModal" tabindex="-1">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm mới Chức Vụ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="createModalBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="document.querySelector('#createChucVuModal form').submit()">
+                    Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        window.loadCreateForm = function () {
+            $("#createModalBody").load("@Url.Action("Create", "ChucVus")", function (response, status, xhr) {
+                if (status === "error") {
+                    console.error("Load Create form failed", xhr.status);
+                    return;
+                }
+
+                const modal = new bootstrap.Modal(
+                    document.getElementById('createChucVuModal')
+                );
+                modal.show();
+            });
+        };
+    </script>
+}

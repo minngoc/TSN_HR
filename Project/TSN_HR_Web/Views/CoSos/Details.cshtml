@@ -1,4 +1,4 @@
-@model TSN_HR_Web.Models.CoSo
+@model TSN_HR_Web.Models.Entities.co_so
 
 @{
     ViewData["Title"] = "Chi tiết Danh sách cụm";
@@ -11,26 +11,26 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaCoSo)
+            @Html.DisplayNameFor(model => model.ma_co_so)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaCoSo)
+            @Html.DisplayFor(model => model.ma_co_so)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TenCoSo)
+            @Html.DisplayNameFor(model => model.ten_co_so)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TenCoSo)
+            @Html.DisplayFor(model => model.ten_co_so)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaChi)
+            @Html.DisplayNameFor(model => model.dia_chi)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DiaChi)
+            @Html.DisplayFor(model => model.dia_chi)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Sửa</a>
     <a asp-action="Index">Quay lại danh sách</a>
 </div>

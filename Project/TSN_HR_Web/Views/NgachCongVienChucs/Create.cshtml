@@ -1,38 +1,25 @@
-@model TSN_HR_Web.Models.NgachCongVienChuc
-
+@model TSN_HR_Web.Models.ViewModels.NgachCongVienChucCreateViewModel
 @{
-    ViewData["Title"] = "Ngạch Công Viên Chức";
+    Layout = null;
+}
+@{
+    ViewData["Title"] = "Chức Vụ";
 }
 
-<h3>Thêm mới Ngạch</h3>
-
-<h4>Ngạch</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MaNgach" class="control-label"></label>
-                <input asp-for="MaNgach" class="form-control" />
-                <span asp-validation-for="MaNgach" class="text-danger"></span>
+<form asp-controller="NgachCongVienChucs" asp-action="Create" method="post" class="ngachcongvienchuc-create-form">
+    @Html.AntiForgeryToken()
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-11 mx-auto">
+            <div class="row g-3 mb-3 d-flex justify-content-around">
+                <div class="col-lg-2 col-md-6">
+                    <label>Mã Ngạch</label>
+                    <input asp-for="ma_ngach" class="form-control rounded-pill" />
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <label>Tên Ngạch</label>
+                    <input asp-for="ten_ngach" class="form-control rounded-pill" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TenNgach" class="control-label"></label>
-                <input asp-for="TenNgach" class="form-control" />
-                <span asp-validation-for="TenNgach" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Quay lại danh sách</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</form>

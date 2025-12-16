@@ -5,23 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TSN_HR_Web.Data;
 using TSN_HR_Web.Models;
+using TSN_HR_Web.Models.Entities;
+using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
     public class ChucVusController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public ChucVusController(ApplicationDbContext context)
+        private readonly TSNHRDbContext _context;
+
+        public ChucVusController(TSNHRDbContext context)
         {
             _context = context;
         }
+
         // GET: List Chuc vu
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ChucVus.ToListAsync());
+            var data = await _context
+                .chuc_vus.Select(cv => new ChucVuListItemViewModel
+                {
+                    id = cv.id,
+                    ma_chuc_vu = cv.ma_chuc_vu,
+                    ten_chuc_vu = cv.ten_chuc_vu,
+                    ma_bo_phan = cv.bo_phan != null ? cv.bo_phan.ma_bo_phan : "",
+                })
+                .ToListAsync();
+
+            return View(data);
         }
+
         // GET: Chuc vu/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -30,8 +44,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var chucVu = await _context.ChucVus
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var chucVu = await _context.chuc_vus.FirstOrDefaultAsync(m => m.id == id);
             if (chucVu == null)
             {
                 return NotFound();
@@ -39,25 +52,59 @@ namespace TSN_HR_Web.Controllers
 
             return View(chucVu);
         }
+
         // GET: Chuc vu/Create
         public IActionResult Create()
         {
-            return View();
+            var vm = new ChucVuCreateViewModel
+            {
+                BoPhanList = _context
+                    .bo_phans.Where(bp => bp.is_active)
+                    .Select(bp => new SelectListItem
+                    {
+                        Value = bp.id.ToString(),
+                        Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan,
+                    })
+                    .ToList(),
+            };
+
+            return View(vm);
         }
+
         // POST: Chuc vu/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaChucVu,TenChucVu")] ChucVu chucVu)
+        public async Task<IActionResult> Create(ChucVuCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(chucVu);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                model.BoPhanList = _context
+                    .bo_phans.Select(bp => new SelectListItem
+                    {
+                        Value = bp.id.ToString(),
+                        Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan,
+                    })
+                    .ToList();
+
+                return View(model);
             }
-            return View(chucVu);
+
+            var chucVu = new chuc_vu
+            {
+                ma_chuc_vu = model.ma_chuc_vu,
+                ten_chuc_vu = model.ten_chuc_vu,
+                bo_phan_id = model.bo_phan_id,
+                created_date = DateTime.Now,
+                updated_date = DateTime.Now,
+                is_active = true,
+            };
+
+            _context.chuc_vus.Add(chucVu);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Chuc vu/Edit/
@@ -68,7 +115,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var chucVu = await _context.ChucVus.FindAsync(id);
+            var chucVu = await _context.chuc_vus.FindAsync(id);
             if (chucVu == null)
             {
                 return NotFound();
@@ -81,9 +128,12 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaChucVu,TenChucVu")] ChucVu chucVu)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("ma_chuc_vu,ten_chuc_vu")] chuc_vu chucVu
+        )
         {
-            if (id != chucVu.Id)
+            if (id != chucVu.id)
             {
                 return NotFound();
             }
@@ -97,7 +147,7 @@ namespace TSN_HR_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ChucVuExists(chucVu.Id))
+                    if (!ChucVuExists(chucVu.id))
                     {
                         return NotFound();
                     }
@@ -110,6 +160,7 @@ namespace TSN_HR_Web.Controllers
             }
             return View(chucVu);
         }
+
         // GET: Chuc vu/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,8 +169,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var chucVu = await _context.ChucVus
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var chucVu = await _context.chuc_vus.FirstOrDefaultAsync(m => m.id == id);
             if (chucVu == null)
             {
                 return NotFound();
@@ -133,18 +183,19 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var chucVu = await _context.ChucVus.FindAsync(id);
+            var chucVu = await _context.chuc_vus.FindAsync(id);
             if (chucVu != null)
             {
-                _context.ChucVus.Remove(chucVu);
+                _context.chuc_vus.Remove(chucVu);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool ChucVuExists(int id)
         {
-            return _context.ChucVus.Any(e => e.Id == id);
+            return _context.chuc_vus.Any(e => e.id == id);
         }
     }
 }

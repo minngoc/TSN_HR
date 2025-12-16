@@ -1,4 +1,4 @@
-﻿@model TSN_HR_Web.ViewModels.NhanVienCreateViewModel
+﻿@model TSN_HR_Web.Models.ViewModels.NhanVienCreateViewModel
 @{
     Layout = null;
 }
@@ -18,26 +18,6 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
                 Thông tin bảo hiểm
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
-                Học vấn
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
-                Gia đình
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
-                Trong nước
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
-                Ngoài nước
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -65,24 +45,24 @@
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Họ và Tên đệm</label>
-                            <input asp-for="HoVaTenDem" class="form-control rounded-pill" />
+                            <input asp-for="ho_nv" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Tên</label>
-                            <input asp-for="Ten" class="form-control rounded-pill" />
+                            <input asp-for="ten_nv" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày sinh</label>
-                            <input asp-for="NgaySinh" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ngay_sinh" type="date" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Nơi sinh</label>
-                            <input asp-for="NoiSinh" class="form-control rounded-pill" />
+                            <input asp-for="noi_sinh" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Nguyên quán</label>
-                            <input asp-for="NguyenQuan" class="form-control rounded-pill" />
+                            <input asp-for="nguyen_quan" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <!-- GIỚI TÍNH / NGUYÊN QUÁN / CCCD -->
@@ -90,94 +70,100 @@
                         <div class="col-lg-2 col-md-6">
                             <label class="d-block">Giới tính</label>
                             <label class="me-2">
-                                <input type="radio" asp-for="GioiTinh" value="1" /> Nam
+                                <input type="radio" asp-for="gioi_tinh" value="1" /> Nam
                             </label>
                             <label>
-                                <input type="radio" asp-for="GioiTinh" value="2" /> Nữ
+                                <input type="radio" asp-for="gioi_tinh" value="2" /> Nữ
                             </label>
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Số CCCD/CMND</label>
-                            <input asp-for="CMND" class="form-control rounded-pill" />
+                            <input asp-for="so_cccd" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày cấp</label>
-                            <input asp-for="NgayCap" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ngay_cap" type="date" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Nơi cấp</label>
-                            <input asp-for="NoiCap" class="form-control rounded-pill" />
+                            <input asp-for="noi_cap" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <!-- NƠI CẤP / DÂN TỘC / TÔN GIÁO / ĐIỆN THOẠI -->
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Dân tộc</label>
-                            <input asp-for="DanToc" class="form-control rounded-pill" />
+                            <input asp-for="dan_toc" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Tôn giáo</label>
-                            <input asp-for="TonGiao" class="form-control rounded-pill" />
+                            <input asp-for="ton_giao" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>SĐT cá nhân</label>
-                            <input asp-for="SoDienThoai" class="form-control rounded-pill" />
+                            <input asp-for="dien_thoai" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>SĐT nhà</label>
-                            <input asp-for="SoDienThoaiNha" class="form-control rounded-pill" />
+                            <input asp-for="dien_thoai_home" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <!-- ĐỊA CHỈ -->
                     <div class="row g-3 mb-2">
                         <div class="col-lg-4 col-md-6">
                             <label>Địa chỉ thường trú</label>
-                            <input asp-for="DiaChiThuongTru" class="form-control rounded-4"></textarea>
+                            <input asp-for="thuong_tru" class="form-control rounded-4"></textarea>
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <label>Địa chỉ tạm trú</label>
-                            <input asp-for="DiaChiTamTru" class="form-control rounded-4"></textarea>
+                            <input asp-for="dia_chi" class="form-control rounded-4"></textarea>
                         </div>
                     </div>
                     <!-- NGÂN HÀNG -->
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Số tài khoản</label>
-                            <input asp-for="SoTaiKhoan" class="form-control rounded-pill" />
+                            <input asp-for="ma_tai_khoan" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <label>Tên ngân hàng</label>
-                            <input asp-for="NganHang" class="form-control rounded-pill" />
+                            <input asp-for="ngan_hang" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Mã số thuế</label>
-                            <input asp-for="MaSoThue" class="form-control rounded-pill" />
+                            <input asp-for="ma_so_thue" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <!-- HỌC VẤN -->
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Học vấn</label>
-                            <input asp-for="HocVan" class="form-control rounded-pill" />
+                            <select asp-for="hoc_van" asp-items="ViewBag.HocVanList" class="form-select rounded-pill">
+                                <option value="">-- Chọn học vấn --</option>
+                            </select>
                         </div>
+
                         <div class="col-lg-2 col-md-6">
                             <label>Trình độ</label>
-                            <input asp-for="TrinhDo" class="form-control rounded-pill" />
+                            <select asp-for="trinh_do" asp-items="ViewBag.TrinhDoList" class="form-select rounded-pill">
+                                <option value="">-- Chọn trình độ --</option>
+                            </select>
                         </div>
+
                         <div class="col-lg-4 col-md-6">
                             <label>Chuyên ngành</label>
-                            <input asp-for="ChuyenNganh" class="form-control rounded-pill" />
+                            <input asp-for="chuyen_nganh" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <!-- TRANG PHỤC -->
                     <div class="row g-3">
                         <div class="col-lg-2 col-md-6">
                             <label>Mã trang phục</label>
-                            <input asp-for="MaTrangPhuc" class="form-control rounded-pill" />
+                            <input asp-for="ma_trang_phuc" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Mã giày</label>
-                            <input asp-for="MaGiay" class="form-control rounded-pill" />
+                            <input asp-for="ma_giay" class="form-control rounded-pill" />
                         </div>
                     </div>
                 </div>
@@ -190,61 +176,61 @@
                     <div class="row g-3 mb-3 d-flex justify-content-around">
                         <div class="col-lg-2 col-md-6">
                             <label>Số sổ BHXH</label>
-                            <input asp-for="SoBaoHiemXaHoi" class="form-control rounded-pill" />
+                            <input asp-for="so_bhxh" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Số KSK</label>
-                            <input asp-for="SoKhamSucKhoe" class="form-control rounded-pill" />
+                            <input asp-for="so_ksk" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Số BHYT</label>
-                            <input asp-for="SoBaoHiemYTe" class="form-control rounded-pill" />
+                            <input asp-for="so_bhyt" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Số thẻ Công đoàn</label>
-                            <input asp-for="SoTheCongDoan" class="form-control rounded-pill" />
+                            <input asp-for="so_the_cong_doan" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <div class="row g-3 mb-3 d-flex justify-content-around">
                         <div class="col-lg-2 col-md-6">
                             <label>Mã KCB cũ</label>
-                            <input asp-for="MaKhamChuaBenhCu" class="form-control rounded-pill" />
+                            <input asp-for="ma_kcb_cu" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Tên KCB cũ</label>
-                            <input asp-for="TenKhamChuaBenhCu" class="form-control rounded-pill" />
+                            <input asp-for="ten_kcb_cu" class="form-control rounded-pill" />
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <label>Mã KCB mới</label>
-                            <input asp-for="MaKhamChuaBenhMoi" class="form-control rounded-pill" />
+                            <input asp-for="ma_kcb_moi" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Tên KCB mới</label>
-                            <input asp-for="TenKhamChuaBenhMoi" class="form-control rounded-pill" />
+                            <input asp-for="ten_kcb_moi" class="form-control rounded-pill" />
                         </div>
                     </div>
                     <div class="row g-3 d-flex justify-content-around">
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày BHTN</label>
-                            <input asp-for="NgayTinhBaoHiemTaiNan" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ngay_bhtn" type="date" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày BHXH</label>
-                            <input asp-for="NgayTinhBaoHiemXaHoi" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ngay_bhxh" type="date" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày thử việc</label>
-                            <input asp-for="NgayThuViec" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ng_thu_viec" type="date" class="form-control rounded-pill" />
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày vào chính thức</label>
-                            <input asp-for="NgayVaoChinhThuc" type="date" class="form-control rounded-pill" />
+                            <input asp-for="ng_vao_chinh_thuc" type="date" class="form-control rounded-pill" />
                         </div>
                     </div>
                 </div>

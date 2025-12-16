@@ -5,23 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TSN_HR_Web.Data;
 using TSN_HR_Web.Models;
+using TSN_HR_Web.Models.Entities;
 
 namespace TSN_HR_Web.Controllers
 {
     public class NgachCongVienChucsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public NgachCongVienChucsController(ApplicationDbContext context)
+        private readonly TSNHRDbContext _context;
+
+        public NgachCongVienChucsController(TSNHRDbContext context)
         {
             _context = context;
         }
+
         // GET: List ngach
         public async Task<IActionResult> Index()
         {
-            return View(await _context.NgachCongVienChucs.ToListAsync());
+            return View(await _context.ngach_cong_vien_chucs.ToListAsync());
         }
+
         // GET: Ngach/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -30,8 +33,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var ngach = await _context.NgachCongVienChucs
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var ngach = await _context.ngach_cong_vien_chucs.FirstOrDefaultAsync(m => m.id == id);
             if (ngach == null)
             {
                 return NotFound();
@@ -39,17 +41,21 @@ namespace TSN_HR_Web.Controllers
 
             return View(ngach);
         }
+
         // GET: Ngach/Create
         public IActionResult Create()
         {
             return View();
         }
+
         // POST: Ngach/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaNgach,TenNgach")] NgachCongVienChuc ngach)
+        public async Task<IActionResult> Create(
+            [Bind("ma_ngach,ten_ngach")] ngach_cong_vien_chuc ngach
+        )
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +74,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var ngach = await _context.NgachCongVienChucs.FindAsync(id);
+            var ngach = await _context.ngach_cong_vien_chucs.FindAsync(id);
             if (ngach == null)
             {
                 return NotFound();
@@ -81,9 +87,12 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaNgach,TenNgach")] NgachCongVienChuc ngach)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("ma_ngach,ten_ngach")] ngach_cong_vien_chuc ngach
+        )
         {
-            if (id != ngach.Id)
+            if (id != ngach.id)
             {
                 return NotFound();
             }
@@ -97,7 +106,7 @@ namespace TSN_HR_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NgachExists(ngach.Id))
+                    if (!NgachExists(ngach.id))
                     {
                         return NotFound();
                     }
@@ -110,6 +119,7 @@ namespace TSN_HR_Web.Controllers
             }
             return View(ngach);
         }
+
         // GET: Ngach/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,8 +128,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var ngach = await _context.NgachCongVienChucs
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var ngach = await _context.ngach_cong_vien_chucs.FirstOrDefaultAsync(m => m.id == id);
             if (ngach == null)
             {
                 return NotFound();
@@ -133,18 +142,19 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ngach = await _context.NgachCongVienChucs.FindAsync(id);
+            var ngach = await _context.ngach_cong_vien_chucs.FindAsync(id);
             if (ngach != null)
             {
-                _context.NgachCongVienChucs.Remove(ngach);
+                _context.ngach_cong_vien_chucs.Remove(ngach);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool NgachExists(int id)
         {
-            return _context.NgachCongVienChucs.Any(e => e.Id == id);
+            return _context.ngach_cong_vien_chucs.Any(e => e.id == id);
         }
     }
 }

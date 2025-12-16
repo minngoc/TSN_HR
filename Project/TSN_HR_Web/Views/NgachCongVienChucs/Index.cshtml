@@ -1,39 +1,104 @@
-@model IEnumerable<TSN_HR_Web.Models.NgachCongVienChuc>
-
-@{
-    ViewData["Title"] = "Danh Sach chuc vu";
-}
+@model IEnumerable<TSN_HR_Web.Models.ViewModels.NgachCongVienChucListItemViewModel>
 
 @section Styles {
     <link rel="stylesheet" href="~/css/NgachCongVienChuc.css" />
 }
 
-<h3 class="tsn-table-title mb-3">Danh sách các Ngạch công viên chức</h3>
-<button class="btn btn-primary" onclick="loadCreateForm()">+ Thêm mới Ngạch</button>
+@{
+    ViewData["Title"] = "Danh sách các Ngạch công viên chức";
+}
 
-<div class="table-wrapper table-responsive">
-    <table class="table table-striped table-bordered table-sm mt-3 table-sticky">
-        <thead class="table-light">
-            <tr>
-                <th>Mã Ngạch</th>
-                <th>Tên Ngạch</th>
-                <th style="width: 150px;">Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MaNgach</td>
-                    <td>@item.TenNgach</td>
-                    <td class="text-nowrap">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Chi
-                            tiết</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div class="ngachcongvienchuc-page">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-semibold mb-0">Danh Sách Các Ngạch Công Viên Chức</h3>
+
+        <button type="button" class="btn btn-primary rounded-pill px-4" onclick="loadCreateForm()">
+            + Thêm mới
+        </button>
+    </div>
+    <!-- TABLE -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center">Mã Ngạch</th>
+                        <th class="text-center">Tên Ngạch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ma_ngach</td>
+                            <td>@item.ten_ngach</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGINATION  -->
+    <nav class="mt-4 d-flex justify-content-end">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link">Trước</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">Sau</a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
+
+<!-- ===== MODAL CREATE ===== -->
+<div class="modal fade" id="createNgachCongVienChucModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-ngachcongvienchuc-wide modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="createModalBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                    Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        window.loadCreateForm = function () {
+            $("#createModalBody").load("@Url.Action("Create", "NgachCongVienChucs")", function (response, status, xhr) {
+                if (status === "error") {
+                    console.error("Load Create form failed", xhr.status);
+                    return;
+                }
+
+                const modal = new bootstrap.Modal(
+                    document.getElementById('createNgachCongVienChucModal')
+                );
+                modal.show();
+            });
+        };
+    </script>
+}

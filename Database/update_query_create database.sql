@@ -36,7 +36,7 @@ CREATE TABLE so_yeu_ly_lich (
 );
 
 /* =====================================================
-   15. Bảng Thông tin bảo hiểm - insurance_info 
+   12. Bảng Thông tin bảo hiểm - insurance_info 
 =====================================================*/
 CREATE TABLE bao_hiem(
     id INT IDENTITY(1,1) CONSTRAINT PK_thong_tin_bao_hiem PRIMARY KEY,
@@ -50,8 +50,9 @@ CREATE TABLE bao_hiem(
     ngay_bhtn DATE NULL,                -- ngày BHTN
     ngay_bhxh DATE NULL,                -- ngày BHXH
     thay_bhxh BIT NULL,                 -- đã thay đổi BHXH?
-    so_the_cd NVARCHAR(20) NULL,        -- số thẻ công đoàn
-    ng_th_viec DATE NULL,               -- ngày thử việc
+    so_the_cong_doan NVARCHAR(20) NULL,        -- số thẻ công đoàn
+    ng_thu_viec DATE NULL,               -- ngày thử việc
+    ng_vao_chinh_thuc DATE NULL,               -- ngày vào chính thức
     effective_from DATE NOT NULL,
     effective_to   DATE NULL,
 
@@ -277,6 +278,10 @@ CREATE TABLE hop_dong(
     KY_HD_TU DATE NOT NULL,
     KY_HD_DEN DATE NULL,   
     SO_LAN TINYINT NULL,                 -- số lần tái ký
+    ng_thoi_viec date null,             -- ngày thôi việc
+    so_quyet_dinh_thoi_viec nvarchar(100) null,
+    ly_do_nghi nvarchar(200) null,
+    tien_tro_cap nvarchar(20) null,
     created_date DATETIME2(7) NOT NULL DEFAULT SYSUTCDATETIME(),
     updated_date DATETIME2(7) NOT NULL DEFAULT SYSUTCDATETIME(),
     is_active BIT NOT NULL DEFAULT 1

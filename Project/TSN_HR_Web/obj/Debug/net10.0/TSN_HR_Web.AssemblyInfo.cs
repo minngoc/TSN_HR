@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TSN_HR_Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+067dbbf5429f8e91bc98f129ef9ab7493cc7a72c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+818b5e6af0d61682dd33a22bf7af7a333040f1ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("TSN_HR_Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TSN_HR_Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-﻿@model TSN_HR_Web.Models.NhanVien
+﻿@model TSN_HR_Web.Models.Entities.nhan_vien
 
 @{
     ViewData["Title"] = "Details";
@@ -6,31 +6,3 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>NhanVien</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaNhanVien)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaNhanVien)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SoYeuLyLichId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SoYeuLyLichId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaThongTinBaoHiem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaThongTinBaoHiem)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>

@@ -5,23 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TSN_HR_Web.Data;
-using TSN_HR_Web.Models;
+using TSN_HR_Web.Models.Entities;
+using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
     public class BoPhansController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public BoPhansController(ApplicationDbContext context)
+        private readonly TSNHRDbContext _context;
+
+        public BoPhansController(TSNHRDbContext context)
         {
             _context = context;
         }
+
         // GET: List Phong ban
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BoPhans.ToListAsync());
+            var model = await _context
+                .bo_phans.Include(bp => bp.co_so)
+                .Select(bp => new BoPhanListItemViewModel
+                {
+                    id = bp.id,
+                    ma_bo_phan = bp.ma_bo_phan,
+                    ten_bo_phan = bp.ten_bo_phan,
+                    ma_co_so = bp.co_so.ma_co_so,
+                })
+                .ToListAsync();
+
+            return View(model);
         }
+
         // GET: Phong ban/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -30,8 +44,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var boPhan = await _context.BoPhans
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var boPhan = await _context.bo_phans.FirstOrDefaultAsync(m => m.id == id);
             if (boPhan == null)
             {
                 return NotFound();
@@ -39,25 +52,55 @@ namespace TSN_HR_Web.Controllers
 
             return View(boPhan);
         }
-        // GET: Phong ban/Create
+
+        // GET: BoPhan/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new BoPhanCreateViewModel
+            {
+                CoSoList = _context
+                    .co_sos.Select(cs => new SelectListItem
+                    {
+                        Value = cs.id.ToString(),
+                        Text = cs.ma_co_so + " - " + cs.ten_co_so,
+                    })
+                    .ToList(),
+            };
+
+            return PartialView("Create", model);
         }
+
         // POST: Phong Ban/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaBoPhan,TenBoPhan,CoSoId")] BoPhan boPhan)
+        public async Task<IActionResult> Create(BoPhanCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(boPhan);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                model.CoSoList = _context
+                    .co_sos.Select(cs => new SelectListItem
+                    {
+                        Value = cs.id.ToString(),
+                        Text = cs.ma_co_so + " - " + cs.ten_co_so,
+                    })
+                    .ToList();
+
+                return PartialView("_Create", model);
             }
-            return View(boPhan);
+
+            var boPhan = new bo_phan
+            {
+                ma_bo_phan = model.ma_bo_phan,
+                ten_bo_phan = model.ten_bo_phan,
+                co_so_id = model.co_so_id!.Value,
+            };
+
+            _context.bo_phans.Add(boPhan);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Phong ban/Edit/
@@ -68,7 +111,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var boPhan = await _context.BoPhans.FindAsync(id);
+            var boPhan = await _context.bo_phans.FindAsync(id);
             if (boPhan == null)
             {
                 return NotFound();
@@ -81,9 +124,12 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaBoPhan,TenBoPhan,CoSoId")] BoPhan boPhan)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("ma_bo_phan,ten_bo_phan,ma_co_so")] bo_phan boPhan
+        )
         {
-            if (id != boPhan.Id)
+            if (id != boPhan.id)
             {
                 return NotFound();
             }
@@ -97,7 +143,7 @@ namespace TSN_HR_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BoPhanExists(boPhan.Id))
+                    if (!BoPhanExists(boPhan.id))
                     {
                         return NotFound();
                     }
@@ -110,6 +156,7 @@ namespace TSN_HR_Web.Controllers
             }
             return View(boPhan);
         }
+
         // GET: Phong ban/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,8 +165,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var boPhan = await _context.BoPhans
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var boPhan = await _context.bo_phans.FirstOrDefaultAsync(m => m.id == id);
             if (boPhan == null)
             {
                 return NotFound();
@@ -133,18 +179,19 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var boPhan = await _context.BoPhans.FindAsync(id);
+            var boPhan = await _context.bo_phans.FindAsync(id);
             if (boPhan != null)
             {
-                _context.BoPhans.Remove(boPhan);
+                _context.bo_phans.Remove(boPhan);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool BoPhanExists(int id)
         {
-            return _context.BoPhans.Any(e => e.Id == id);
+            return _context.bo_phans.Any(e => e.id == id);
         }
     }
 }

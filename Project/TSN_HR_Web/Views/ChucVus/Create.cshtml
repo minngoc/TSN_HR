@@ -1,38 +1,45 @@
-@model TSN_HR_Web.Models.ChucVu
-
+@model TSN_HR_Web.Models.ViewModels.ChucVuCreateViewModel
 @{
-    ViewData["Title"] = "Chức Vụ";
+    Layout = null;
+    ViewData["Title"] = "Chức vụ";
 }
 
-<h3>Thêm mới Chức Vụ</h3>
+<form asp-controller="ChucVus"
+      asp-action="Create"
+      method="post"
+      class="chucvu-create-form px-3">
 
-<h4>Chức Vụ</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MaChucVu" class="control-label"></label>
-                <input asp-for="MaChucVu" class="form-control" />
-                <span asp-validation-for="MaChucVu" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TenChucVu" class="control-label"></label>
-                <input asp-for="TenChucVu" class="form-control" />
-                <span asp-validation-for="TenChucVu" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    @Html.AntiForgeryToken()
+
+    <!-- MÃ BỘ PHẬN (DROPDOWN) -->
+    <div class="mb-4">
+        <label class="form-label small fw-medium">Mã Phòng Ban</label>
+        <select asp-for="bo_phan_id"
+                asp-items="Model.BoPhanList"
+                class="form-select rounded-pill">
+            <option value="">-- Chọn phòng ban --</option>
+        </select>
+        <span asp-validation-for="bo_phan_id"
+              class="text-danger small"></span>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Quay lại danh sách</a>
-</div>
+    <!-- MÃ CHỨC VỤ -->
+    <div class="mb-3">
+        <label class="form-label small fw-medium">Mã chức vụ</label>
+        <input asp-for="ma_chuc_vu"
+               class="form-control rounded-pill"
+               placeholder="VD: CV01" />
+        <span asp-validation-for="ma_chuc_vu"
+              class="text-danger small"></span>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <!-- TÊN CHỨC VỤ -->
+    <div class="mb-3">
+        <label class="form-label small fw-medium">Tên chức vụ</label>
+        <input asp-for="ten_chuc_vu"
+               class="form-control rounded-pill"
+               placeholder="Trưởng phòng" />
+        <span asp-validation-for="ten_chuc_vu"
+              class="text-danger small"></span>
+    </div>
+</form>

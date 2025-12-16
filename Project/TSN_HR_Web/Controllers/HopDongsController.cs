@@ -5,23 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TSN_HR_Web.Data;
 using TSN_HR_Web.Models;
+using TSN_HR_Web.Models.Entities;
 
 namespace TSN_HR_Web.Controllers
 {
     public class HopDongsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public HopDongsController(ApplicationDbContext context)
+        private readonly TSNHRDbContext _context;
+
+        public HopDongsController(TSNHRDbContext context)
         {
             _context = context;
         }
+
         // GET: List Hop dong
         public async Task<IActionResult> Index()
         {
-            return View(await _context.HopDongs.ToListAsync());
+            return View(await _context.hop_dongs.ToListAsync());
         }
+
         // GET: Hop dong/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -30,8 +33,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var hopDong = await _context.HopDongs
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var hopDong = await _context.hop_dongs.FirstOrDefaultAsync(m => m.id == id);
             if (hopDong == null)
             {
                 return NotFound();
@@ -39,17 +41,22 @@ namespace TSN_HR_Web.Controllers
 
             return View(hopDong);
         }
+
         // GET: Hop dong/Create
         public IActionResult Create()
         {
             return View();
         }
+
         // POST: Hop dong/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SoHopDongLaoDong,NhanVienId,LoaiHopDongId,SoHopDongLaoDongCu,KyHopDongTu,KyHopDongDen,SoLanTaiKy")] HopDong hopDong)
+        public async Task<IActionResult> Create(
+            [Bind("so_hdld,nhan_vien_id,loai_hop_dong_id,SO_HDLD_L,KY_HD_TU,KY_HD_DEN,SO_LAN")]
+                hop_dong hopDong
+        )
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +75,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var hopDong = await _context.HopDongs.FindAsync(id);
+            var hopDong = await _context.hop_dongs.FindAsync(id);
             if (hopDong == null)
             {
                 return NotFound();
@@ -81,9 +88,13 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SoHopDongLaoDong,NhanVienId,LoaiHopDongId,SoHopDongLaoDongCu,KyHopDongTu,KyHopDongDen,SoLanTaiKy")] HopDong hopDong)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("so_hdld,nhan_vien_id,loai_hop_dong_id,SO_HDLD_L,KY_HD_TU,KY_HD_DEN,SO_LAN")]
+                hop_dong hopDong
+        )
         {
-            if (id != hopDong.Id)
+            if (id != hopDong.id)
             {
                 return NotFound();
             }
@@ -97,7 +108,7 @@ namespace TSN_HR_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HopDongsExists(hopDong.Id))
+                    if (!HopDongsExists(hopDong.id))
                     {
                         return NotFound();
                     }
@@ -110,6 +121,7 @@ namespace TSN_HR_Web.Controllers
             }
             return View(hopDong);
         }
+
         // GET: Hop dong/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,8 +130,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var hopDong = await _context.HopDongs
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var hopDong = await _context.hop_dongs.FirstOrDefaultAsync(m => m.id == id);
             if (hopDong == null)
             {
                 return NotFound();
@@ -133,18 +144,19 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hopDong = await _context.HopDongs.FindAsync(id);
+            var hopDong = await _context.hop_dongs.FindAsync(id);
             if (hopDong != null)
             {
-                _context.HopDongs.Remove(hopDong);
+                _context.hop_dongs.Remove(hopDong);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool HopDongsExists(int id)
         {
-            return _context.HopDongs.Any(e => e.Id == id);
+            return _context.hop_dongs.Any(e => e.id == id);
         }
     }
 }

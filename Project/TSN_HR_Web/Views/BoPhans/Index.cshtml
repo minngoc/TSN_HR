@@ -1,120 +1,106 @@
-@model IEnumerable<TSN_HR_Web.Models.BoPhan>
-
-@{
-    ViewData["Title"] = "Danh Sach phong ban";
-}
+@model IEnumerable<TSN_HR_Web.Models.ViewModels.BoPhanListItemViewModel>
 
 @section Styles {
     <link rel="stylesheet" href="~/css/BoPhan.css" />
 }
-<h2 class="tsn-table-title mb-3">Danh sách Phòng ban Tân Sơn Nhất Hotel</h2>
-<button class="btn btn-primary" onclick="loadCreateForm()">+ Thêm mới Phòng ban</button>
 
-<div class="card-body pt-2">
-    <div class="table-wrapper table-responsive pt-2">
-        <table id="bophanTable" class="table table-hover align-middle mb-0">
-            <thead>
-                <tr>
-                    <th>Mã Phòng Ban</th>
-                    <th>Tên Phòng Ban</th>
-                    <th>Mã Cơ Sở</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var item in Model)
+@{
+    ViewData["Title"] = "Danh sách Phòng Ban";
+}
+
+<div class="phongban-page">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-semibold mb-0">Danh Sách Phòng Ban</h3>
+
+        <button type="button" class="btn btn-primary rounded-pill px-4" onclick="loadCreateForm()">
+            + Thêm mới Phòng Ban
+        </button>
+    </div>
+    <!-- TABLE -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center">Mã Phòng Ban</th>
+                        <th class="text-center">Tên Phòng Ban</th>
+                        <th class="text-center">Mã Cơ Sở</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.MaBoPhan</td>
-                            <td>@item.TenBoPhan</td>
-                            <td>@item.CoSoId</td>
-                            <td class="text-center text-nowrap">
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-link text-info"
-                                    title="Chi tiết">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-link text-warning"
-                                    title="Sửa">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-link text-danger"
-                                    title="Xóa">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                            </td>
+                            <td class="text-center">@item.ma_bo_phan</td>
+                            <td class="text-center">@item.ten_bo_phan</td>
+                            <td class="text-center">@item.ma_co_so</td>
                         </tr>
                     }
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
-
-@* Modal for Create *@
-<div class="modal fade" id="createBoPhanModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Thêm mới Phòng Ban</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body" id="createModalBody"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary">Lưu</button>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 
-@section Scripts {
-        <script>
-            // init DataTable (reuse được cho SPA)
-            window.initBoPhanTable = function () {
-                const table = $('#bophanTable');
-                if (!table.length) return;
+    <!-- PAGINATION  -->
+    <nav class="mt-4 d-flex justify-content-end">
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link">Trước</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link">Sau</a>
+            </li>
+        </ul>
+    </nav>
 
-                if ($.fn.dataTable.isDataTable('#bophanTable')) {
-                    table.DataTable().destroy();
+</div>
+
+<!-- ===== MODAL CREATE ===== -->
+<div class="modal fade" id="createPhongBanModal" tabindex="-1">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm mới Phòng Ban</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="createModalBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    Hủy
+                </button>
+                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="document.querySelector('#createPhongBanModal form').submit()">
+                    Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        window.loadCreateForm = function () {
+            $("#createModalBody").load("@Url.Action("Create", "BoPhans")", function (response, status, xhr) {
+                if (status === "error") {
+                    console.error("Load Create form failed", xhr.status);
+                    return;
                 }
 
-                table.DataTable({
-                    paging: true,
-                    searching: true,
-                    ordering: true,
-                    pageLength: 5,
-                    lengthMenu: [5, 10, 25, 50],
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json"
-                    },
-                    dom:
-                        '<"row align-items-center mb-3"' +
-                        '<"col-sm-6"l>' +
-                        '<"col-sm-6 text-sm-end"f>' +
-                        '>' +
-                        'rt' +
-                        '<"row align-items-center mt-3"' +
-                        '<"col-sm-5"i>' +
-                        '<"col-sm-7 text-sm-end"p>' +
-                        '>',
-                    columnDefs: [
-                        { orderable: false, targets: 4 } // cột Actions không sort
-                    ]
-                });
-            };
-
-            // khi load trang trực tiếp
-            $(document).ready(function () {
-                window.initBoPhanTable();
+                const modal = new bootstrap.Modal(
+                    document.getElementById('createPhongBanModal')
+                );
+                modal.show();
             });
-
-            function loadCreateForm() {
-                $.get("/BoPhans/Create", function (html) {
-                    $("#createModalBody").html(html);
-                    var modal = new bootstrap.Modal(document.getElementById('createBoPhanModal'));
-                    modal.show();
-                });
-            }
-        </script>
+        };
+    </script>
 }

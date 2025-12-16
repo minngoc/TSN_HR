@@ -54,47 +54,37 @@
               "target": "Package",
               "version": "[10.0.0, )"
             },
-            "Microsoft.Build": {
-              "target": "Package",
-              "version": "[18.0.2, )"
-            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[6.1.3, )"
             },
-            "Microsoft.EntityFrameWorkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "Microsoft.EntityFrameworkCore.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.1, )"
             },
-            "Microsoft.EntityFrameWorkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.1, )"
             },
-            "Microsoft.EntityFrameWorkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "Microsoft.EntityFrameworkCore.Tools": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.1, )"
             },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[10.0.0-rc.1.25458.5, )"
-            },
-            "Nlog": {
+            "NLog": {
               "target": "Package",
               "version": "[6.0.6, )"
             },
-            "Nlog.Database": {
+            "NLog.Database": {
               "target": "Package",
               "version": "[6.0.3, )"
             },
-            "Nlog.Extensions.Logging": {
+            "NLog.Extensions.Logging": {
               "target": "Package",
               "version": "[6.1.0, )"
             },
-            "Nlog.Web.AspNetCore": {
+            "NLog.Web.AspNetCore": {
               "target": "Package",
               "version": "[6.1.0, )"
             },

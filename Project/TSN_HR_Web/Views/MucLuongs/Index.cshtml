@@ -1,4 +1,4 @@
-@model IEnumerable<TSN_HR_Web.Models.MucLuong>
+@model IEnumerable<TSN_HR_Web.Models.Entities.muc_luong>
 
 @{
     ViewData["Title"] = "Muc Luong";
@@ -26,14 +26,14 @@
 @foreach (var item in Model)
 {
         <tr>
-            <td>@item.MaMucLuong</td>
-            <td>@item.NgachCongVienChucId</td>
-            <td>@item.BacLuong</td>
-            <td>@item.HeSoLuong</td>
+            <td>@item.ma_muc_luong</td>
+            <td>@item.ngach_vien_chuc_id</td>
+            <td>@item.bac_luong</td>
+            <td>@item.he_so_luong</td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Chi tiết</a>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Sửa</a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                <a asp-action="Details" asp-route-id="@item.id" class="btn btn-sm btn-outline-secondary">Chi tiết</a>
+                <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-sm btn-outline-warning">Sửa</a>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-sm btn-outline-danger">Xóa</a>
             </td>
         </tr>
 }

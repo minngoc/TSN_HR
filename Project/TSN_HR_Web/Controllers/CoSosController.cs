@@ -1,22 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TSN_HR_Web.Data;
-using TSN_HR_Web.Models;
+using TSN_HR_Web.Models.Entities;
+using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
     public class CoSosController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public CoSosController(ApplicationDbContext context)
+        private readonly TSNHRDbContext _context;
+
+        public CoSosController(TSNHRDbContext context)
         {
             _context = context;
         }
+
         // GET: List Co So
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CoSos.ToListAsync());
+            var model = await _context
+                .co_sos.Select(cs => new CoSoListItemViewModel
+                {
+                    ma_co_so = cs.ma_co_so,
+                    ten_co_so = cs.ten_co_so,
+                    dia_chi = cs.dia_chi ?? "",
+                })
+                .ToListAsync();
+
+            return View(model);
         }
+
         // GET: Co So/Details
         public async Task<IActionResult> Details(int? id)
         {
@@ -25,8 +37,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var coSo = await _context.CoSos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var coSo = await _context.co_sos.FirstOrDefaultAsync(m => m.id == id);
             if (coSo == null)
             {
                 return NotFound();
@@ -34,17 +45,19 @@ namespace TSN_HR_Web.Controllers
 
             return View(coSo);
         }
+
         // GET: Co So/Create
         public IActionResult Create()
         {
             return View();
         }
+
         // POST: Co So/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaCoSo,TenCoSo,DiaChi")] CoSo coSo)
+        public async Task<IActionResult> Create([Bind("ma_co_so,ten_co_so,dia_chi")] co_so coSo)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +76,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var coSo = await _context.CoSos.FindAsync(id);
+            var coSo = await _context.co_sos.FindAsync(id);
             if (coSo == null)
             {
                 return NotFound();
@@ -76,9 +89,12 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaCoSo,TenCoSo,DiaChi")] CoSo coSo)
+        public async Task<IActionResult> Edit(
+            int id,
+            [Bind("ma_co_so,ten_co_so,dia_chi")] co_so coSo
+        )
         {
-            if (id != coSo.Id)
+            if (id != coSo.id)
             {
                 return NotFound();
             }
@@ -92,7 +108,7 @@ namespace TSN_HR_Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CoSoExists(coSo.Id))
+                    if (!CoSoExists(coSo.id))
                     {
                         return NotFound();
                     }
@@ -105,6 +121,7 @@ namespace TSN_HR_Web.Controllers
             }
             return View(coSo);
         }
+
         // GET: Co So/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -113,8 +130,7 @@ namespace TSN_HR_Web.Controllers
                 return NotFound();
             }
 
-            var coSo = await _context.CoSos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var coSo = await _context.co_sos.FirstOrDefaultAsync(m => m.id == id);
             if (coSo == null)
             {
                 return NotFound();
@@ -128,18 +144,19 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var coSo = await _context.CoSos.FindAsync(id);
+            var coSo = await _context.co_sos.FindAsync(id);
             if (coSo != null)
             {
-                _context.CoSos.Remove(coSo);
+                _context.co_sos.Remove(coSo);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         private bool CoSoExists(int id)
         {
-            return _context.CoSos.Any(e => e.Id == id);
+            return _context.co_sos.Any(e => e.id == id);
         }
     }
 }
