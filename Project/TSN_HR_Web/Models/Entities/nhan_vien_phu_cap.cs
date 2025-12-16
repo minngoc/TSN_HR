@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class nhan_vien_phu_cap
+public partial class nhan_vien_phu_cap : BaseEntity
 {
     public int id { get; set; }
 
@@ -14,12 +14,6 @@ public partial class nhan_vien_phu_cap
     public DateOnly effective_from { get; set; }
 
     public DateOnly? effective_to { get; set; }
-
-    public DateTime created_date { get; set; }
-
-    public DateTime updated_date { get; set; }
-
-    public bool is_active { get; set; }
 
     public virtual nhan_vien nhan_vien { get; set; } = null!;
 

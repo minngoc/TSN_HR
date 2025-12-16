@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class so_yeu_ly_lich
+public partial class so_yeu_ly_lich : BaseEntity
 {
     public int id { get; set; }
 
@@ -60,12 +60,6 @@ public partial class so_yeu_ly_lich
     public string? ma_trang_phuc { get; set; }
 
     public string? ma_giay { get; set; }
-
-    public DateTime created_date { get; set; }
-
-    public DateTime updated_date { get; set; }
-
-    public bool is_active { get; set; }
 
     public virtual ICollection<nhan_vien> nhan_viens { get; set; } = new List<nhan_vien>();
 }

@@ -87,7 +87,7 @@ namespace TSN_HR_Web.Controllers
                     })
                     .ToList();
 
-                return PartialView("_Create", model);
+                return PartialView("Create", model);
             }
 
             var boPhan = new bo_phan

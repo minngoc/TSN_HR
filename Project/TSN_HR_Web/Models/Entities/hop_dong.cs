@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class hop_dong
+public partial class hop_dong : BaseEntity
 {
     public int id { get; set; }
 
@@ -28,12 +28,6 @@ public partial class hop_dong
     public string? ly_do_nghi { get; set; }
 
     public string? tien_tro_cap { get; set; }
-
-    public DateTime created_date { get; set; }
-
-    public DateTime updated_date { get; set; }
-
-    public bool is_active { get; set; }
 
     public virtual loai_hop_dong loai_hop_dong { get; set; } = null!;
 

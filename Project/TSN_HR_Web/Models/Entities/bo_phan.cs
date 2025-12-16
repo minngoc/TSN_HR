@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class bo_phan
+public partial class bo_phan : BaseEntity
 {
     public int id { get; set; }
 
@@ -12,12 +12,6 @@ public partial class bo_phan
     public string ten_bo_phan { get; set; } = null!;
 
     public int? co_so_id { get; set; }
-
-    public DateTime created_date { get; set; }
-
-    public DateTime updated_date { get; set; }
-
-    public bool is_active { get; set; }
 
     public virtual ICollection<chuc_vu> chuc_vus { get; set; } = new List<chuc_vu>();
 

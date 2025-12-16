@@ -390,4 +390,36 @@ public partial class TSNHRDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+     public override int SaveChanges()
+    {
+        ApplyAuditInfo();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(
+        CancellationToken cancellationToken = default
+    )
+    {
+        ApplyAuditInfo();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void ApplyAuditInfo()
+    {
+        var entries = ChangeTracker.Entries<BaseEntity>();
+
+        foreach (var entry in entries)
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.created_date = DateTime.Now;
+                entry.Entity.updated_date = DateTime.Now;
+                entry.Entity.is_active = true;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.updated_date = DateTime.Now;
+            }
+        }
+    }
 }

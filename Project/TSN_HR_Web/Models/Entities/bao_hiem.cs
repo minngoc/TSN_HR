@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class bao_hiem
+public partial class bao_hiem : BaseEntity
 {
     public int id { get; set; }
 
@@ -36,12 +36,6 @@ public partial class bao_hiem
     public DateOnly effective_from { get; set; }
 
     public DateOnly? effective_to { get; set; }
-
-    public DateTime created_date { get; set; }
-
-    public DateTime updated_date { get; set; }
-
-    public bool is_active { get; set; }
 
     public virtual ICollection<nhan_vien> nhan_viens { get; set; } = new List<nhan_vien>();
 }
