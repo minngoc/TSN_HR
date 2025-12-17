@@ -49,7 +49,7 @@ namespace TSN_HR_Web.Controllers
         // GET: Co So/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new CoSoCreateViewModel());
         }
 
         // POST: Co So/Create
@@ -57,15 +57,24 @@ namespace TSN_HR_Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ma_co_so,ten_co_so,dia_chi")] co_so coSo)
+        public async Task<IActionResult> Create(CoSoCreateViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(coSo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(model);
             }
-            return View(coSo);
+
+            var entity = new co_so
+            {
+                ma_co_so = model.ma_co_so,
+                ten_co_so = model.ten_co_so,
+                dia_chi = model.dia_chi,
+            };
+
+            _context.co_sos.Add(entity);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Co So/Edit/

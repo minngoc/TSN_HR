@@ -79,7 +79,7 @@
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
                     Hủy
                 </button>
-                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="document.querySelector('#createChucVuModal form').submit()">
+                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="submitCreateChucVu()">
                     Lưu
                 </button>
             </div>
@@ -102,5 +102,36 @@
                 modal.show();
             });
         };
+        function submitCreateChucVu() {
+            const form = $("#createChucVuModal form");
+
+            if (!form.length) return;
+
+            if(!form.valid()) {
+                form.find("input, select, textarea").each(function() {
+                    const input = $(this);
+
+                    if (input.hasClass("input-validation-error")) {
+                        input.addClass("is-invalid").removeClass("is-valid");
+                    } else {
+                        input.removeClass("is-invalid").addClass("is-valid");
+                    }
+                });
+                return;
+            }
+
+            $ajax({
+                url: form.attr("action"),
+                type: "POST",
+                data: form.serialize(),
+                success: function (response) {
+                    if ($(response).find("form").length > 0) {
+                        $("createModalBody").html(response);
+                    } else {
+                        location.reload();
+                    }
+                }
+            })
+        }
     </script>
 }

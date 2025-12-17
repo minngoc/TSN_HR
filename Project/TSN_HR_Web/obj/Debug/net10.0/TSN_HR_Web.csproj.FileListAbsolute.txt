@@ -219,7 +219,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\obwv8bu8jf-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\686znykzc9-{0}-6inx71wcvi-6inx71wcvi.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\y2hy3a4g8i-{0}-n2bofdy14o-n2bofdy14o.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-3g1l94jz9o-3g1l94jz9o.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\2co8vy93mz-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\o1u51kwtwk-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vqdzwy7g2f-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -292,7 +291,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\refint\TSN_HR_
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.pdb
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.genruntimeconfig.cache
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\ref\TSN_HR_Web.dll
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-gwjg403bep-gwjg403bep.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\n3s2jrntft-{0}-7se47dqjal-7se47dqjal.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vwqpputsto-{0}-s6vp0cxidq-s6vp0cxidq.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\nop6e83uqd-{0}-fkwz842nby-fkwz842nby.gz
@@ -596,3 +594,5 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\refint\TSN_HR_W
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.pdb
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.genruntimeconfig.cache
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\ref\TSN_HR_Web.dll
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-af0f3qxn5r-af0f3qxn5r.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-lb65g2ohw0-lb65g2ohw0.gz

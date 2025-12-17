@@ -13,3 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
         mainContent.classList.toggle("expanded");
     });
 });
+// Clear viền đỏ khi user nhập lại (áp dụng cho mọi form có needs-validation)
+$(document).on(
+  "input change",
+  "form.needs-validation input, form.needs-validation select, form.needs-validation textarea",
+  function () {
+    const input = $(this);
+
+    if (input.valid()) {
+      input.removeClass("is-invalid").addClass("is-valid");
+    } else {
+      input.removeClass("is-valid");
+    }
+  }
+);

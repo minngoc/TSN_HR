@@ -68,7 +68,7 @@
 
 <!-- ===== MODAL CREATE ===== -->
 <div class="modal fade" id="createCoSoModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-nhanvien-wide modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
                 <h5 class="modal-title">Thêm mới Cơ sở</h5>
@@ -79,7 +79,7 @@
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
                     Hủy
                 </button>
-                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                <button type="button" class="btn btn-primary rounded-pill px-4" onclick="submitCreateCoSo()">
                     Lưu
                 </button>
             </div>
@@ -90,9 +90,9 @@
 @section Scripts {
     <script>
         window.loadCreateForm = function () {
-            $("#createModalBody").load("@Url.Action("Create", "CoSos")", function (response, status, xhr) {
+            $("#createModalBody").load("@Url.Action("Create", "CoSos")", function (response, status) {
                 if (status === "error") {
-                    console.error("Load Create form failed", xhr.status);
+                    console.error("Load Create form failed");
                     return;
                 }
 
@@ -102,5 +102,39 @@
                 modal.show();
             });
         };
+
+        function submitCreateCoSo() {
+            const form = $("#createCoSoModal form");
+
+            if (!form.length) return;
+
+            // chạy validation
+            if (!form.valid()) {
+                // map asp.net → bootstrap
+                form.find("input, select, textarea").each(function () {
+                    const input = $(this);
+
+                    if (input.hasClass("input-validation-error")) {
+                        input.addClass("is-invalid").removeClass("is-valid");
+                    } else {
+                        input.removeClass("is-invalid").addClass("is-valid");
+                    }
+                });
+                return;
+            }
+
+            $.ajax({
+                url: form.attr("action"),
+                type: "POST",
+                data: form.serialize(),
+                success: function (response) {
+                    if ($(response).find("form").length > 0) {
+                        $("#createModalBody").html(response);
+                    } else {
+                        location.reload();
+                    }
+                }
+            });
+        }
     </script>
 }

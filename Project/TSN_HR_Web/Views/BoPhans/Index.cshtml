@@ -79,7 +79,7 @@
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
                     Hủy
                 </button>
-                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="document.querySelector('#createPhongBanModal form').submit()">
+                <button type="button" class="btn btn-primary rounded-pill px-4" onclick="submitCreateBoPhan()">
                     Lưu
                 </button>
             </div>
@@ -102,5 +102,37 @@
                 modal.show();
             });
         };
+
+        function submitCreateBoPhan() {
+            const form = $("#createPhongBanModal form");
+
+            if (!form.length) return;
+
+            if(!form.valid()) {
+                form.find("input, select, textarea").each(function() {
+                    const input = $(this);
+
+                    if (input.hasClass("input-validation-error")) {
+                        input.addClass("is-invalid").removeClass("is-valid");
+                    } else {
+                        input.removeClass("is-invalid").addClass("is-valid");
+                    }
+                });
+                return;
+            }
+
+            $ajax({
+                url: form.attr("action"),
+                type: "POST",
+                data: form.serialize(),
+                success: function (response) {
+                    if ($(response).find("form").length > 0) {
+                        $("createModalBody").html(response);
+                    } else {
+                        location.reload();
+                    }
+                }
+            })
+        }
     </script>
 }
