@@ -595,4 +595,4 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.pdb
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.genruntimeconfig.cache
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\ref\TSN_HR_Web.dll
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-af0f3qxn5r-af0f3qxn5r.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-lb65g2ohw0-lb65g2ohw0.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-72ckom6ly2-72ckom6ly2.gz

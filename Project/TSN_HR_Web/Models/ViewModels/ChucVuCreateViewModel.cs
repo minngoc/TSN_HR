@@ -10,11 +10,14 @@ namespace TSN_HR_Web.Models.ViewModels
         [RequiredEx]
         [MaxLengthEx(ValidationConstants.CodeMaxLength)]
         public string ma_chuc_vu { get; set; } = string.Empty;
+
         [Display(Name = "Tên chức vụ")]
         [RequiredEx]
         [MaxLengthEx(ValidationConstants.NameMaxLength)]
         public string ten_chuc_vu { get; set; } = string.Empty;
         public int? bo_phan_id { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng chọn phòng ban")]
         public List<SelectListItem>? BoPhanList { get; set; } = new();
     }
 }

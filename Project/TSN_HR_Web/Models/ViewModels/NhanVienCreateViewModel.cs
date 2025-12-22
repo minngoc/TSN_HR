@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace TSN_HR_Web.Models.ViewModels;
 
 public class NhanVienCreateViewModel
@@ -49,7 +51,7 @@ public class NhanVienCreateViewModel
     // ============================
     // 3) NHÂN VIÊN → nhan_vien
     // ============================
-    public string ma_nv { get; set; } = null!;
+    public string? ma_nv { get; set; }
 
     // ============================
     // 4) BỘ PHẬN / CHỨC VỤ (FK)
@@ -63,7 +65,6 @@ public class NhanVienCreateViewModel
     public int? loai_hop_dong_id { get; set; }
     public DateTime? ky_hd_tu { get; set; }
     public DateTime? ky_hd_den { get; set; }
-    public string? loai_ky_ket { get; set; }
     public string? so_lan_tai_ky { get; set; }
     public string? so_hdld { get; set; }
     public string? ma_chuc_vu { get; set; }
@@ -74,9 +75,11 @@ public class NhanVienCreateViewModel
     public string? tien { get; set; }
     public string? phu_cap_bhxh { get; set; }
     public string? quyet_dinh_xep_luong { get; set; }
-    public DateTime ngay_xep_luong { get; set; }
-    public DateTime ngay_thoi_viec { get; set; }
+    public DateTime? ngay_xep_luong { get; set; }
+    public DateTime? ngay_thoi_viec { get; set; }
     public string? so_quyet_dinh_thoi_viec { get; set; }
     public string? ly_do_nghi { get; set; }
     public string? tien_tro_cap { get; set; }
+    public string? loai_ky_ket { get; set; }
+    public List<SelectListItem>? ChucVuList { get; set; } = new();
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TSN_HR_Web.Models.Entities;
+﻿namespace TSN_HR_Web.Models.Entities;
 
 public partial class nhan_vien : BaseEntity
 {

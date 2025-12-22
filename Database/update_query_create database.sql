@@ -418,3 +418,7 @@ values (N'M00',N'TCHCCT',1);
 
 insert into chuc_vu (ma_chuc_vu, ten_chuc_vu, bo_phan_id)
 values (N'GM1', N'Giam doc', 1);
+
+alter table hop_dong drop column loai_hdld;
+
+alter table hop_dong add loai_ky_ket NVARCHAR(20) null;

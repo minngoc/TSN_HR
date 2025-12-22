@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TSN_HR_Web.Models.Entities;
@@ -36,13 +32,13 @@ namespace TSN_HR_Web.Controllers
                 .Select(x => new NhanVienListItemViewModel
                 {
                     Id = x.id,
-                    MaNhanVien = x.ma_nv,
-                    HoVaTen =
+                    ma_nhan_vien = x.ma_nv,
+                    ho_va_ten =
                         x.ma_so_yeu_ly_lichNavigation.ho_nv
                         + " "
                         + x.ma_so_yeu_ly_lichNavigation.ten_nv,
 
-                    TenChucVu = x
+                    ten_chuc_vu = x
                         .nhan_vien_bo_phans.Where(bp => bp.is_primary)
                         .Select(bp => bp.bo_phan.ten_bo_phan)
                         .FirstOrDefault(),
@@ -72,14 +68,29 @@ namespace TSN_HR_Web.Controllers
         // ================== GET: NhanViens/Create ==================
         public IActionResult Create()
         {
+            // Dropdown học vấn
             ViewBag.HocVanList = new SelectList(
                 new[] { "Trung cấp", "Cao đẳng", "Đại học", "Sau đại học" }
             );
 
+            // Dropdown trình độ
             ViewBag.TrinhDoList = new SelectList(
                 new[] { "Sơ cấp", "Trung cấp", "Cao đẳng", "Đại học", "Thạc sĩ", "Tiến sĩ" }
             );
-            return View(new NhanVienCreateViewModel());
+
+            // Model + Chức vụ
+            var model = new NhanVienCreateViewModel
+            {
+                ChucVuList = _context
+                    .chuc_vus.Select(cv => new SelectListItem
+                    {
+                        Value = cv.id.ToString(),
+                        Text = cv.ten_chuc_vu,
+                    })
+                    .ToList(),
+            };
+
+            return View(model);
         }
 
         // ================== POST: NhanViens/Create ==================
@@ -87,18 +98,41 @@ namespace TSN_HR_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(NhanVienCreateViewModel model)
         {
+            // ===== VALIDATION =====
             if (!ModelState.IsValid)
             {
-                return View(model);
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new
+                    {
+                        field = x.Key,
+                        messages = x.Value.Errors.Select(e => e.ErrorMessage),
+                    });
+
+                return Json(new { success = false, errors });
+            }
+            // ===== VALIDATE NGHIỆP VỤ =====
+            if (model.loai_hop_dong_id == null)
+            {
+                return Json(new { success = false, message = "Chưa chọn loại hợp đồng" });
+            }
+
+            if (model.ky_hd_tu == null)
+            {
+                return Json(new { success = false, message = "Chưa nhập ngày ký hợp đồng" });
             }
 
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                // ================== 1. SƠ YẾU LÝ LỊCH ==================
+                // ======================================================
+                // 1. SƠ YẾU LÝ LỊCH
+                // ======================================================
                 var soYeuLyLich = new so_yeu_ly_lich
                 {
+                    ma_so_yeu_ly_lich = "TMP", // bắt buộc (DB NOT NULL)
+
                     ho_nv = model.ho_nv ?? "",
                     ten_nv = model.ten_nv ?? "",
                     gioi_tinh = model.gioi_tinh ?? "",
@@ -125,7 +159,13 @@ namespace TSN_HR_Web.Controllers
                 _context.so_yeu_ly_liches.Add(soYeuLyLich);
                 await _context.SaveChangesAsync();
 
-                // ================== 2. BẢO HIỂM ==================
+                // sinh mã SYLL
+                soYeuLyLich.ma_so_yeu_ly_lich = $"SYLL{soYeuLyLich.id.ToString().PadLeft(6, '0')}";
+                await _context.SaveChangesAsync();
+
+                // ======================================================
+                // 2. BẢO HIỂM
+                // ======================================================
                 var baoHiem = new bao_hiem
                 {
                     ma_kcb_cu = model.ma_kcb_cu,
@@ -147,42 +187,85 @@ namespace TSN_HR_Web.Controllers
                 _context.bao_hiems.Add(baoHiem);
                 await _context.SaveChangesAsync();
 
-                // ================== 3. NHÂN VIÊN ==================
+                // ======================================================
+                // 3. NHÂN VIÊN
+                // ======================================================
                 var nhanVien = new nhan_vien
                 {
+                    ma_nv = "TMP", // bắt buộc (DB NOT NULL)
                     ma_so_yeu_ly_lich = soYeuLyLich.id,
                     ma_thong_tin_bao_hiem = baoHiem.id,
                 };
-                nhanVien.ma_nv = $"TSN{nhanVien.id.ToString().PadLeft(6, '0')}";
 
                 _context.nhan_viens.Add(nhanVien);
                 await _context.SaveChangesAsync();
 
-                // ================== 4. HỢP ĐỒNG THỬ VIỆC ==================
+                // sinh mã NV
+                nhanVien.ma_nv = $"TSN{nhanVien.id.ToString().PadLeft(6, '0')}";
+                await _context.SaveChangesAsync();
+
+                // ======================================================
+                // 4. HỢP ĐỒNG
+                // ======================================================
+                string? so_thang_ky_hd = null;
+                if (model.loai_ky_ket == "1")
+                {
+                    so_thang_ky_hd = "12 tháng";
+                }
+                else if (model.loai_ky_ket == "2")
+                {
+                    so_thang_ky_hd = "24 tháng";
+                }
+                else
+                {
+                    so_thang_ky_hd = "36 tháng";
+                }
                 var hopDong = new hop_dong
                 {
+                    so_hdld = "TMP",
                     nhan_vien_id = nhanVien.id,
-                    loai_hop_dong_id =
-                        model.loai_hop_dong_id
-                        ?? throw new InvalidOperationException("Loại hợp đồng không được để trống"),
-                    KY_HD_TU =
-                        ToDateOnly(model.ky_hd_tu)
-                        ?? throw new InvalidOperationException(
-                            "Ngày bắt đầu hợp đồng không được để trống"
-                        ),
-                    KY_HD_DEN = ToDateOnly(model.ky_hd_den),
+                    loai_hop_dong_id = model.loai_hop_dong_id.Value,
+                    KY_HD_TU = DateOnly.FromDateTime(model.ky_hd_tu.Value),
+                    KY_HD_DEN = model.ky_hd_den.HasValue
+                        ? DateOnly.FromDateTime(model.ky_hd_den.Value)
+                        : null,
+                    loai_ky_ket = so_thang_ky_hd,
                 };
 
                 _context.hop_dongs.Add(hopDong);
                 await _context.SaveChangesAsync();
 
+                hopDong.so_hdld = $"HD{hopDong.id.ToString().PadLeft(6, '0')}";
+                await _context.SaveChangesAsync();
+
+                // ======================================================
+                // 5. CHỨC VỤ
+                // ======================================================
+                var nhanVienBoPhan = new nhan_vien_bo_phan
+                {
+                    nhan_vien_id = nhanVien.id,
+                    bo_phan_id = model.bo_phan_id,
+                    is_primary = true,
+                };
+                _context.nhan_vien_bo_phans.Add(nhanVienBoPhan);
+                await _context.SaveChangesAsync();
+
+                // ======================================================
                 await transaction.CommitAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true });
             }
-            catch
+            catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw;
+
+                return Json(
+                    new
+                    {
+                        success = false,
+                        message = "Lỗi khi tạo nhân viên",
+                        detail = ex.Message,
+                    }
+                );
             }
         }
 

@@ -89,7 +89,7 @@
                             <input asp-for="noi_cap" class="form-control rounded-pill" />
                         </div>
                     </div>
-                    <!-- NƠI CẤP / DÂN TỘC / TÔN GIÁO / ĐIỆN THOẠI -->
+                    <!-- DÂN TỘC / TÔN GIÁO / ĐIỆN THOẠI -->
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Dân tộc</label>
@@ -172,8 +172,10 @@
         <!-- ===== TAB: THÔNG TIN BẢO HIỂM ===== -->
         <div class="container-fluid px-0 tab-pane fade" id="tab-baohiem" role="tabpanel">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-11 mx-auto">
-                    <div class="row g-3 mb-3 d-flex justify-content-around">
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-9 mx-auto">
+                    <!-- ROW 1 -->
+                    <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Số sổ BHXH</label>
                             <input asp-for="so_bhxh" class="form-control rounded-pill" />
@@ -188,20 +190,25 @@
                             <label>Số BHYT</label>
                             <input asp-for="so_bhyt" class="form-control rounded-pill" />
                         </div>
+
                         <div class="col-lg-2 col-md-6">
                             <label>Số thẻ Công đoàn</label>
                             <input asp-for="so_the_cong_doan" class="form-control rounded-pill" />
                         </div>
                     </div>
-                    <div class="row g-3 mb-3 d-flex justify-content-around">
+
+                    <!-- ROW 2 -->
+                    <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Mã KCB cũ</label>
                             <input asp-for="ma_kcb_cu" class="form-control rounded-pill" />
                         </div>
+
                         <div class="col-lg-2 col-md-6">
                             <label>Tên KCB cũ</label>
                             <input asp-for="ten_kcb_cu" class="form-control rounded-pill" />
                         </div>
+
                         <div class="col-lg-2 col-md-6">
                             <label>Mã KCB mới</label>
                             <input asp-for="ma_kcb_moi" class="form-control rounded-pill" />
@@ -212,7 +219,9 @@
                             <input asp-for="ten_kcb_moi" class="form-control rounded-pill" />
                         </div>
                     </div>
-                    <div class="row g-3 d-flex justify-content-around">
+
+                    <!-- ROW 3 -->
+                    <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Ngày BHTN</label>
                             <input asp-for="ngay_bhtn" type="date" class="form-control rounded-pill" />
@@ -233,6 +242,141 @@
                             <input asp-for="ng_vao_chinh_thuc" type="date" class="form-control rounded-pill" />
                         </div>
                     </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ===== TAB: HỢP ĐỒNG ===== -->
+        <div class="container-fluid px-0 tab-pane fade" id="tab-hopdong" role="tabpanel">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-9 mx-auto">
+                    <!-- ROW 1 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ký HĐLĐ từ</label>
+                            <input asp-for="ky_hd_tu" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ký HĐLĐ đến</label>
+                            <input asp-for="ky_hd_den" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Loại HĐLD</label>
+                            <select asp-for="loai_hop_dong_id" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">XD</option>
+                                <option value="2">KXD</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Chức vụ</label>
+                            <select asp-for="ma_chuc_vu" asp-items="Model.ChucVuList" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                @foreach (var cv in Model.ChucVuList)
+                                {
+                                    <option value="@cv.Value">@cv.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <!-- ROW 2 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số HĐLĐ</label>
+                            <input asp-for="so_hdld" class="form-control rounded-pill" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Loại ký kết HĐLĐ</label>
+                            <select asp-for="loai_ky_ket" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">12 tháng</option>
+                                <option value="2">24 tháng</option>
+                                <option value="3">36 tháng</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số lần tái ký</label>
+                            <input asp-for="so_lan_tai_ky" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+                    <!-- ROW 3 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Quyết định ban ngạch</label>
+                            <input asp-for="quyet_dinh_ban_ngach" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày ban ngạch</label>
+                            <input asp-for="ngay_ban_ngach" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã ngạch</label>
+                            <select asp-for="ma_ngach" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="BT01">BT01</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Bậc lương</label>
+                            <select asp-for="bac_luong" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">Bậc 1</option>
+                                <option value="2">Bậc 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- ROW 4 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tiền</label>
+                            <input asp-for="tien" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Phụ cấp BHXH</label>
+                            <input asp-for="phu_cap_bhxh" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Quyết định xếp lương</label>
+                            <input asp-for="quyet_dinh_xep_luong" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày xếp lương</label>
+                            <input asp-for="ngay_xep_luong" type="date" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+
+                    <!-- ROW 5 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Ngày thôi việc</label>
+                            <input asp-for="ngay_thoi_viec" type="date" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số quyết định thôi việc</label>
+                            <input asp-for="so_quyet_dinh_thoi_viec" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Lý do nghỉ</label>
+                            <input asp-for="ly_do_nghi" class="form-control rounded-pill" />
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tiền trợ cấp</label>
+                            <input asp-for="tien_tro_cap" class="form-control rounded-pill" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

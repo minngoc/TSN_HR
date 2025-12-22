@@ -72,9 +72,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.MaNhanVien</td>
-                            <td>@item.HoVaTen</td>
-                            <td>@item.TenChucVu</td>
+                            <td>@item.ma_nhan_vien</td>
+                            <td>@item.ho_va_ten</td>
+                            <td>@item.ten_chuc_vu</td>
 
                             <td class="text-center">
                                 <button class="btn btn-sm btn-pill btn-purple">
@@ -131,7 +131,7 @@
 
 <!-- ===== MODAL CREATE ===== -->
 <div class="modal fade" id="createNhanVienModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-nhanvien-wide modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-nhanvien-wide modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
                 <h5 class="modal-title">Thông tin nhân viên</h5>
@@ -142,7 +142,7 @@
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
                     Hủy
                 </button>
-                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                <button type="button" class="btn btn-primary rounded-pill px-4" onclick="submitCreateNhanVien()">
                     Lưu
                 </button>
             </div>
@@ -159,11 +159,61 @@
                     return;
                 }
 
-                const modal = new bootstrap.Modal(
-                    document.getElementById('createNhanVienModal')
-                );
+                const modalEl = document.getElementById('createNhanVienModal');
+                const modal = new bootstrap.Modal(modalEl);
                 modal.show();
             });
         };
+    </script>
+
+    <script>
+        function submitCreateNhanVien() {
+            const modalBody = document.getElementById("createModalBody");
+            const form = modalBody.querySelector("form");
+
+            if (!form) {
+                console.error("Create form not found");
+                return;
+            }
+
+            const formData = new FormData(form);
+
+            // LẤY ANTI-FORGERY TOKEN
+            const tokenInput = form.querySelector('input[name="__RequestVerificationToken"]');
+            const token = tokenInput ? tokenInput.value : null;
+
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+                credentials: "same-origin",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "RequestVerificationToken": token
+                }
+            })
+                .then(res => {
+                    const contentType = res.headers.get("content-type") || "";
+                    if (contentType.includes("application/json")) {
+                        return res.json();
+                    }
+                    return res.text();
+                })
+                .then(result => {
+                    // THÀNH CÔNG
+                    if (typeof result === "object" && result.success) {
+                        const modal = bootstrap.Modal.getInstance(
+                            document.getElementById("createNhanVienModal")
+                        );
+                        modal?.hide();
+
+                        reloadNhanVienTable?.() ?? location.reload();
+                        return;
+                    }
+
+                    // VALIDATION ERROR
+                    modalBody.innerHTML = result;
+                })
+                .catch(err => console.error("Create error:", err));
+        }
     </script>
 }

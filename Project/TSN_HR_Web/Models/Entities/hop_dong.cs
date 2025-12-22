@@ -28,6 +28,7 @@ public partial class hop_dong : BaseEntity
     public string? ly_do_nghi { get; set; }
 
     public string? tien_tro_cap { get; set; }
+    public string? loai_ky_ket { get; set; }
 
     public virtual loai_hop_dong loai_hop_dong { get; set; } = null!;
 
