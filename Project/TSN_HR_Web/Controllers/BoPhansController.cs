@@ -6,7 +6,7 @@ using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
-    public class BoPhansController : Controller
+    public class BoPhansController : BaseController
     {
         private readonly TSNHRDbContext _context;
 
@@ -15,179 +15,143 @@ namespace TSN_HR_Web.Controllers
             _context = context;
         }
 
-        // GET: List Phong ban
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var model = await _context
-                .bo_phans.Include(bp => bp.co_so)
-                .Select(bp => new BoPhanListItemViewModel
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetData()
+        {
+            var query = _context.bo_phans
+        .AsNoTracking()
+        .Select(x => new
+        {
+            id = x.id,
+            ma_bo_phan = x.ma_bo_phan,
+            ten_bo_phan = x.ten_bo_phan,
+            ma_co_so = x.co_so.ma_co_so
+        });
+
+            return DataTablesResult(query, Request);
+        }
+
+        // =========================================================
+        // DETAILS - GET (PARTIAL)
+        // =========================================================
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await _context.bo_phans
+                .AsNoTracking()
+                .Where(x => x.id == id)
+                .Select(x => new BoPhanCreateViewModel
                 {
-                    id = bp.id,
-                    ma_bo_phan = bp.ma_bo_phan,
-                    ten_bo_phan = bp.ten_bo_phan,
-                    ma_co_so = bp.co_so.ma_co_so,
+                    id = x.id,
+                    ma_bo_phan = x.ma_bo_phan,
+                    ten_bo_phan = x.ten_bo_phan,
+                    co_so_id = x.co_so_id
                 })
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
-            return View(model);
+            if (model == null) return NotFound();
+
+            ViewBag.CoSoList = _context.co_sos
+                .AsNoTracking()
+                .Select(cs => new SelectListItem
+                {
+                    Value = cs.id.ToString(),
+                    Text = cs.ma_co_so + " - " + cs.ten_co_so
+                })
+                .ToList();
+
+            return PartialView("Details", model);
         }
-
-        // GET: Phong ban/Details
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var boPhan = await _context.bo_phans.FirstOrDefaultAsync(m => m.id == id);
-            if (boPhan == null)
-            {
-                return NotFound();
-            }
-
-            return View(boPhan);
-        }
-
-        // GET: BoPhan/Create
+        // =========================================================
+        // CREATE – GET
+        // =========================================================
+        [HttpGet]
         public IActionResult Create()
         {
-            var model = new BoPhanCreateViewModel
-            {
-                CoSoList = _context
-                    .co_sos.Select(cs => new SelectListItem
-                    {
-                        Value = cs.id.ToString(),
-                        Text = cs.ma_co_so + " - " + cs.ten_co_so,
-                    })
-                    .ToList(),
-            };
+            ViewBag.CoSoList = _context.co_sos
+                .AsNoTracking()
+                .Select(cs => new SelectListItem
+                {
+                    Value = cs.id.ToString(),
+                    Text = cs.ma_co_so + " - " + cs.ten_co_so
+                })
+                .ToList();
 
-            return PartialView("Create", model);
+            return PartialView("Create", new BoPhanCreateViewModel());
         }
 
-        // POST: Phong Ban/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // CREATE – POST
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BoPhanCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.CoSoList = _context
-                    .co_sos.Select(cs => new SelectListItem
+                ViewBag.CoSoList = _context.co_sos
+                    .AsNoTracking()
+                    .Select(cs => new SelectListItem
                     {
                         Value = cs.id.ToString(),
-                        Text = cs.ma_co_so + " - " + cs.ten_co_so,
+                        Text = cs.ma_co_so + " - " + cs.ten_co_so
                     })
                     .ToList();
 
                 return PartialView("Create", model);
             }
 
-            var boPhan = new bo_phan
+            var entity = new bo_phan
             {
                 ma_bo_phan = model.ma_bo_phan,
                 ten_bo_phan = model.ten_bo_phan,
-                co_so_id = model.co_so_id!.Value,
+                co_so_id = model.co_so_id!.Value
             };
 
-            _context.bo_phans.Add(boPhan);
+            _context.bo_phans.Add(entity);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        // GET: Phong ban/Edit/
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var boPhan = await _context.bo_phans.FindAsync(id);
-            if (boPhan == null)
-            {
-                return NotFound();
-            }
-            return View(boPhan);
-        }
-
-        // POST: phong ban/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // EDIT – POST
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind("ma_bo_phan,ten_bo_phan,ma_co_so")] bo_phan boPhan
-        )
+        public async Task<IActionResult> Update(BoPhanCreateViewModel model)
         {
-            if (id != boPhan.id)
-            {
-                return NotFound();
-            }
+            var entity = await _context.bo_phans.FindAsync(model.id);
+            if (entity == null) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(boPhan);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BoPhanExists(boPhan.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(boPhan);
-        }
-
-        // GET: Phong ban/Delete
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var boPhan = await _context.bo_phans.FirstOrDefaultAsync(m => m.id == id);
-            if (boPhan == null)
-            {
-                return NotFound();
-            }
-
-            return View(boPhan);
-        }
-
-        // POST: Phong ban/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var boPhan = await _context.bo_phans.FindAsync(id);
-            if (boPhan != null)
-            {
-                _context.bo_phans.Remove(boPhan);
-            }
+            entity.ma_bo_phan = model.ma_bo_phan;
+            entity.ten_bo_phan = model.ten_bo_phan;
+            entity.co_so_id = model.co_so_id!.Value;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        private bool BoPhanExists(int id)
+        // =========================================================
+        // DELETE
+        // =========================================================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            return _context.bo_phans.Any(e => e.id == id);
+            var entity = await _context.bo_phans.FindAsync(id);
+            if (entity == null) return NotFound();
+
+            _context.bo_phans.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
+
     }
 }

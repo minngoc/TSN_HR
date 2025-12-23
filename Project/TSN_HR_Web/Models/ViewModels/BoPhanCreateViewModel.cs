@@ -7,6 +7,7 @@ namespace TSN_HR_Web.Models.ViewModels
 {
     public class BoPhanCreateViewModel
     {
+        public int id { get; set; }
         [Display(Name = "Mã phòng ban")]
         [RequiredEx]
         [MaxLengthEx(ValidationConstants.CodeMaxLength)]

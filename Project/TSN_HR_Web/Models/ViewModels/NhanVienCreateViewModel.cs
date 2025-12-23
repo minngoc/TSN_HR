@@ -49,15 +49,12 @@ public class NhanVienCreateViewModel
     public DateTime? ng_vao_chinh_thuc { get; set; }
 
     // ============================
-    // 3) NHÂN VIÊN → nhan_vien
-    // ============================
-    public string? ma_nv { get; set; }
-
-    // ============================
     // 4) BỘ PHẬN / CHỨC VỤ (FK)
     // ============================
-    public int bo_phan_id { get; set; }
-    public int chuc_vu_id { get; set; }
+    public int? BoPhanId { get; set; }
+    public int? ChucVuId { get; set; }
+    public List<SelectListItem> BoPhanList { get; set; } = new();
+    public List<SelectListItem> ChucVuList { get; set; } = new();
 
     // ============================
     // 5) HỢP ĐỒNG → hop_dong
@@ -81,5 +78,4 @@ public class NhanVienCreateViewModel
     public string? ly_do_nghi { get; set; }
     public string? tien_tro_cap { get; set; }
     public string? loai_ky_ket { get; set; }
-    public List<SelectListItem>? ChucVuList { get; set; } = new();
 }

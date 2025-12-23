@@ -1,0 +1,20 @@
+@model TSN_HR_Web.Models.ViewModels.BoPhanCreateViewModel
+@{
+    bool isReadOnly = ViewBag.ReadOnly == true;
+}
+<input type="hidden" asp-for="id" />
+<div class="mb-3">
+    <label>Cơ sở</label>
+    <select asp-for="co_so_id" asp-items="ViewBag.CoSoList" class="form-select rounded-pill">
+        <option value="">-- Chọn cơ sở --</option>
+    </select>
+</div>
+<div class="mb-3">
+    <label>Mã Phòng Ban</label>
+    <input asp-for="ma_bo_phan" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+</div>
+
+<div class="mb-3">
+    <label>Tên Phòng Ban</label>
+    <input asp-for="ten_bo_phan" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+</div>

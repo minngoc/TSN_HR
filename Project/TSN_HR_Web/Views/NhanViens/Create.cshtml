@@ -138,14 +138,14 @@
                     <div class="row g-3 mb-2">
                         <div class="col-lg-2 col-md-6">
                             <label>Học vấn</label>
-                            <select asp-for="hoc_van" asp-items="ViewBag.HocVanList" class="form-select rounded-pill">
+                            <select asp-for="HocVanId" asp-items="Model.HocVanList" class="form-select rounded-pill">
                                 <option value="">-- Chọn học vấn --</option>
                             </select>
                         </div>
 
                         <div class="col-lg-2 col-md-6">
                             <label>Trình độ</label>
-                            <select asp-for="trinh_do" asp-items="ViewBag.TrinhDoList" class="form-select rounded-pill">
+                            <select asp-for="TrinhDoId" asp-items="Model.TrinhDoList" class="form-select rounded-pill">
                                 <option value="">-- Chọn trình độ --</option>
                             </select>
                         </div>
@@ -272,13 +272,16 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-6">
-                            <label>Chức vụ</label>
-                            <select asp-for="ma_chuc_vu" asp-items="Model.ChucVuList" class="form-select rounded-pill">
+                            <label>Phòng ban</label>
+                            <select asp-for="BoPhanId" asp-items="Model.BoPhanList" id="boPhanSelect"
+                                class="form-select rounded-pill">
                                 <option value="">-- Chọn --</option>
-                                @foreach (var cv in Model.ChucVuList)
-                                {
-                                    <option value="@cv.Value">@cv.Text</option>
-                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Chức vụ</label>
+                            <select asp-for="ChucVuId" id="chucVuSelect" class="form-select rounded-pill" disabled>
+                                <option value="">-- Chọn --</option>
                             </select>
                         </div>
                     </div>
@@ -396,3 +399,35 @@
         </div>
     </div>
 </form>
+<script>
+    document.addEventListener("change", function (e) {
+        if (e.target && e.target.id === "boPhanSelect") {
+
+            const boPhanId = e.target.value;
+            const chucVuSelect = document.getElementById("chucVuSelect");
+
+            console.log("boPhanId =", boPhanId);
+
+            chucVuSelect.innerHTML = '<option value="">-- Chọn --</option>';
+            chucVuSelect.disabled = true;
+
+            if (!boPhanId) return;
+
+            fetch(`/NhanViens/GetChucVuByBoPhan?boPhanId=${boPhanId}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Chức vụ:", data);
+
+                    data.forEach(cv => {
+                        const opt = document.createElement("option");
+                        opt.value = cv.id;
+                        opt.textContent = cv.ten;
+                        chucVuSelect.appendChild(opt);
+                    });
+
+                    chucVuSelect.disabled = false;
+                })
+                .catch(err => console.error(err));
+        }
+    });
+</script>

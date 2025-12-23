@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-public partial class ngach_cong_vien_chuc : BaseEntity
+public partial class ngach_cong_vien_chuc
 {
     public int id { get; set; }
 
@@ -15,11 +15,19 @@ public partial class ngach_cong_vien_chuc : BaseEntity
 
     public int? loai_vien_chuc_id { get; set; }
 
-    public string? quyet_dinh_ban_ngach { get; set; }
+    public DateTime created_date { get; set; }
 
-    public DateOnly? ngay_ban_ngach { get; set; }
+    public DateTime updated_date { get; set; }
 
-    public virtual loai_vien_chuc? loai_vien_chuc { get; set; }
+    public bool is_active { get; set; }
 
-    public virtual ICollection<muc_luong> muc_luongs { get; set; } = new List<muc_luong>();
+    public int? so_bac_toi_da { get; set; }
+
+    public int? nhom_ngach_id { get; set; }
+
+    public virtual ICollection<bac_luong> bac_luongs { get; set; } = new List<bac_luong>();
+
+    public virtual nhom_ngach? nhom_ngach { get; set; }
+
+    public virtual ICollection<xep_luong_nhan_vien> xep_luong_nhan_viens { get; set; } = new List<xep_luong_nhan_vien>();
 }

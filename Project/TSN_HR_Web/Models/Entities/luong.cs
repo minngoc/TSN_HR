@@ -3,17 +3,13 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
-#pragma warning disable CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
-public partial class luong : BaseEntity
-#pragma warning restore CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
+public partial class luong
 {
     public int id { get; set; }
 
     public string ma_luong { get; set; } = null!;
 
     public int nhan_vien_id { get; set; }
-
-    public int muc_luong_id { get; set; }
 
     public string? ma_thue { get; set; }
 
@@ -27,7 +23,21 @@ public partial class luong : BaseEntity
 
     public DateOnly? effective_to { get; set; }
 
-    public virtual muc_luong muc_luong { get; set; } = null!;
+    public DateTime created_date { get; set; }
+
+    public DateTime updated_date { get; set; }
+
+    public bool is_active { get; set; }
+
+    public byte? thang { get; set; }
+
+    public short? nam { get; set; }
+
+    public decimal? tong_thu_nhap { get; set; }
+
+    public decimal? tong_khau_tru { get; set; }
+
+    public decimal? luong_thuc_nhan { get; set; }
 
     public virtual nhan_vien nhan_vien { get; set; } = null!;
 }

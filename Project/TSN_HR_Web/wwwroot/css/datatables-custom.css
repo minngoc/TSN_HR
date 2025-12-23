@@ -1,0 +1,356 @@
+/* ===== DATATABLES WRAPPER ===== */
+.dataTables_wrapper {
+    font-family: inherit;
+    position: relative;
+}
+
+/* ===== HEADER ===== */
+table.dataTable thead th {
+    background-color: #f8f9fb;
+    color: #1f2937;
+    /* navy text */
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* SORT ICON */
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:after {
+    color: #1e40af;
+    /* blue tone */
+    opacity: 0.7;
+}
+
+/* ===== ROW ===== */
+table.dataTable tbody tr {
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* ===== SEARCH BOX ===== */
+.dataTables_filter input {
+    border-radius: 999px;
+    padding: 6px 14px;
+    border: 1px solid #d1d5db;
+}
+
+/* ===== LENGTH DROPDOWN ===== */
+.dataTables_length select {
+    border-radius: 999px;
+    padding: 4px 10px;
+}
+
+/* ===== PAGINATION ===== */
+.dataTables_paginate .paginate_button {
+    border-radius: 999px !important;
+    border: 1px solid transparent;
+    margin: 0 2px;
+    color: #1e3a8a !important;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background: #1e40af !important;
+    color: #fff !important;
+    border-radius: 999px;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background: #e0e7ff !important;
+    color: #1e40af !important;
+}
+
+/* FIX: màu số trang active bị chìm */
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current,
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   DATATABLES SPACING (HEADER & FOOTER)
+   ========================================================= */
+
+/* Khoảng cách giữa header (search + length) và bảng */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 16px;
+    /* cách header xuống bảng */
+}
+
+/* Khoảng cách giữa bảng và footer (info + pagination) */
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 16px;
+    /* cách bảng xuống footer */
+}
+
+/* =========================================================
+   INPUT & SELECT BO TRÒN
+   ========================================================= */
+
+/* Ô tìm kiếm */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 999px !important;
+    padding: 6px 14px !important;
+    border: 1px solid #d1d5db;
+    outline: none;
+}
+
+/* Focus ô tìm kiếm */
+.dataTables_wrapper .dataTables_filter input:focus {
+    border-color: #1e40af;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.15);
+}
+
+/* Select số lượng hiển thị */
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 999px !important;
+    padding: 4px 12px !important;
+    border: 1px solid #d1d5db;
+    outline: none;
+}
+
+/* Focus select */
+.dataTables_wrapper .dataTables_length select:focus {
+    border-color: #1e40af;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.15);
+}
+
+/* =========================================================
+   ROW HOVER
+   ========================================================= */
+
+/* Hover 1 dòng */
+table.dataTable tbody tr:hover {
+    background-color: #e0e7ff !important;
+}
+
+/* làm nổi cell đang hover */
+table.dataTable tbody tr:hover td {
+    background-color: #eef2ff !important;
+}
+
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+    background-color: #f9fafb;
+}
+
+table.dataTable.stripe tbody tr.even,
+table.dataTable.display tbody tr.even {
+    background-color: #ffffff;
+}
+
+/* =========================================================
+   OVERRIDE ROW XÁM
+   ========================================================= */
+
+table.dataTable tbody tr.odd {
+    background-color: #eef2ff !important;
+}
+
+table.dataTable tbody tr.even {
+    background-color: #ffffff !important;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+table.dataTable thead th {
+    background-color: #123288 !important;
+    /* cùng màu button */
+    color: #ffffff !important;
+    font-weight: 600;
+    border-bottom: none;
+}
+
+/* Sort icon */
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:after {
+    color: #ffffff !important;
+    opacity: 0.7;
+}
+
+/* Hover header */
+table.dataTable thead th:hover {
+    background-color: #1d336f !important;
+}
+
+/* =========================================================
+   TABLE ROUNDED CORNERS
+   ========================================================= */
+
+.dataTables_wrapper .dataTables_scroll,
+.dataTables_wrapper .dataTables_scrollHead,
+.dataTables_wrapper .dataTables_scrollBody,
+.dataTables_wrapper table.dataTable {
+    border-radius: 0;
+}
+
+.dataTables_wrapper .dataTables_scroll {
+    overflow: visible;
+    background: transparent;
+}
+
+table.dataTable thead th:first-child {
+    border-top-left-radius: 14px;
+}
+
+table.dataTable thead th:last-child {
+    border-top-right-radius: 14px;
+}
+
+table.dataTable tbody tr:last-child td:first-child,
+table.dataTable tbody tr:last-child td:last-child {
+    border-radius: 0;
+}
+
+table.dataTable thead th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ================================
+   DATATABLES LOADING
+   ================================ */
+.dataTables_wrapper {
+    position: relative;
+}
+
+.dataTables_wrapper .dataTables_scrollBody {
+    position: relative;
+}
+
+.dataTables_processing {
+    position: absolute !important;
+
+    /* ép căn giữa theo scroll body */
+    inset: 0 !important;
+    margin: auto !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: max-content;
+    height: max-content;
+
+    padding: 14px 22px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+    font-weight: 500;
+    color: #333;
+
+    z-index: 20;
+}
+
+/* Spinner */
+.dataTables_processing::after {
+    content: "";
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 3px solid #dee2e6;
+    border-top-color: #0d6efd;
+    animation: dt-spin 0.8s linear infinite;
+}
+
+@keyframes dt-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.nhanvien-page {
+    position: relative;
+}
+
+/* Tab luôn nổi lên trên */
+.nhanvien-page .nav-tabs {
+    position: relative;
+    z-index: 20;
+}
+
+/* DataTables nằm dưới tab */
+.nhanvien-page .dataTables_wrapper,
+.nhanvien-page .dataTables_scroll,
+.nhanvien-page .dataTables_scrollHead,
+.nhanvien-page .dataTables_scrollBody {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===============================
+   STATUS PILL – NHÂN VIÊN
+   =============================== */
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 14px;
+    border-radius: 999px;
+
+    background-color: #1ec45b;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+/* ===============================
+   DETAIL BUTTON – PILL STYLE
+   =============================== */
+
+.btn-detail {
+    border-radius: 999px !important; 
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* ===============================
+   ALIGN CENTER TABLE
+   =============================== */
+
+table.dataTable thead th {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center !important;
+    vertical-align: middle;
+    padding: 12px 36px; 
+}
+
+table.dataTable thead th.sorting::before,
+table.dataTable thead th.sorting::after,
+table.dataTable thead th.sorting_asc::before,
+table.dataTable thead th.sorting_asc::after,
+table.dataTable thead th.sorting_desc::before,
+table.dataTable thead th.sorting_desc::after {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+table.dataTable tbody td.text-center {
+    text-align: center !important;
+    vertical-align: midd
+}

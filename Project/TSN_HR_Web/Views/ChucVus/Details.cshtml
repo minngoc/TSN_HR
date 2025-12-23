@@ -1,18 +1,18 @@
-@model TSN_HR_Web.Models.ViewModels.BoPhanCreateViewModel
+@model TSN_HR_Web.Models.ViewModels.ChucVuCreateViewModel
 @{
     Layout = null;
 }
 
-<form id="boPhanUpdateForm">
+<form id="chucVuUpdateForm">
     @Html.AntiForgeryToken()
 
-    <partial name="_BoPhanForm" model="Model" />
+    <partial name="_ChucVuForm" model="Model" />
 
     <div class="d-flex justify-content-between align-items-center mt-3">
         <!-- DELETE -->
         <button type="button"
                 class="btn btn-danger"
-                id="btnDeleteBoPhan"
+                id="btnDeleteChucVu"
                 data-id="@Model.id">
             Xóa
         </button>

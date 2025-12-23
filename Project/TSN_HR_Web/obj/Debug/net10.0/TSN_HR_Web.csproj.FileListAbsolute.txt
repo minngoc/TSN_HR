@@ -295,6 +295,19 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\n3s
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vwqpputsto-{0}-s6vp0cxidq-s6vp0cxidq.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\nop6e83uqd-{0}-fkwz842nby-fkwz842nby.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\abhupzi9x3-{0}-xqj4nye3c8-xqj4nye3c8.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-af0f3qxn5r-af0f3qxn5r.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-72ckom6ly2-72ckom6ly2.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.csproj.AssemblyReference.cache
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.GeneratedMSBuildEditorConfig.editorconfig
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.AssemblyInfoInputs.cache
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.AssemblyInfo.cs
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.csproj.CoreCompileInputs.cache
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.MvcApplicationPartsAssemblyInfo.cs
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.MvcApplicationPartsAssemblyInfo.cache
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.RazorAssemblyInfo.cache
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.RazorAssemblyInfo.cs
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.sourcelink.json
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\BuildHost-net472\Microsoft.Build.Locator.dll
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\BuildHost-net472\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\BuildHost-net472\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.exe.config
@@ -493,17 +506,6 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\runtimes\win-ar
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\bin\Debug\net10.0\runtimes\win\lib\net9.0\System.Windows.Extensions.dll
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.csproj.AssemblyReference.cache
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rpswa.dswa.cache.json
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.GeneratedMSBuildEditorConfig.editorconfig
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.AssemblyInfoInputs.cache
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.AssemblyInfo.cs
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.csproj.CoreCompileInputs.cache
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.MvcApplicationPartsAssemblyInfo.cs
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.MvcApplicationPartsAssemblyInfo.cache
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.RazorAssemblyInfo.cache
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.RazorAssemblyInfo.cs
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.sourcelink.json
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rjimswa.dswa.cache.json
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -521,7 +523,7 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi2
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\obwv8bu8jf-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\686znykzc9-{0}-6inx71wcvi-6inx71wcvi.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\y2hy3a4g8i-{0}-n2bofdy14o-n2bofdy14o.gz
-D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-3g1l94jz9o-3g1l94jz9o.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-72ckom6ly2-72ckom6ly2.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\2co8vy93mz-{0}-t1cqhe9u97-t1cqhe9u97.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\o1u51kwtwk-{0}-c2jlpeoesf-c2jlpeoesf.gz
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vqdzwy7g2f-{0}-sejl45xvog-sejl45xvog.gz
@@ -594,5 +596,4 @@ D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\refint\TSN_HR_W
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.pdb
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.genruntimeconfig.cache
 D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\ref\TSN_HR_Web.dll
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\swgmu0t8k9-{0}-af0f3qxn5r-af0f3qxn5r.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-72ckom6ly2-72ckom6ly2.gz
+D:\Minngoc Workspace\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\rozbfsj63d-{0}-rgsvx9ie4g-rgsvx9ie4g.gz

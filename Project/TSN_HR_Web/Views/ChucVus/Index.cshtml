@@ -1,12 +1,9 @@
-@model IEnumerable<TSN_HR_Web.Models.ViewModels.ChucVuListItemViewModel>
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/ChucVu.css" />
-}
-
 @{
-    ViewData["Title"] = "Danh sách Chức vụ";
+    ViewData["Title"] = "Danh sách Chức Vụ";
 }
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="~/css/datatables-custom.css" />
 
 <div class="chucvu-page">
 
@@ -18,55 +15,16 @@
             + Thêm mới Chức Vụ
         </button>
     </div>
+
     <!-- TABLE -->
     <div class="card shadow-sm border-0 rounded-4">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="text-center">Mã Chức Vụ</th>
-                        <th class="text-center">Tên Chức Vụ</th>
-                        <th class="text-center">Mã Phòng Ban</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="text-center">@item.ma_chuc_vu</td>
-                            <td class="text-center">@item.ten_chuc_vu</td>
-                            <td class="text-center">@item.ma_bo_phan</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="table-responsive p-3">
+            <table id="chucVuTable" class="display w-100"></table>
         </div>
     </div>
-
-    <!-- PAGINATION  -->
-    <nav class="mt-4 d-flex justify-content-end">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Trước</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">Sau</a>
-            </li>
-        </ul>
-    </nav>
-
 </div>
 
-<!-- ===== MODAL CREATE ===== -->
+<!-- MODAL CREATE -->
 <div class="modal fade" id="createChucVuModal" tabindex="-1">
     <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content rounded-4">
@@ -79,59 +37,163 @@
                 <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">
                     Hủy
                 </button>
-                <button type="submit" class="btn btn-primary rounded-pill px-4" onclick="submitCreateChucVu()">
+                <button type="button" class="btn btn-primary rounded-pill px-4" onclick="submitCreateChucVu()">
                     Lưu
                 </button>
             </div>
         </div>
     </div>
 </div>
+<!-- MODAL DETAILS -->
+<div class="modal fade" id="detailsChucVuModal" tabindex="-1">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi tiết Chức vụ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body" id="detailsChucVuModalBody"></div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
+
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
     <script>
+        $(function () {
+
+            window.chucVuTable = $('#chucVuTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '@Url.Action("GetData", "ChucVus")',
+                    type: 'GET'
+                },
+
+                scrollY: '55vh',
+                scrollCollapse: true,
+                paging: true,
+
+                columns: [
+                    { data: 'ma_chuc_vu', title: 'Mã Chức Vụ', className: 'text-center' },
+                    { data: 'ten_chuc_vu', title: 'Tên Chức Vụ', className: 'text-center' },
+                    { data: 'ma_bo_phan', title: 'Mã Phòng Ban', className: 'text-center' },
+                    {
+                        data: 'id',
+                        title: 'Chi tiết',
+                        orderable: false,
+                        searchable: false,
+                        className: 'text-center',
+                        render: function (id) {
+                            return `
+                            <button class="btn btn-sm btn-warning text-white"
+                                    onclick="loadChucVuDetails(${id})">
+                                Chi tiết
+                            </button>
+                        `;
+                        }
+                    }
+
+                ],
+
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json'
+                }
+            });
+        });
+
+        // ===== MODAL CREATE =====
         window.loadCreateForm = function () {
             $("#createModalBody").load("@Url.Action("Create", "ChucVus")", function (response, status, xhr) {
                 if (status === "error") {
                     console.error("Load Create form failed", xhr.status);
                     return;
                 }
-
-                const modal = new bootstrap.Modal(
+                new bootstrap.Modal(
                     document.getElementById('createChucVuModal')
-                );
-                modal.show();
+                ).show();
             });
         };
+        window.loadChucVuDetails = function (id) {
+            $("#detailsChucVuModalBody").html("");
+
+            $("#detailsChucVuModalBody").load(`/ChucVus/Details/${id}`, function () {
+                new bootstrap.Modal(
+                    document.getElementById('detailsChucVuModal')
+                ).show();
+            });
+        };
+
+
         function submitCreateChucVu() {
             const form = $("#createChucVuModal form");
-
             if (!form.length) return;
 
-            if(!form.valid()) {
-                form.find("input, select, textarea").each(function() {
-                    const input = $(this);
+            if (!form.valid()) return;
 
-                    if (input.hasClass("input-validation-error")) {
-                        input.addClass("is-invalid").removeClass("is-valid");
-                    } else {
-                        input.removeClass("is-invalid").addClass("is-valid");
-                    }
-                });
-                return;
-            }
-
-            $ajax({
+            $.ajax({
                 url: form.attr("action"),
                 type: "POST",
                 data: form.serialize(),
-                success: function (response) {
-                    if ($(response).find("form").length > 0) {
-                        $("createModalBody").html(response);
+                success: function (res) {
+                    if ($(res).find("form").length > 0) {
+                        $("#createModalBody").html(res);
                     } else {
-                        location.reload();
+                        $('#createChucVuModal').modal('hide');
+                        chucVuTable.ajax.reload(null, false);
                     }
                 }
-            })
+            });
         }
+        $(document).on("submit", "#chucVuUpdateForm", function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "/ChucVus/Update",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function () {
+                    bootstrap.Modal.getInstance(
+                        document.getElementById("detailsChucVuModal")
+                    ).hide();
+
+                    chucVuTable.ajax.reload(null, false);
+                },
+                error: function () {
+                    alert("Cập nhật thất bại");
+                }
+            });
+        });
+        $(document).on("click", "#btnDeleteChucVu", function () {
+            const id = $(this).data("id");
+
+            if (!confirm("Bạn có chắc chắn muốn xóa Chức vụ này không?")) return;
+
+            $.ajax({
+                url: "/ChucVus/Delete",
+                method: "POST",
+                data: {
+                    id: id,
+                    __RequestVerificationToken: $(
+                        '#chucVuUpdateForm input[name="__RequestVerificationToken"]'
+                    ).val()
+                },
+                success: function () {
+                    bootstrap.Modal.getInstance(
+                        document.getElementById("detailsChucVuModal")
+                    ).hide();
+
+                    chucVuTable.ajax.reload(null, false);
+                },
+                error: function () {
+                    alert("Xóa thất bại");
+                }
+            });
+        });
+
     </script>
 }

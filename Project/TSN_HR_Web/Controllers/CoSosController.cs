@@ -5,7 +5,7 @@ using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
-    public class CoSosController : Controller
+    public class CoSosController : BaseController
     {
         private readonly TSNHRDbContext _context;
 
@@ -14,158 +14,122 @@ namespace TSN_HR_Web.Controllers
             _context = context;
         }
 
-        // GET: List Co So
-        public async Task<IActionResult> Index()
+        // =========================================================
+        // INDEX
+        // =========================================================
+        public IActionResult Index()
         {
-            var model = await _context
-                .co_sos.Select(cs => new CoSoListItemViewModel
+            return View();
+        }
+
+        // =========================================================
+        // DATATABLES API
+        // =========================================================
+        [HttpGet]
+        public IActionResult GetData()
+        {
+            var query = _context.co_sos
+                .AsNoTracking()
+                .Select(x => new
                 {
-                    ma_co_so = cs.ma_co_so,
-                    ten_co_so = cs.ten_co_so,
-                    dia_chi = cs.dia_chi ?? "",
-                })
-                .ToListAsync();
+                    id = x.id,
+                    ma_co_so = x.ma_co_so,
+                    ten_co_so = x.ten_co_so,
+                    dia_chi = x.dia_chi ?? ""
+                });
 
-            return View(model);
+            return DataTablesResult(query, Request);
         }
 
-        // GET: Co So/Details
-        public async Task<IActionResult> Details(int? id)
+        // =========================================================
+        // Detais – GET
+        // =========================================================
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var model = await _context.co_sos
+                .AsNoTracking()
+                .Where(x => x.id == id)
+                .Select(x => new CoSoCreateViewModel
+                {
+                    id = x.id,
+                    ma_co_so = x.ma_co_so,
+                    ten_co_so = x.ten_co_so,
+                    dia_chi = x.dia_chi
+                })
+                .FirstOrDefaultAsync();
 
-            var coSo = await _context.co_sos.FirstOrDefaultAsync(m => m.id == id);
-            if (coSo == null)
-            {
-                return NotFound();
-            }
+            if (model == null) return NotFound();
 
-            return View(coSo);
+            return PartialView("Details", model);
         }
 
-        // GET: Co So/Create
+        // =========================================================
+        // CREATE – GET
+        // =========================================================
+        [HttpGet]
         public IActionResult Create()
         {
-            return View(new CoSoCreateViewModel());
+            return PartialView("Create", new CoSoCreateViewModel());
         }
 
-        // POST: Co So/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // CREATE – POST
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CoSoCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView("Create", model);
             }
 
             var entity = new co_so
             {
                 ma_co_so = model.ma_co_so,
                 ten_co_so = model.ten_co_so,
-                dia_chi = model.dia_chi,
+                dia_chi = model.dia_chi
             };
 
             _context.co_sos.Add(entity);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        // GET: Co So/Edit/
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var coSo = await _context.co_sos.FindAsync(id);
-            if (coSo == null)
-            {
-                return NotFound();
-            }
-            return View(coSo);
-        }
-
-        // POST: Co So/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // EDIT – POST
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind("ma_co_so,ten_co_so,dia_chi")] co_so coSo
-        )
+        public async Task<IActionResult> Update(CoSoCreateViewModel model)
         {
-            if (id != coSo.id)
-            {
-                return NotFound();
-            }
+            var entity = await _context.co_sos.FindAsync(model.id);
+            if (entity == null) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(coSo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CoSoExists(coSo.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(coSo);
-        }
-
-        // GET: Co So/Delete
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var coSo = await _context.co_sos.FirstOrDefaultAsync(m => m.id == id);
-            if (coSo == null)
-            {
-                return NotFound();
-            }
-
-            return View(coSo);
-        }
-
-        // POST: Co So/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var coSo = await _context.co_sos.FindAsync(id);
-            if (coSo != null)
-            {
-                _context.co_sos.Remove(coSo);
-            }
+            entity.ma_co_so = model.ma_co_so;
+            entity.ten_co_so = model.ten_co_so;
+            entity.dia_chi = model.dia_chi;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        private bool CoSoExists(int id)
+        // =========================================================
+        // DELETE – POST
+        // =========================================================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            return _context.co_sos.Any(e => e.id == id);
+            var entity = await _context.co_sos.FindAsync(id);
+            if (entity == null) return NotFound();
+
+            _context.co_sos.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

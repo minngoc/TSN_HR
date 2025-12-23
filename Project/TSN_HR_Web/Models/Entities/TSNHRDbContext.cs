@@ -11,6 +11,8 @@ public partial class TSNHRDbContext : DbContext
     {
     }
 
+    public virtual DbSet<bac_luong> bac_luongs { get; set; }
+
     public virtual DbSet<bao_hiem> bao_hiems { get; set; }
 
     public virtual DbSet<bo_phan> bo_phans { get; set; }
@@ -27,7 +29,7 @@ public partial class TSNHRDbContext : DbContext
 
     public virtual DbSet<luong> luongs { get; set; }
 
-    public virtual DbSet<muc_luong> muc_luongs { get; set; }
+    public virtual DbSet<muc_luong_co_so> muc_luong_co_sos { get; set; }
 
     public virtual DbSet<ngach_cong_vien_chuc> ngach_cong_vien_chucs { get; set; }
 
@@ -37,14 +39,42 @@ public partial class TSNHRDbContext : DbContext
 
     public virtual DbSet<nhan_vien_bo_phan> nhan_vien_bo_phans { get; set; }
 
+    public virtual DbSet<nhan_vien_chuc_vu> nhan_vien_chuc_vus { get; set; }
+
     public virtual DbSet<nhan_vien_phu_cap> nhan_vien_phu_caps { get; set; }
+
+    public virtual DbSet<nhom_ngach> nhom_ngaches { get; set; }
 
     public virtual DbSet<phu_cap> phu_caps { get; set; }
 
     public virtual DbSet<so_yeu_ly_lich> so_yeu_ly_liches { get; set; }
 
+    public virtual DbSet<xep_luong_nhan_vien> xep_luong_nhan_viens { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<bac_luong>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK_muc_luong");
+
+            entity.ToTable("bac_luong");
+
+            entity.HasIndex(e => e.ma_muc_luong, "UQ_ma_muc_luong").IsUnique();
+
+            entity.Property(e => e.created_date).HasDefaultValueSql("(sysutcdatetime())");
+            entity.Property(e => e.he_so_luong).HasColumnType("decimal(5, 2)");
+            entity.Property(e => e.is_active).HasDefaultValue(true);
+            entity.Property(e => e.ma_muc_luong)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+            entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
+
+            entity.HasOne(d => d.ngach).WithMany(p => p.bac_luongs)
+                .HasForeignKey(d => d.ngach_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_muc_luong_ngach_vien_chuc");
+        });
+
         modelBuilder.Entity<bao_hiem>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PK_thong_tin_bao_hiem");
@@ -127,6 +157,7 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.SO_HDLD_L).HasMaxLength(50);
             entity.Property(e => e.created_date).HasDefaultValueSql("(sysutcdatetime())");
             entity.Property(e => e.is_active).HasDefaultValue(true);
+            entity.Property(e => e.loai_ky_ket).HasMaxLength(20);
             entity.Property(e => e.ly_do_nghi).HasMaxLength(200);
             entity.Property(e => e.so_hdld).HasMaxLength(50);
             entity.Property(e => e.so_quyet_dinh_thoi_viec).HasMaxLength(100);
@@ -152,7 +183,6 @@ public partial class TSNHRDbContext : DbContext
 
             entity.Property(e => e.created_date).HasDefaultValueSql("(sysutcdatetime())");
             entity.Property(e => e.is_active).HasDefaultValue(true);
-            entity.Property(e => e.loai_hdld).HasMaxLength(50);
             entity.Property(e => e.ma_loai)
                 .HasMaxLength(10)
                 .IsUnicode(false);
@@ -171,7 +201,6 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.ma_loai_vien_chuc)
                 .HasMaxLength(10)
                 .IsUnicode(false);
-            entity.Property(e => e.quyet_dinh_xep_loai).HasMaxLength(50);
             entity.Property(e => e.ten_loai_vien_chuc).HasMaxLength(200);
             entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
         });
@@ -185,18 +214,16 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.created_date).HasDefaultValueSql("(sysutcdatetime())");
             entity.Property(e => e.gia_canh).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.is_active).HasDefaultValue(true);
+            entity.Property(e => e.luong_thuc_nhan).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.ma_luong)
                 .HasMaxLength(10)
                 .IsUnicode(false);
             entity.Property(e => e.ma_thue).HasMaxLength(20);
             entity.Property(e => e.nam_tham_nien).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.tong_khau_tru).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.tong_thu_nhap).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.tru_khac).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
-
-            entity.HasOne(d => d.muc_luong).WithMany(p => p.luongs)
-                .HasForeignKey(d => d.muc_luong_id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_luong_muc_luong");
 
             entity.HasOne(d => d.nhan_vien).WithMany(p => p.luongs)
                 .HasForeignKey(d => d.nhan_vien_id)
@@ -204,24 +231,13 @@ public partial class TSNHRDbContext : DbContext
                 .HasConstraintName("FK_luong_nhan_vien");
         });
 
-        modelBuilder.Entity<muc_luong>(entity =>
+        modelBuilder.Entity<muc_luong_co_so>(entity =>
         {
-            entity.ToTable("muc_luong");
+            entity.HasKey(e => e.id).HasName("PK__muc_luon__3213E83F54B2A87D");
 
-            entity.HasIndex(e => e.ma_muc_luong, "UQ_ma_muc_luong").IsUnique();
+            entity.ToTable("muc_luong_co_so");
 
-            entity.Property(e => e.created_date).HasDefaultValueSql("(sysutcdatetime())");
-            entity.Property(e => e.he_so_luong).HasColumnType("decimal(5, 2)");
-            entity.Property(e => e.is_active).HasDefaultValue(true);
-            entity.Property(e => e.ma_muc_luong)
-                .HasMaxLength(10)
-                .IsUnicode(false);
-            entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
-
-            entity.HasOne(d => d.ngach_vien_chuc).WithMany(p => p.muc_luongs)
-                .HasForeignKey(d => d.ngach_vien_chuc_id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_muc_luong_ngach_vien_chuc");
+            entity.Property(e => e.so_tien).HasColumnType("decimal(18, 0)");
         });
 
         modelBuilder.Entity<ngach_cong_vien_chuc>(entity =>
@@ -236,13 +252,12 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.ma_ngach)
                 .HasMaxLength(10)
                 .IsUnicode(false);
-            entity.Property(e => e.quyet_dinh_ban_ngach).HasMaxLength(100);
             entity.Property(e => e.ten_ngach).HasMaxLength(200);
             entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
 
-            entity.HasOne(d => d.loai_vien_chuc).WithMany(p => p.ngach_cong_vien_chucs)
-                .HasForeignKey(d => d.loai_vien_chuc_id)
-                .HasConstraintName("FK_ngach_cong_vien_chuc_loai_vien_chuc");
+            entity.HasOne(d => d.nhom_ngach).WithMany(p => p.ngach_cong_vien_chucs)
+                .HasForeignKey(d => d.nhom_ngach_id)
+                .HasConstraintName("FK_ngach_nhom");
         });
 
         modelBuilder.Entity<nghiep_vu>(entity =>
@@ -298,10 +313,38 @@ public partial class TSNHRDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_nhan_vien_bo_phan_bo_phan");
 
+            entity.HasOne(d => d.chuc_vu).WithMany(p => p.nhan_vien_bo_phans)
+                .HasForeignKey(d => d.chuc_vu_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_nhan_vien_bo_phan_chuc_vu");
+
             entity.HasOne(d => d.nhan_vien).WithMany(p => p.nhan_vien_bo_phans)
                 .HasForeignKey(d => d.nhan_vien_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_nhan_vien_bo_phan_nhan_vien");
+        });
+
+        modelBuilder.Entity<nhan_vien_chuc_vu>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__nhan_vie__3213E83FD1490732");
+
+            entity.ToTable("nhan_vien_chuc_vu");
+
+            entity.Property(e => e.created_date)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.is_primary).HasDefaultValue(true);
+            entity.Property(e => e.updated_date).HasColumnType("datetime");
+
+            entity.HasOne(d => d.chuc_vu).WithMany(p => p.nhan_vien_chuc_vus)
+                .HasForeignKey(d => d.chuc_vu_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_nvcv_cv");
+
+            entity.HasOne(d => d.nhan_vien).WithMany(p => p.nhan_vien_chuc_vus)
+                .HasForeignKey(d => d.nhan_vien_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_nvcv_nv");
         });
 
         modelBuilder.Entity<nhan_vien_phu_cap>(entity =>
@@ -321,6 +364,17 @@ public partial class TSNHRDbContext : DbContext
                 .HasForeignKey(d => d.phu_cap_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_nhan_vien_phu_cap_phu_cap");
+        });
+
+        modelBuilder.Entity<nhom_ngach>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__nhom_nga__3213E83F78854218");
+
+            entity.ToTable("nhom_ngach");
+
+            entity.Property(e => e.is_active).HasDefaultValue(true);
+            entity.Property(e => e.ma_nhom).HasMaxLength(10);
+            entity.Property(e => e.ten_nhom).HasMaxLength(100);
         });
 
         modelBuilder.Entity<phu_cap>(entity =>
@@ -386,40 +440,33 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
         });
 
+        modelBuilder.Entity<xep_luong_nhan_vien>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__xep_luon__3213E83F75A4710C");
+
+            entity.ToTable("xep_luong_nhan_vien");
+
+            entity.Property(e => e.is_hien_hanh).HasDefaultValue(true);
+            entity.Property(e => e.quyet_dinh_so).HasMaxLength(50);
+
+            entity.HasOne(d => d.bac_luong).WithMany(p => p.xep_luong_nhan_viens)
+                .HasForeignKey(d => d.bac_luong_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_xlnv_bac_luong");
+
+            entity.HasOne(d => d.ngach).WithMany(p => p.xep_luong_nhan_viens)
+                .HasForeignKey(d => d.ngach_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_xlnv_ngach");
+
+            entity.HasOne(d => d.nhan_vien).WithMany(p => p.xep_luong_nhan_viens)
+                .HasForeignKey(d => d.nhan_vien_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_xlnv_nhan_vien");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-     public override int SaveChanges()
-    {
-        ApplyAuditInfo();
-        return base.SaveChanges();
-    }
-
-    public override Task<int> SaveChangesAsync(
-        CancellationToken cancellationToken = default
-    )
-    {
-        ApplyAuditInfo();
-        return base.SaveChangesAsync(cancellationToken);
-    }
-
-    private void ApplyAuditInfo()
-    {
-        var entries = ChangeTracker.Entries<BaseEntity>();
-
-        foreach (var entry in entries)
-        {
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.created_date = DateTime.Now;
-                entry.Entity.updated_date = DateTime.Now;
-                entry.Entity.is_active = true;
-            }
-            else if (entry.State == EntityState.Modified)
-            {
-                entry.Entity.updated_date = DateTime.Now;
-            }
-        }
-    }
 }

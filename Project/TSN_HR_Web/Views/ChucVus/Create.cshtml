@@ -1,39 +1,14 @@
 @model TSN_HR_Web.Models.ViewModels.ChucVuCreateViewModel
 @{
     Layout = null;
-    ViewData["Title"] = "Chức vụ";
 }
 
-<form asp-controller="ChucVus" asp-action="Create" method="post" class="chucvu-create-form px-3 needs-validation"
-    novalidate>
+<form method="post"
+      asp-action="Create"
+      class="chucvu-create-form px-3 needs-validation"
+      novalidate>
 
     @Html.AntiForgeryToken()
 
-    <!-- MÃ BỘ PHẬN (DROPDOWN) -->
-    <div class="mb-4">
-        <label class="form-label small fw-medium">Mã Phòng Ban</label>
-        <select asp-for="bo_phan_id" asp-items="Model.BoPhanList" class="form-select rounded-pill">
-            <option value="">-- Chọn phòng ban --</option>
-            @foreach (var pb in Model.BoPhanList)
-            {
-                <option value="@pb.Value">@pb.Text</option>
-            }
-        </select>
-        <span asp-validation-for="bo_phan_id" class="invalid-feedback"></span>
-    </div>
-
-    <!-- MÃ CHỨC VỤ -->
-    <div class="mb-3">
-        <label class="form-label small fw-medium">Mã chức vụ</label>
-        <input asp-for="ma_chuc_vu" class="form-control rounded-pill" placeholder="VD: CV01" />
-        <span asp-validation-for="ma_chuc_vu" class="invalid-feedback"></span>
-    </div>
-
-    <!-- TÊN CHỨC VỤ -->
-    <div class="mb-3">
-        <label class="form-label small fw-medium">Tên chức vụ</label>
-        <input asp-for="ten_chuc_vu" class="form-control rounded-pill" placeholder="Trưởng phòng" />
-        <span asp-validation-for="ten_chuc_vu" class="invalid-feedback"></span>
-    </div>
+    <partial name="_ChucVuForm" model="Model" />
 </form>
-<partial name="_ValidationScriptsPartial" />

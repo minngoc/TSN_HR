@@ -5,6 +5,8 @@ namespace TSN_HR_Web.Models.ViewModels;
 
 public class CoSoCreateViewModel
 {
+    public int id { get; set; }
+    
     [Display(Name = "Mã cơ sở")]
     [RequiredEx]
     [MaxLengthEx(ValidationConstants.CodeMaxLength)]

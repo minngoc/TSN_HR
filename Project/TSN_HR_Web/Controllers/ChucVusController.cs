@@ -6,7 +6,7 @@ using TSN_HR_Web.Models.ViewModels;
 
 namespace TSN_HR_Web.Controllers
 {
-    public class ChucVusController : Controller
+    public class ChucVusController : BaseController
     {
         private readonly TSNHRDbContext _context;
 
@@ -15,182 +15,158 @@ namespace TSN_HR_Web.Controllers
             _context = context;
         }
 
-        // GET: List Chuc vu
-        public async Task<IActionResult> Index()
+        // =========================================================
+        // INDEX
+        // =========================================================
+        public IActionResult Index()
         {
-            var data = await _context
-                .chuc_vus.Select(cv => new ChucVuListItemViewModel
+            return View();
+        }
+
+        // =========================================================
+        // DATATABLES API
+        // =========================================================
+        [HttpGet]
+        public IActionResult GetData()
+        {
+            var query = _context.chuc_vus
+                .AsNoTracking()
+                .Where(x => x.is_active)
+                .Select(x => new
                 {
-                    id = cv.id,
-                    ma_chuc_vu = cv.ma_chuc_vu,
-                    ten_chuc_vu = cv.ten_chuc_vu,
-                    ma_bo_phan = cv.bo_phan != null ? cv.bo_phan.ma_bo_phan : "",
-                })
-                .ToListAsync();
+                    id = x.id, 
+                    ma_chuc_vu = x.ma_chuc_vu,
+                    ten_chuc_vu = x.ten_chuc_vu,
+                    ma_bo_phan = x.bo_phan != null ? x.bo_phan.ma_bo_phan : ""
+                });
 
-            return View(data);
+            return DataTablesResult(query, Request);
         }
 
-        // GET: Chuc vu/Details
-        public async Task<IActionResult> Details(int? id)
+        // =========================================================
+        // DETAILS – GET (PARTIAL, POPUP)
+        // =========================================================
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var model = await _context.chuc_vus
+                .AsNoTracking()
+                .Where(x => x.id == id)
+                .Select(x => new ChucVuCreateViewModel
+                {
+                    id = x.id,
+                    ma_chuc_vu = x.ma_chuc_vu,
+                    ten_chuc_vu = x.ten_chuc_vu,
+                    bo_phan_id = x.bo_phan_id
+                })
+                .FirstOrDefaultAsync();
 
-            var chucVu = await _context.chuc_vus.FirstOrDefaultAsync(m => m.id == id);
-            if (chucVu == null)
-            {
-                return NotFound();
-            }
+            if (model == null) return NotFound();
 
-            return View(chucVu);
+            ViewBag.BoPhanList = _context.bo_phans
+                .AsNoTracking()
+                .Where(bp => bp.is_active)
+                .Select(bp => new SelectListItem
+                {
+                    Value = bp.id.ToString(),
+                    Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan
+                })
+                .ToList();
+
+            return PartialView("Details", model);
         }
 
-        // GET: Chuc vu/Create
+        // =========================================================
+        // CREATE – GET (PARTIAL)
+        // =========================================================
+        [HttpGet]
         public IActionResult Create()
         {
-            var vm = new ChucVuCreateViewModel
-            {
-                BoPhanList = _context
-                    .bo_phans.Where(bp => bp.is_active)
-                    .Select(bp => new SelectListItem
-                    {
-                        Value = bp.id.ToString(),
-                        Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan,
-                    })
-                    .ToList(),
-            };
+            ViewBag.BoPhanList = _context.bo_phans
+                .AsNoTracking()
+                .Where(bp => bp.is_active)
+                .Select(bp => new SelectListItem
+                {
+                    Value = bp.id.ToString(),
+                    Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan
+                })
+                .ToList();
 
-            return View(vm);
+            return PartialView("Create", new ChucVuCreateViewModel());
         }
 
-        // POST: Chuc vu/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // CREATE – POST
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ChucVuCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.BoPhanList = _context
-                    .bo_phans.Select(bp => new SelectListItem
+                ViewBag.BoPhanList = _context.bo_phans
+                    .AsNoTracking()
+                    .Where(bp => bp.is_active)
+                    .Select(bp => new SelectListItem
                     {
                         Value = bp.id.ToString(),
-                        Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan,
+                        Text = bp.ma_bo_phan + " - " + bp.ten_bo_phan
                     })
                     .ToList();
 
-                return View(model);
+                return PartialView("Create", model);
             }
 
-            var chucVu = new chuc_vu
+            var entity = new chuc_vu
             {
                 ma_chuc_vu = model.ma_chuc_vu,
                 ten_chuc_vu = model.ten_chuc_vu,
-                bo_phan_id = model.bo_phan_id,
-                created_date = DateTime.Now,
-                updated_date = DateTime.Now,
+                bo_phan_id = model.bo_phan_id!.Value,
                 is_active = true,
+                created_date = DateTime.Now,
+                updated_date = DateTime.Now
             };
 
-            _context.chuc_vus.Add(chucVu);
+            _context.chuc_vus.Add(entity);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        // GET: Chuc vu/Edit/
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var chucVu = await _context.chuc_vus.FindAsync(id);
-            if (chucVu == null)
-            {
-                return NotFound();
-            }
-            return View(chucVu);
-        }
-
-        // POST: Chuc vu/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // =========================================================
+        // UPDATE – POST 
+        // =========================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id,
-            [Bind("ma_chuc_vu,ten_chuc_vu")] chuc_vu chucVu
-        )
+        public async Task<IActionResult> Update(ChucVuCreateViewModel model)
         {
-            if (id != chucVu.id)
-            {
-                return NotFound();
-            }
+            var entity = await _context.chuc_vus.FindAsync(model.id);
+            if (entity == null) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(chucVu);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ChucVuExists(chucVu.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(chucVu);
-        }
-
-        // GET: Chuc vu/Delete
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var chucVu = await _context.chuc_vus.FirstOrDefaultAsync(m => m.id == id);
-            if (chucVu == null)
-            {
-                return NotFound();
-            }
-
-            return View(chucVu);
-        }
-
-        // POST: Chuc vu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var chucVu = await _context.chuc_vus.FindAsync(id);
-            if (chucVu != null)
-            {
-                _context.chuc_vus.Remove(chucVu);
-            }
+            entity.ma_chuc_vu = model.ma_chuc_vu;
+            entity.ten_chuc_vu = model.ten_chuc_vu;
+            entity.bo_phan_id = model.bo_phan_id!.Value;
+            entity.updated_date = DateTime.Now;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
-        private bool ChucVuExists(int id)
+        // =========================================================
+        // DELETE – POST
+        // =========================================================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            return _context.chuc_vus.Any(e => e.id == id);
+            var entity = await _context.chuc_vus.FindAsync(id);
+            if (entity == null) return NotFound();
+
+            entity.is_active = false;
+            entity.updated_date = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+            return Ok();
         }
     }
 }

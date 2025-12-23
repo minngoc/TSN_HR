@@ -6,6 +6,7 @@ namespace TSN_HR_Web.Models.ViewModels
 {
     public class ChucVuCreateViewModel
     {
+        public int id { get; set; }
         [Display(Name = "Mã chức vụ")]
         [RequiredEx]
         [MaxLengthEx(ValidationConstants.CodeMaxLength)]
@@ -15,9 +16,8 @@ namespace TSN_HR_Web.Models.ViewModels
         [RequiredEx]
         [MaxLengthEx(ValidationConstants.NameMaxLength)]
         public string ten_chuc_vu { get; set; } = string.Empty;
-        public int? bo_phan_id { get; set; }
-
         [Required(ErrorMessage = "Vui lòng chọn phòng ban")]
-        public List<SelectListItem>? BoPhanList { get; set; } = new();
+        public int? bo_phan_id { get; set; }
+        public List<SelectListItem> BoPhanList { get; set; } = new();
     }
 }

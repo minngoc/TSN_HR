@@ -1,36 +1,21 @@
 @model TSN_HR_Web.Models.ViewModels.CoSoCreateViewModel
 @{
     Layout = null;
-}
-@{
-    ViewData["Title"] = "Cơ Sở";
+    ViewBag.ReadOnly = false;
 }
 
-<form asp-controller="CoSos" asp-action="Create" method="post" class="coso-create-form needs-validation" novalidate>
+<form asp-controller="CoSos"
+      asp-action="Create"
+      method="post"
+      class="coso-create-form needs-validation"
+      novalidate>
+
     @Html.AntiForgeryToken()
 
     <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-    <!-- MÃ CƠ SỞ -->
-    <div class="mb-3">
-        <label>Mã Cơ sở</label>
-        <input asp-for="ma_co_so" class="form-control rounded-pill" />
-        <span asp-validation-for="ma_co_so" class="invalid-feedback"></span>
-    </div>
+    <partial name="_CoSoForm" model="Model" />
 
-    <!-- TÊN CƠ SỞ -->
-    <div class="mb-3">
-        <label class="form-label small fw-medium">Tên cơ sở</label>
-        <input asp-for="ten_co_so" class="form-control rounded-pill" placeholder="VD: Tân Sơn Nhất" />
-        <span asp-validation-for="ten_co_so" class="invalid-feedback"></span>
-    </div>
-
-    <!-- ĐỊA CHỈ -->
-    <div class="mb-4">
-        <label class="form-label small fw-medium">Địa chỉ</label>
-        <input asp-for="dia_chi" class="form-control rounded-pill" placeholder="202 Hoàng Văn Thụ" />
-        <span asp-validation-for="dia_chi" class="invalid-feedback"></span>
-    </div>
 </form>
 
 <partial name="_ValidationScriptsPartial" />

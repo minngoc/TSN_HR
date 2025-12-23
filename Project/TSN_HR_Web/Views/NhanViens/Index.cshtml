@@ -1,12 +1,9 @@
-﻿@model IEnumerable<TSN_HR_Web.Models.ViewModels.NhanVienListItemViewModel>
-
-@section Styles {
-    <link rel="stylesheet" href="~/css/NhanVien.css" />
+﻿@{
+    ViewData["Title"] = "Danh sách Nhân Viên";
 }
 
-@{
-    ViewData["Title"] = "Danh sách nhân viên";
-}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="~/css/datatables-custom.css" />
 
 <div class="nhanvien-page">
 
@@ -19,119 +16,26 @@
         </button>
     </div>
 
-    <!-- TABS -->
+    <!-- TAB -->
     <ul class="nav nav-tabs mb-3">
         <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <span class="nav-link active">
                 Nhân viên hiện tại
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-                Học vấn
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-                Gia đình
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-                Trong nước
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-                Ngoài nước
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-muted" href="#">
-                Nhân viên đã nghỉ
-            </a>
+            </span>
         </li>
     </ul>
 
     <!-- TABLE -->
     <div class="card shadow-sm border-0 rounded-4">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Mã nhân viên</th>
-                        <th>Họ và Tên</th>
-                        <th>Chức vụ</th>
-                        <th class="text-center">Sơ yếu lý lịch</th>
-                        <th class="text-center">Thông tin bảo hiểm</th>
-                        <th class="text-center">Hợp đồng</th>
-                        <th class="text-center">Thông tin lương</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.ma_nhan_vien</td>
-                            <td>@item.ho_va_ten</td>
-                            <td>@item.ten_chuc_vu</td>
-
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-pill btn-purple">
-                                    Chi tiết
-                                </button>
-                            </td>
-
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-pill btn-warning text-white">
-                                    Chi tiết
-                                </button>
-                            </td>
-
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-pill btn-success">
-                                    Chi tiết
-                                </button>
-                            </td>
-
-                            <td class="text-center">
-                                <button class="btn btn-sm btn-pill btn-pink">
-                                    Chi tiết
-                                </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="table-responsive p-3">
+            <table id="nhanVienTable" class="display w-100"></table>
         </div>
     </div>
-
-    <!-- PAGINATION (fake UI trước, backend làm sau) -->
-    <nav class="mt-4 d-flex justify-content-end">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link">Trước</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link">Sau</a>
-            </li>
-        </ul>
-    </nav>
-
 </div>
 
 <!-- ===== MODAL CREATE ===== -->
 <div class="modal fade" id="createNhanVienModal" tabindex="-1">
-    <div class="modal-dialog modal-md modal-nhanvien-wide modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-nhanvien-wide modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header">
                 <h5 class="modal-title">Thông tin nhân viên</h5>
@@ -151,69 +55,110 @@
 </div>
 
 @section Scripts {
+
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
     <script>
+        $(function () {
+
+            window.nhanVienTable = $('#nhanVienTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '@Url.Action("GetData", "NhanViens")',
+                    type: 'GET'
+                },
+                scrollY: '55vh',
+                scrollCollapse: true,
+                paging: true,
+
+                columns: [
+                    {
+                        data: 'ma_nhan_vien',
+                        title: 'Mã nhân viên',
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'ho_va_ten',
+                        title: 'Họ và Tên',
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'ten_chuc_vu',
+                        title: 'Chức vụ',
+                        className: 'text-center',
+
+                    },
+                    {
+                        data: 'trang_thai',
+                        title: 'Trạng thái',
+                        className: 'text-center',
+                        render: function (data) {
+                            return `
+                    <span class="status-pill">
+                        ${data}
+                    </span>
+                `;
+                        }
+                    },
+                    {
+                        data: 'id',
+                        title: 'Chi tiết',
+                        orderable: false,
+                        searchable: false,
+                        className: 'text-center',
+                        render: function (id) {
+                            return `
+                                            <a href="/NhanViens/Details/${id}"
+           class="btn btn-sm btn-warning text-white btn-detail">
+            Chi tiết
+        </a>
+                                        `;
+                        }
+                    }
+                ],
+
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json'
+                }
+            });
+
+            setTimeout(() => {
+                nhanVienTable.columns.adjust();
+            }, 100);
+        });
+        // ===== MODAL CREATE =====
         window.loadCreateForm = function () {
-            $("#createModalBody").load("@Url.Action("Create", "NhanViens")", function (response, status, xhr) {
+            $("#createModalBody").load("@Url.Action("Create", "NhanViens")", function (response, status) {
                 if (status === "error") {
-                    console.error("Load Create form failed", xhr.status);
+                    console.error("Load Create form failed");
                     return;
                 }
-
-                const modalEl = document.getElementById('createNhanVienModal');
-                const modal = new bootstrap.Modal(modalEl);
-                modal.show();
+                new bootstrap.Modal(
+                    document.getElementById('createNhanVienModal')
+                ).show();
             });
         };
-    </script>
 
-    <script>
         function submitCreateNhanVien() {
-            const modalBody = document.getElementById("createModalBody");
-            const form = modalBody.querySelector("form");
+            const form = $("#createNhanVienModal form");
+            if (!form.length) return;
 
-            if (!form) {
-                console.error("Create form not found");
-                return;
-            }
+            if (!form.valid()) return;
 
-            const formData = new FormData(form);
-
-            // LẤY ANTI-FORGERY TOKEN
-            const tokenInput = form.querySelector('input[name="__RequestVerificationToken"]');
-            const token = tokenInput ? tokenInput.value : null;
-
-            fetch(form.action, {
-                method: "POST",
-                body: formData,
-                credentials: "same-origin",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "RequestVerificationToken": token
+            $.ajax({
+                url: form.attr("action"),
+                type: "POST",
+                data: form.serialize(),
+                success: function (res) {
+                    if ($(res).find("form").length > 0) {
+                        $("#createModalBody").html(res);
+                    } else {
+                        $('#createNhanVienModal').modal('hide');
+                        coSoTable.ajax.reload(null, false);
+                    }
                 }
-            })
-                .then(res => {
-                    const contentType = res.headers.get("content-type") || "";
-                    if (contentType.includes("application/json")) {
-                        return res.json();
-                    }
-                    return res.text();
-                })
-                .then(result => {
-                    // THÀNH CÔNG
-                    if (typeof result === "object" && result.success) {
-                        const modal = bootstrap.Modal.getInstance(
-                            document.getElementById("createNhanVienModal")
-                        );
-                        modal?.hide();
-
-                        reloadNhanVienTable?.() ?? location.reload();
-                        return;
-                    }
-
-                    // VALIDATION ERROR
-                    modalBody.innerHTML = result;
-                })
-                .catch(err => console.error("Create error:", err));
+            });
         }
     </script>
 }
