@@ -4,6 +4,8 @@ namespace TSN_HR_Web.Models.ViewModels;
 
 public class NhanVienCreateViewModel
 {
+    public int id { get; set; }
+
     // ============================
     // 1) SƠ YẾU LÝ LỊCH → so_yeu_ly_lich
     // ============================
@@ -26,10 +28,13 @@ public class NhanVienCreateViewModel
     public string? ngan_hang { get; set; }
     public string? ma_so_thue { get; set; }
     public string? chuyen_nganh { get; set; }
-    public string? hoc_van { get; set; }
-    public string? trinh_do { get; set; }
+    public string? HocVan { get; set; }
+    public string? TrinhDo { get; set; }
     public string? ma_trang_phuc { get; set; }
     public string? ma_giay { get; set; }
+    public IEnumerable<SelectListItem> HocVanList { get; set; } = new List<SelectListItem>();
+
+    public IEnumerable<SelectListItem> TrinhDoList { get; set; } = new List<SelectListItem>();
 
     // ============================
     // 2) BẢO HIỂM → bao_hiem

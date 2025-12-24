@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="~/css/datatables-custom.css" />
+<link rel="stylesheet" href="~/css/NhanVien.css" />
 
 <div class="nhanvien-page">
 
@@ -53,6 +54,18 @@
         </div>
     </div>
 </div>
+<!-- MODAL DETAILS -->
+<div class="modal fade" id="detailsNhanVienModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-nhanvien-wide modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin nhân viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="detailsNhanVienModalBody"></div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
 
@@ -95,10 +108,10 @@
                         className: 'text-center',
                         render: function (data) {
                             return `
-                    <span class="status-pill">
-                        ${data}
-                    </span>
-                `;
+                        <span class="status-pill">
+                            ${data}
+                        </span>
+                    `;
                         }
                     },
                     {
@@ -109,11 +122,11 @@
                         className: 'text-center',
                         render: function (id) {
                             return `
-                                            <a href="/NhanViens/Details/${id}"
-           class="btn btn-sm btn-warning text-white btn-detail">
-            Chi tiết
-        </a>
-                                        `;
+                                <button class="btn btn-sm btn-warning text-white"
+                                        onclick="loadNhanVienDetails(${id})">
+                                    Chi tiết
+                                </button>
+                            `;
                         }
                     }
                 ],
@@ -139,6 +152,15 @@
                 ).show();
             });
         };
+        window.loadNhanVienDetails = function (id) {
+            $("#detailsNhanVienModalBody").html("");
+
+            $("#detailsNhanVienModalBody").load(`/NhanViens/Details/${id}`, function () {
+                new bootstrap.Modal(
+                    document.getElementById('detailsNhanVienModal')
+                ).show();
+            });
+        };
 
         function submitCreateNhanVien() {
             const form = $("#createNhanVienModal form");
@@ -155,10 +177,56 @@
                         $("#createModalBody").html(res);
                     } else {
                         $('#createNhanVienModal').modal('hide');
-                        coSoTable.ajax.reload(null, false);
+                        nhanVienTable.ajax.reload(null, false);
                     }
                 }
             });
         }
+        $(document).on("submit", "#nhanVienUpdateForm", function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "/NhanVien/Update",
+                method: "POST",
+                data: $(this).serialize(),
+                success: function () {
+                    bootstrap.Modal.getInstance(
+                        document.getElementById("detailsNhanVienModal")
+                    ).hide();
+
+                    nhanVienTable.ajax.reload(null, false);
+                },
+                error: function () {
+                    alert("Cập nhật thất bại");
+                }
+            });
+        });
+        $(document).on("click", "#btnDeleteNhanVien", function () {
+            const id = $(this).data("id");
+
+            if (!confirm("Nhân viên này sẽ bị xóa!")) return;
+
+            $.ajax({
+                url: "/NhanViens/Delete",
+                method: "POST",
+                data: {
+                    id: id,
+                    __RequestVerificationToken: $(
+                        '#nhanVienUpdateForm input[name="__RequestVerificationToken"]'
+                    ).val()
+                },
+                success: function () {
+                    bootstrap.Modal.getInstance(
+                        document.getElementById("detailsNhanVienModal")
+                    ).hide();
+
+                    nhanVienTable.ajax.reload(null, false);
+                },
+                error: function () {
+                    alert("Xóa thất bại");
+                }
+            });
+        });
+
     </script>
 }

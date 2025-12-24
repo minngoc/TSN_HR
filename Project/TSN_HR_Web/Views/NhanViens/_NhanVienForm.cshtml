@@ -1,0 +1,505 @@
+@model TSN_HR_Web.Models.ViewModels.NhanVienCreateViewModel
+@{
+    bool isReadOnly = ViewBag.ReadOnly == true;
+}
+<div class="nhanvien-form">
+    <input type="hidden" asp-for="id" />
+    @Html.AntiForgeryToken()
+
+    <!-- ===== TABS ===== -->
+    <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-soyeulylich" type="button"
+                role="tab">
+                Sơ yếu lý lịch
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-baohiem" type="button" role="tab">
+                Thông tin bảo hiểm
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-hopdong" type="button" role="tab">
+                Hợp đồng
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-hocvan" type="button" role="tab">
+                Học vấn
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-thanhphangiadinh" type="button"
+                role="tab">
+                Thành phần gia đình
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-doanthe" type="button" role="tab">
+                Đoàn thể
+            </button>
+        </li>
+    </ul>
+    <!-- ===== CONTENT ===== -->
+    <div class="tab-content">
+        <!-- ===== SƠ YẾU LÝ LỊCH ===== -->
+        <div class="container-fluid px-0 tab-pane fade show active" id="tab-soyeulylich" role="tabpanel">
+            <div class="row g-3 py-2 align-items-start">
+                <!-- ===== AVATAR ===== -->
+                <div class="col-lg-2 col-md-3 text-center">
+                    <div class="avatar-wrapper">
+                        <img src="https://via.placeholder.com/120" class="rounded-circle img-fluid mb-2" />
+                        <button type="button" class="btn btn-primary btn-sm avatar-edit">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-9">
+                    <!-- HỌ TÊN / NGÀY SINH / NƠI SINH -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Họ và Tên đệm</label>
+                            <input asp-for="ho_nv" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tên</label>
+                            <input asp-for="ten_nv" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6 " d-flex align-items-center gap-3">
+                            <label class="d-block mb-0">Giới tính</label>
+                            <label class="me-2">
+                                <input type="radio" asp-for="gioi_tinh" value="1"
+                                    disabled="@(isReadOnly ? "disabled" : null)" /> Nam
+                            </label>
+                            <label class="me-2">
+                                <input type="radio" asp-for="gioi_tinh" value="2"
+                                    disabled="@(isReadOnly ? "disabled" : null)" /> Nữ
+                            </label>
+                        </div>
+                    </div>
+                    <!-- GIỚI TÍNH / NGUYÊN QUÁN / CCCD -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ngày sinh</label>
+                            <input asp-for="ngay_sinh" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Nơi sinh</label>
+                            <input asp-for="noi_sinh" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label>Nguyên quán</label>
+                            <input asp-for="nguyen_quan" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Số CCCD/CMND</label>
+                            <input asp-for="so_cccd" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ngày cấp</label>
+                            <input asp-for="ngay_cap" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Nơi cấp</label>
+                            <input asp-for="noi_cap" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- DÂN TỘC / TÔN GIÁO / ĐIỆN THOẠI -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Dân tộc</label>
+                            <input asp-for="dan_toc" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Tôn giáo</label>
+                            <input asp-for="ton_giao" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>SĐT cá nhân</label>
+                            <input asp-for="dien_thoai" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>SĐT nhà</label>
+                            <input asp-for="dien_thoai_home" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ĐỊA CHỈ -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-5 col-md-6">
+                            <label>Địa chỉ thường trú</label>
+                            <input asp-for="thuong_tru" class="form-control rounded-4" rows="2"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-5 col-md-6">
+                            <label>Địa chỉ tạm trú</label>
+                            <input asp-for="dia_chi" class="form-control rounded-4" rows="2"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- NGÂN HÀNG -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số tài khoản</label>
+                            <input asp-for="ma_tai_khoan" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Tên ngân hàng</label>
+                            <input asp-for="ngan_hang" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã số thuế</label>
+                            <input asp-for="ma_so_thue" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- TRANG PHỤC -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã trang phục</label>
+                            <input asp-for="ma_trang_phuc" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Mã giày</label>
+                            <input asp-for="ma_giay" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== TAB: THÔNG TIN BẢO HIỂM ===== -->
+        <div class="container px-0 tab-pane fade" id="tab-baohiem" role="tabpanel">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                    <!-- ROW 1 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Mã KCB cũ</label>
+                            <input asp-for="ma_kcb_cu" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-9 col-md-6">
+                            <label>Tên KCB cũ</label>
+                            <input asp-for="ten_kcb_cu" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 2 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Mã KCB mới</label>
+                            <input asp-for="ma_kcb_moi" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-9 col-md-6">
+                            <label>Tên KCB mới</label>
+                            <input asp-for="ten_kcb_moi" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 3 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Số sổ BHXH</label>
+                            <input asp-for="so_bhxh" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Số KSK</label>
+                            <input asp-for="so_ksk" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Số BHYT</label>
+                            <input asp-for="so_bhyt" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 4 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Ngày BHTN</label>
+                            <input asp-for="ngay_bhtn" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <label>Ngày BHXH</label>
+                            <input asp-for="ngay_bhxh" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 5 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Ngày thử việc</label>
+                            <input asp-for="ng_thu_viec" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Ngày vào chính thức</label>
+                            <input asp-for="ng_vao_chinh_thuc" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== TAB: HỢP ĐỒNG ===== -->
+        <div class="container-fluid px-0 tab-pane fade" id="tab-hopdong" role="tabpanel">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                    <!-- ROW 1 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ký HĐLĐ từ</label>
+                            <input asp-for="ky_hd_tu" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ký HĐLĐ đến</label>
+                            <input asp-for="ky_hd_den" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Loại HĐLD</label>
+                            <select asp-for="loai_hop_dong_id" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">XD</option>
+                                <option value="2">KXD</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Loại ký kết HĐLĐ</label>
+                            <select asp-for="loai_ky_ket" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">12 tháng</option>
+                                <option value="2">24 tháng</option>
+                                <option value="3">36 tháng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- ROW 2 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-6 col-md-6">
+                            <label>Phòng ban</label>
+                            <select asp-for="BoPhanId" asp-items="Model.BoPhanList" id="boPhanSelect"
+                                class="form-select rounded-pill align-items-center">
+                                <option value="">-- Chọn --</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <label>Chức vụ</label>
+                            <select asp-for="ChucVuId" id="chucVuSelect" class="form-select rounded-pill align-items-center" disabled>
+                                <option value="">-- Chọn --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- ROW 3 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-4 col-md-6">
+                            <label>Số HĐLĐ</label>
+                            <input asp-for="so_hdld" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số lần tái ký</label>
+                            <input asp-for="so_lan_tai_ky" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Quyết định ban ngạch</label>
+                            <input asp-for="quyet_dinh_ban_ngach" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 4 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ngày ban ngạch</label>
+                            <input asp-for="ngay_ban_ngach" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label>Mã ngạch</label>
+                            <select asp-for="ma_ngach" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="BT01">BT01</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Bậc lương</label>
+                            <select asp-for="bac_luong" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                                <option value="1">Bậc 1</option>
+                                <option value="2">Bậc 2</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ngày xếp lương</label>
+                            <input asp-for="ngay_xep_luong" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 5 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Quyết định xếp lương</label>
+                            <input asp-for="quyet_dinh_xep_luong" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Phụ cấp BHXH</label>
+                            <input asp-for="phu_cap_bhxh" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <label>Tiền</label>
+                            <input asp-for="tien" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 6 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-3 col-md-6">
+                            <label>Ngày thôi việc</label>
+                            <input asp-for="ngay_thoi_viec" type="date" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <label>Số quyết định thôi việc</label>
+                            <input asp-for="so_quyet_dinh_thoi_viec" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                    <!-- ROW 7 -->
+                    <div class="row align-items-center g-3 py-2">
+                        <div class="col-lg-8 col-md-6">
+                            <label>Lý do nghỉ</label>
+                            <input asp-for="ly_do_nghi" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Tiền trợ cấp</label>
+                            <input asp-for="tien_tro_cap" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== HỌC VẤN ===== -->
+        <div class="container-fluid px-0 tab-pane fade" id="tab-hocvan" role="tabpanel">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Học vấn</label>
+                            <select asp-for="HocVan" asp-items="Model.HocVanList" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <label>Trình độ</label>
+                            <select asp-for="TrinhDo" asp-items="Model.TrinhDoList" class="form-select rounded-pill">
+                                <option value="">-- Chọn --</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Chuyên ngành</label>
+                            <input asp-for="chuyen_nganh" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== TAB: ĐOÀN THỂ ===== -->
+        <div class="container-fluid px-0 tab-pane fade" id="tab-doanthe" role="tabpanel">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-3"></div>
+                <div class="col-lg-9 mx-auto">
+                    <!-- ROW 1 -->
+                    <div class="row g-3 mb-2">
+                        <div class="col-lg-2 col-md-6">
+                            <label>Số thẻ Công đoàn</label>
+                            <input asp-for="so_the_cong_doan" class="form-control rounded-pill"
+                                readonly="@(isReadOnly ? "readonly" : null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0 tab-pane fade" id="tab-hopdong" role="tabpanel">
+            <div class="d-flex justify-content-end mb-3">
+                <button type="button" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1"
+                    onclick="printTab('tab-baohiem')">
+
+                    <svg class="menu-icon">
+                        <use href="@Url.Content("~/icons/icons.svg#icon-print")"
+                            xlink:href="@Url.Content("~/icons/icons.svg#icon-print")"></use>
+                    </svg>
+
+                    <span>In</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("change", function (e) {
+        if (e.target && e.target.id === "boPhanSelect") {
+
+            const boPhanId = e.target.value;
+            const chucVuSelect = document.getElementById("chucVuSelect");
+
+            console.log("boPhanId =", boPhanId);
+
+            chucVuSelect.innerHTML = '<option value="">-- Chọn --</option>';
+            chucVuSelect.disabled = true;
+
+            if (!boPhanId) return;
+
+            fetch(`/NhanViens/GetChucVuByBoPhan?boPhanId=${boPhanId}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Chức vụ:", data);
+
+                    data.forEach(cv => {
+                        const opt = document.createElement("option");
+                        opt.value = cv.id;
+                        opt.textContent = cv.ten_chuc_vu;;
+                        chucVuSelect.appendChild(opt);
+                    });
+
+                    chucVuSelect.disabled = false;
+                })
+                .catch(err => console.error(err));
+        }
+    });
+</script>

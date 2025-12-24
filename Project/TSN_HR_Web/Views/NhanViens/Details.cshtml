@@ -1,8 +1,28 @@
-﻿@model TSN_HR_Web.Models.Entities.nhan_vien
-
+﻿@model TSN_HR_Web.Models.ViewModels.CoSoCreateViewModel
 @{
-    ViewData["Title"] = "Details";
+    Layout = null;
 }
 
-<h1>Details</h1>
+<form id="nhanVienUpdateForm">
+    @Html.AntiForgeryToken()
+    <partial name="_NhanVienForm" model="Model" />
 
+    <div class="d-flex justify-content-end gap-2 mt-3">
+        <button type="button"
+                class="btn btn-danger me-auto""
+                id="btnDeleteNhanVien"
+                data-id="@Model.id">
+            Xóa
+        </button>
+        <button type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">
+            Hủy
+        </button>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Lưu
+        </button>
+    </div>
+</form>

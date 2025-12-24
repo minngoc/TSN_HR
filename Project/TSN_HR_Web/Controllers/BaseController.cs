@@ -4,10 +4,7 @@ namespace TSN_HR_Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected IActionResult DataTablesResult<T>(
-            IQueryable<T> query,
-            HttpRequest request
-        )
+        protected IActionResult DataTablesResult<T>(IQueryable<T> query, HttpRequest request)
         {
             var draw = int.Parse(request.Query["draw"]);
             var start = int.Parse(request.Query["start"]);
@@ -21,27 +18,24 @@ namespace TSN_HR_Web.Controllers
             // Search
             if (!string.IsNullOrWhiteSpace(searchValue))
             {
-                // ⚠️ Tối giản: chỉ search ToString()
-                query = query.Where(x =>
-                    x!.ToString()!.Contains(searchValue)
-                );
+                // chỉ search ToString()
+                query = query.Where(x => x!.ToString()!.Contains(searchValue));
             }
 
             var recordsFiltered = query.Count();
 
             // Paging
-            var data = query
-                .Skip(start)
-                .Take(length)
-                .ToList();
+            var data = query.Skip(start).Take(length).ToList();
 
-            return Json(new
-            {
-                draw,
-                recordsTotal,
-                recordsFiltered,
-                data
-            });
+            return Json(
+                new
+                {
+                    draw,
+                    recordsTotal,
+                    recordsFiltered,
+                    data,
+                }
+            );
         }
     }
 }
