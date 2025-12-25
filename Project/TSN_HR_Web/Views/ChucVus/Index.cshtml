@@ -2,9 +2,6 @@
     ViewData["Title"] = "Danh sách Chức Vụ";
 }
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="~/css/datatables-custom.css" />
-
 <div class="chucvu-page">
 
     <!-- HEADER -->
@@ -90,18 +87,19 @@
                         className: 'text-center',
                         render: function (id) {
                             return `
-                            <button class="btn btn-sm btn-warning text-white"
-                                    onclick="loadChucVuDetails(${id})">
-                                Chi tiết
-                            </button>
-                        `;
+                                <button class="btn btn-sm btn-warning text-white"
+                                        onclick="loadChucVuDetails(${id})">
+                                    Chi tiết
+                                </button>
+                            `;
                         }
                     }
 
                 ],
 
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json',
+                    emptyTable: "Chưa có thông tin..."
                 }
             });
         });
@@ -148,6 +146,30 @@
                     }
                 }
             });
+            fetch(form.action, {
+                method: "POST",
+                body: submitCreateChucVu,
+                credentials: "same-origin"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        showSuccessToast(data.message);
+
+                        // đóng modal
+                        const modalEl = document.getElementById('createChucVuModal');
+                        bootstrap.Modal.getInstance(modalEl).hide();
+
+                        // reload datatable
+                        $('#chucVuTable').DataTable().ajax.reload(null, false);
+                    } else {
+                        showErrorToast(data.message);
+                    }
+                })
+                .catch(err => {
+                    showErrorToast("Không thể kết nối tới server");
+                });
+
         }
         $(document).on("submit", "#chucVuUpdateForm", function (e) {
             e.preventDefault();

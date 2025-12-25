@@ -55,8 +55,6 @@ public partial class so_yeu_ly_lich
 
     public string? ma_so_thue { get; set; }
 
-    public string? thanh_phan_gd { get; set; }
-
     public string? ma_trang_phuc { get; set; }
 
     public string? ma_giay { get; set; }
@@ -68,4 +66,6 @@ public partial class so_yeu_ly_lich
     public bool is_active { get; set; }
 
     public virtual ICollection<nhan_vien> nhan_viens { get; set; } = new List<nhan_vien>();
+
+    public virtual ICollection<thanh_phan_gia_dinh> thanh_phan_gia_dinhs { get; set; } = new List<thanh_phan_gia_dinh>();
 }

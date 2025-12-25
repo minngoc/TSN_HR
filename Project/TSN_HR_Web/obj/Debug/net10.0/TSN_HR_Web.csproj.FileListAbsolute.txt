@@ -524,7 +524,6 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\bzi
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\obwv8bu8jf-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\686znykzc9-{0}-6inx71wcvi-6inx71wcvi.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\y2hy3a4g8i-{0}-n2bofdy14o-n2bofdy14o.gz
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-72ckom6ly2-72ckom6ly2.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\2co8vy93mz-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\o1u51kwtwk-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\vqdzwy7g2f-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -597,4 +596,5 @@ C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\refint\TSN_HR_
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.pdb
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\TSN_HR_Web.genruntimeconfig.cache
 C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\ref\TSN_HR_Web.dll
-C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\3akbckkefs-{0}-05x3f2kld6-05x3f2kld6.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\3akbckkefs-{0}-ud5zbvtch3-ud5zbvtch3.gz
+C:\Users\Ngoc\Desktop\TSN_HR\Project\TSN_HR_Web\obj\Debug\net10.0\compressed\udxxz56xhp-{0}-cjj1tj8n0a-cjj1tj8n0a.gz

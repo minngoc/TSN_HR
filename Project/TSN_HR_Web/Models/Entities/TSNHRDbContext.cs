@@ -49,6 +49,8 @@ public partial class TSNHRDbContext : DbContext
 
     public virtual DbSet<so_yeu_ly_lich> so_yeu_ly_liches { get; set; }
 
+    public virtual DbSet<thanh_phan_gia_dinh> thanh_phan_gia_dinhs { get; set; }
+
     public virtual DbSet<xep_luong_nhan_vien> xep_luong_nhan_viens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -233,7 +235,7 @@ public partial class TSNHRDbContext : DbContext
 
         modelBuilder.Entity<muc_luong_co_so>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__muc_luon__3213E83F54B2A87D");
+            entity.HasKey(e => e.id).HasName("PK__muc_luon__3213E83FA5DDFB63");
 
             entity.ToTable("muc_luong_co_so");
 
@@ -326,7 +328,7 @@ public partial class TSNHRDbContext : DbContext
 
         modelBuilder.Entity<nhan_vien_chuc_vu>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__nhan_vie__3213E83FD1490732");
+            entity.HasKey(e => e.id).HasName("PK__nhan_vie__3213E83F982F90A9");
 
             entity.ToTable("nhan_vien_chuc_vu");
 
@@ -368,7 +370,7 @@ public partial class TSNHRDbContext : DbContext
 
         modelBuilder.Entity<nhom_ngach>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__nhom_nga__3213E83F78854218");
+            entity.HasKey(e => e.id).HasName("PK__nhom_nga__3213E83FB6A8C988");
 
             entity.ToTable("nhom_ngach");
 
@@ -433,16 +435,40 @@ public partial class TSNHRDbContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.ten_nv).HasMaxLength(50);
-            entity.Property(e => e.thanh_phan_gd).HasMaxLength(200);
             entity.Property(e => e.thuong_tru).HasMaxLength(300);
             entity.Property(e => e.ton_giao).HasMaxLength(50);
             entity.Property(e => e.trinh_do).HasMaxLength(50);
             entity.Property(e => e.updated_date).HasDefaultValueSql("(sysutcdatetime())");
         });
 
+        modelBuilder.Entity<thanh_phan_gia_dinh>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PK__thanh_ph__3213E83F8DDDBAE9");
+
+            entity.ToTable("thanh_phan_gia_dinh");
+
+            entity.HasIndex(e => e.so_yeu_ly_lich_id, "IX_TPGD_SYLL");
+
+            entity.Property(e => e.cong_tac).HasMaxLength(200);
+            entity.Property(e => e.created_date).HasDefaultValueSql("(sysdatetime())");
+            entity.Property(e => e.dia_chi).HasMaxLength(300);
+            entity.Property(e => e.gioi_tinh).HasMaxLength(10);
+            entity.Property(e => e.ho_va_ten_dem).HasMaxLength(50);
+            entity.Property(e => e.is_active).HasDefaultValue(true);
+            entity.Property(e => e.nghe_nghiep).HasMaxLength(100);
+            entity.Property(e => e.quan_he).HasMaxLength(50);
+            entity.Property(e => e.ten).HasMaxLength(50);
+            entity.Property(e => e.updated_date).HasDefaultValueSql("(sysdatetime())");
+
+            entity.HasOne(d => d.so_yeu_ly_lich).WithMany(p => p.thanh_phan_gia_dinhs)
+                .HasForeignKey(d => d.so_yeu_ly_lich_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_TPGD_SYLL");
+        });
+
         modelBuilder.Entity<xep_luong_nhan_vien>(entity =>
         {
-            entity.HasKey(e => e.id).HasName("PK__xep_luon__3213E83F75A4710C");
+            entity.HasKey(e => e.id).HasName("PK__xep_luon__3213E83FC1F03DC6");
 
             entity.ToTable("xep_luong_nhan_vien");
 

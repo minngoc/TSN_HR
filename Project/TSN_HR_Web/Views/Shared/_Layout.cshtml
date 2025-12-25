@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/datatables-custom.css" />
 
     @RenderSection("Styles", required: false)
 </head>
@@ -164,6 +166,27 @@
             </main>
         </div>
 
+    </div>
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100">
+        <!-- SUCCESS -->
+        <div id="toastSuccess" class="toast align-items-center text-bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastSuccessMsg">
+                    Lưu thành công
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+        <!-- ERROR -->
+        <div id="toastError" class="toast align-items-center text-bg-danger border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body" id="toastErrorMsg">
+                    Chức năng bị lỗi!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

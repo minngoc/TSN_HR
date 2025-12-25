@@ -46,4 +46,7 @@ namespace TSN_HR_Web.Data
     }
 }
 
+------------update entity------------
+dotnet ef dbcontext scaffold "Server=localhost\SQLExpress;Database=TSN_HR;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o Models/Entities -c TSNHRDbContext --use-database-names --no-onconfiguring --force
+
 

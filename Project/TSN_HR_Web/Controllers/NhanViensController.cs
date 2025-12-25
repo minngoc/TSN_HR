@@ -78,8 +78,23 @@ namespace TSN_HR_Web.Controllers
         // =========================================================
         public IActionResult Create()
         {
+            // 1. Tạo trước SƠ YẾU LÝ LỊCH RỖNG
+            var soYeuLyLich = new so_yeu_ly_lich { created_date = DateTime.Now, is_active = true };
+            //sinh mã SYLL
+            soYeuLyLich.ma_so_yeu_ly_lich = $"SYLL{soYeuLyLich.id.ToString().PadLeft(6, '0')}";
+
+            _context.so_yeu_ly_liches.Add(soYeuLyLich);
+            _context.SaveChanges();
+
+            // 2. Build ViewModel
+            /// build thành phần gia đình
             var model = new NhanVienCreateViewModel
             {
+                ThanhPhanGiaDinh = new ThanhPhanGiaDinhViewModel
+                {
+                    Items = new List<ThanhPhanGiaDinhItemViewModel>()
+                },
+                // danh sách phòng ban và chức vụ
                 BoPhanList = _context
                     .bo_phans.AsNoTracking()
                     .Where(bp => bp.is_active)

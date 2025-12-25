@@ -27,3 +27,15 @@ $(document).on(
     }
   }
 );
+// Toast thông báo status
+function showSuccessToast(message) {
+    const toastEl = document.getElementById('toastSuccess');
+    document.getElementById('toastSuccessMsg').innerText = message;
+    new bootstrap.Toast(toastEl, { delay: 3000 }).show();
+}
+
+function showErrorToast(message) {
+    const toastEl = document.getElementById('toastError');
+    document.getElementById('toastErrorMsg').innerText = message;
+    new bootstrap.Toast(toastEl, { delay: 4000 }).show();
+}

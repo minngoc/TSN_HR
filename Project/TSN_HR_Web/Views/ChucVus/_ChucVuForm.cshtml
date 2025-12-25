@@ -6,17 +6,17 @@
 
 <div class="mb-4">
     <label class="form-label small fw-medium">Phòng ban</label>
-    <select asp-for="bo_phan_id" asp-items="ViewBag.BoPhanList" class="form-control rounded-pill">
+    <select asp-for="boPhanId" asp-items="ViewBag.BoPhanList" class="form-control rounded-pill">
         <option value="">-- Chọn phòng ban --</option>
     </select>
 </div>
 
 <div class="mb-3">
     <label class="form-label small fw-medium">Mã chức vụ</label>
-    <input asp-for="ma_chuc_vu" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+    <input asp-for="maChucVu" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
 </div>
 
 <div class="mb-3">
     <label class="form-label small fw-medium">Tên chức vụ</label>
-    <input asp-for="ten_chuc_vu" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+    <input asp-for="tenChucVu" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
 </div>

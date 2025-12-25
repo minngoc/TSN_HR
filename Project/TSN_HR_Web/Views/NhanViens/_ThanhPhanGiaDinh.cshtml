@@ -1,0 +1,209 @@
+@model TSN_HR_Web.Models.ViewModels.ThanhPhanGiaDinhViewModel
+@{
+    bool isReadOnly = ViewBag.ReadOnly == true;
+}
+<div class="row justify-content-center">
+    <div class="col-lg-3 col-md-3"></div>
+    <div class="col-lg-9 col-md-9">
+        <!-- ===== ROW 1 ===== -->
+        <div class="row g-3 mb-2">
+            <div class="col-lg-4 col-md-6">
+                <label>Họ và Tên đệm</label>
+                <input asp-for="HoVaTenDem" class="form-control rounded-pill"
+                    readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <label>Tên</label>
+                <input asp-for="Ten" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+            <div class="col-lg-2 col-md-6 " d-flex align-items-center gap-3">
+                <label class="d-block mb-0">Giới tính</label>
+                <label class="me-2">
+                    <input type="radio" asp-for="GioiTinh" value="1" disabled="@(isReadOnly ? "disabled" : null)" />
+                    Nam
+                </label>
+                <label class="me-2">
+                    <input type="radio" asp-for="GioiTinh" value="2" disabled="@(isReadOnly ? "disabled" : null)" /> Nữ
+                </label>
+            </div>
+        </div>
+        <!-- ROW 2 -->
+        <div class="row align-items-center g-3 py-2">
+            <div class="col-lg-3 col-md-6">
+                <label>Ngày sinh</label>
+                <input asp-for="NgaySinh" type="date" class="form-control rounded-pill"
+                    readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <label>Quan hệ</label>
+                <input asp-for="QuanHe" class="form-control rounded-pill"
+                    readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <label>Nghề nghiệp</label>
+                <input asp-for="NgheNghiep" class="form-control rounded-pill"
+                    readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+        </div>
+        <!-- ROW 3 -->
+        <div class="row align-items-center g-3 py-2">
+            <div class="col-lg-8 col-md-6">
+                <label>Địa chỉ công tác</label>
+                <input asp-for="DiaChiCongTac" class="form-control rounded-pill"
+                    readonly="@(isReadOnly ? "readonly" : null)" />
+            </div>
+        </div>
+    </div>
+    <!-- ===== BUTTON THÊM ===== -->
+    <div class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-primary rounded-pill px-4" onclick="addThanhPhanGiaDinh()">
+            + Thêm
+        </button>
+    </div>
+
+    <hr />
+    <!-- ===== TABLE DANH SÁCH ===== -->
+    <div class="card shadow-sm border-0 rounded-4 mt-3">
+        <div class="table-responsive p-3">
+            <table id="tpGiaDinhTable" class="display w-100"></table>
+        </div>
+    </div>
+</div>
+<script>
+    window.thanhPhanGiaDinhTemp = [];
+    $(function () {
+        window.tpGiaDinhTable = $('#tpGiaDinhTable').DataTable({
+            data: @Html.Raw(Json.Serialize(Model.Items)),
+
+            paging: false,
+            searching: false,
+            info: false,
+            ordering: false,
+
+            columns: [
+                {
+                    data: 'hoVaTenDem',
+                    title: 'Họ và Tên Đệm',
+                    className: 'text-center'
+                },
+                {
+                    data: 'ten',
+                    title: 'Tên',
+                    className: 'text-center'
+                },
+                {
+                    data: 'ngaySinh',
+                    title: 'Ngày sinh',
+                    className: 'text-center'
+                },
+                {
+                    data: 'quanHe',
+                    title: 'Quan hệ',
+                    className: 'text-center'
+                },
+                {
+                    data: 'ngheNghiep',
+                    title: 'Nghề nghiệp',
+                    className: 'text-center'
+                },
+                {
+                    data: 'diaChiCongTac',
+                    title: 'Địa chỉ công tác',
+                    className: 'text-center'
+                },
+                {
+                    data: 'id',
+                    title: 'Thao tác',
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    render: function (data, type, row) {
+                        return `
+                                        <button class="btn btn-sm btn-warning text-white">
+                                            Chi tiết
+                                        </button>
+                                    `;
+                    }
+                }
+            ],
+
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json',
+                emptyTable: "Chưa có thông tin..."
+            }
+        });
+    });
+    window.addThanhPhanGiaDinh = function () {
+        const hoVaTenDem = document.querySelector('[name="HoVaTenDem"]').value;
+        const ten = document.querySelector('[name="Ten"]').value;
+        const ngaySinh = document.querySelector('[name="NgaySinh"]').value;
+        const quanHe = document.querySelector('[name="QuanHe"]').value;
+        const ngheNghiep = document.querySelector('[name="NgheNghiep"]').value;
+        const diaChiCongTac = document.querySelector('[name="DiaChiCongTac"]').value;
+
+        if (!hoVaTenDem || !ten || !quanHe) {
+            alert("Vui lòng nhập đầy đủ Họ tên, Tên và Quan hệ");
+            return;
+        }
+
+        // 1. Push vào mảng tạm
+        window.thanhPhanGiaDinhTemp.push({
+            hoVaTenDem,
+            ten,
+            ngaySinh,
+            quanHe,
+            ngheNghiep,
+            diaChiCongTac
+        });
+
+        // 2. Render lại bảng
+        renderThanhPhanGiaDinhTable();
+
+        // 3. Clear input
+        document.querySelector('[name="HoVaTenDem"]').value = "";
+        document.querySelector('[name="Ten"]').value = "";
+        document.querySelector('[name="NgaySinh"]').value = "";
+        document.querySelector('[name="QuanHe"]').value = "";
+        document.querySelector('[name="NgheNghiep"]').value = "";
+        document.querySelector('[name="DiaChiCongTac"]').value = "";
+    };
+
+    function renderThanhPhanGiaDinhTable() {
+        const tbody = document.getElementById("tpGiaDinhBody");
+        tbody.innerHTML = "";
+
+        if (window.thanhPhanGiaDinhTemp.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center text-muted">
+                        Chưa có thông tin...
+                    </td>
+                </tr>`;
+            return;
+        }
+
+        window.thanhPhanGiaDinhTemp.forEach((item, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td class="text-center">${item.hoVaTenDem}</td>
+                    <td class="text-center">${item.ten}</td>
+                    <td class="text-center">${item.ngaySinh ?? ""}</td>
+                    <td class="text-center">${item.quanHe}</td>
+                    <td class="text-center">${item.ngheNghiep ?? ""}</td>
+                    <td class="text-center">${item.diaChiCongTac ?? ""}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger"
+                                onclick="removeThanhPhanGiaDinh(${index})">
+                            Xóa
+                        </button>
+                    </td>
+                </tr>`;
+        });
+    }
+
+    window.removeThanhPhanGiaDinh = function (index) {
+        window.thanhPhanGiaDinhTemp.splice(index, 1);
+        renderThanhPhanGiaDinhTable();
+    };
+</script>

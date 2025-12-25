@@ -23,15 +23,15 @@ namespace TSN_HR_Web.Controllers
         [HttpGet]
         public IActionResult GetData()
         {
-            var query = _context.bo_phans
-        .AsNoTracking()
-        .Select(x => new
-        {
-            id = x.id,
-            ma_bo_phan = x.ma_bo_phan,
-            ten_bo_phan = x.ten_bo_phan,
-            ma_co_so = x.co_so.ma_co_so
-        });
+            var query = _context
+                .bo_phans.AsNoTracking()
+                .Select(x => new
+                {
+                    id = x.id,
+                    ma_bo_phan = x.ma_bo_phan,
+                    ten_bo_phan = x.ten_bo_phan,
+                    ma_co_so = x.co_so.ma_co_so,
+                });
 
             return DataTablesResult(query, Request);
         }
@@ -42,43 +42,45 @@ namespace TSN_HR_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await _context.bo_phans
-                .AsNoTracking()
+            var model = await _context
+                .bo_phans.AsNoTracking()
                 .Where(x => x.id == id)
                 .Select(x => new BoPhanCreateViewModel
                 {
                     id = x.id,
-                    ma_bo_phan = x.ma_bo_phan,
-                    ten_bo_phan = x.ten_bo_phan,
-                    co_so_id = x.co_so_id
+                    maBoPhan = x.ma_bo_phan,
+                    tenBoPhan = x.ten_bo_phan,
+                    coSoId = x.co_so_id,
                 })
                 .FirstOrDefaultAsync();
 
-            if (model == null) return NotFound();
+            if (model == null)
+                return NotFound();
 
-            ViewBag.CoSoList = _context.co_sos
-                .AsNoTracking()
+            ViewBag.CoSoList = _context
+                .co_sos.AsNoTracking()
                 .Select(cs => new SelectListItem
                 {
                     Value = cs.id.ToString(),
-                    Text = cs.ma_co_so + " - " + cs.ten_co_so
+                    Text = cs.ma_co_so + " - " + cs.ten_co_so,
                 })
                 .ToList();
 
             return PartialView("Details", model);
         }
+
         // =========================================================
         // CREATE – GET
         // =========================================================
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.CoSoList = _context.co_sos
-                .AsNoTracking()
+            ViewBag.CoSoList = _context
+                .co_sos.AsNoTracking()
                 .Select(cs => new SelectListItem
                 {
                     Value = cs.id.ToString(),
-                    Text = cs.ma_co_so + " - " + cs.ten_co_so
+                    Text = cs.ma_co_so + " - " + cs.ten_co_so,
                 })
                 .ToList();
 
@@ -94,12 +96,12 @@ namespace TSN_HR_Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.CoSoList = _context.co_sos
-                    .AsNoTracking()
+                ViewBag.CoSoList = _context
+                    .co_sos.AsNoTracking()
                     .Select(cs => new SelectListItem
                     {
                         Value = cs.id.ToString(),
-                        Text = cs.ma_co_so + " - " + cs.ten_co_so
+                        Text = cs.ma_co_so + " - " + cs.ten_co_so,
                     })
                     .ToList();
 
@@ -108,9 +110,9 @@ namespace TSN_HR_Web.Controllers
 
             var entity = new bo_phan
             {
-                ma_bo_phan = model.ma_bo_phan,
-                ten_bo_phan = model.ten_bo_phan,
-                co_so_id = model.co_so_id!.Value
+                ma_bo_phan = model.maBoPhan,
+                ten_bo_phan = model.tenBoPhan,
+                co_so_id = model.coSoId!.Value,
             };
 
             _context.bo_phans.Add(entity);
@@ -127,11 +129,12 @@ namespace TSN_HR_Web.Controllers
         public async Task<IActionResult> Update(BoPhanCreateViewModel model)
         {
             var entity = await _context.bo_phans.FindAsync(model.id);
-            if (entity == null) return NotFound();
+            if (entity == null)
+                return NotFound();
 
-            entity.ma_bo_phan = model.ma_bo_phan;
-            entity.ten_bo_phan = model.ten_bo_phan;
-            entity.co_so_id = model.co_so_id!.Value;
+            entity.ma_bo_phan = model.maBoPhan;
+            entity.ten_bo_phan = model.tenBoPhan;
+            entity.co_so_id = model.coSoId!.Value;
 
             await _context.SaveChangesAsync();
             return Ok();
@@ -145,13 +148,13 @@ namespace TSN_HR_Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var entity = await _context.bo_phans.FindAsync(id);
-            if (entity == null) return NotFound();
+            if (entity == null)
+                return NotFound();
 
             _context.bo_phans.Remove(entity);
             await _context.SaveChangesAsync();
 
             return Ok();
         }
-
     }
 }

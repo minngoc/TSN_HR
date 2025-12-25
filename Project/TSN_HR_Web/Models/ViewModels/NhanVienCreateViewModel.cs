@@ -35,6 +35,7 @@ public class NhanVienCreateViewModel
     public IEnumerable<SelectListItem> HocVanList { get; set; } = new List<SelectListItem>();
 
     public IEnumerable<SelectListItem> TrinhDoList { get; set; } = new List<SelectListItem>();
+    public ThanhPhanGiaDinhViewModel ThanhPhanGiaDinh { get; set; } = new ThanhPhanGiaDinhViewModel();
 
     // ============================
     // 2) BẢO HIỂM → bao_hiem

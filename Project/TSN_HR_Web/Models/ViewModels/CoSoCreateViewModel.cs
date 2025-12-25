@@ -6,19 +6,19 @@ namespace TSN_HR_Web.Models.ViewModels;
 public class CoSoCreateViewModel
 {
     public int id { get; set; }
-    
+
     [Display(Name = "Mã cơ sở")]
     [RequiredEx]
     [MaxLengthEx(ValidationConstants.CodeMaxLength)]
-    public string ma_co_so { get; set; } = null!;
+    public string maCoSo { get; set; } = null!;
 
     [Display(Name = "Tên cơ sở")]
     [RequiredEx]
     [MaxLengthEx(ValidationConstants.NameMaxLength)]
-    public string ten_co_so { get; set; } = null!;
+    public string tenCoSo { get; set; } = null!;
 
     [Display(Name = "Địa chỉ")]
     [RequiredEx]
     [MaxLengthEx(ValidationConstants.AddressMaxLength)]
-    public string dia_chi { get; set; } = null!;
+    public string diaChi { get; set; } = null!;
 }

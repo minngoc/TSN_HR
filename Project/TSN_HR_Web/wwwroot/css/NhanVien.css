@@ -1,69 +1,69 @@
 .nhanvien-form {
-    font-size: 16px;
-    min-height: 610px;
+  font-size: 16px;
+  min-height: 610px;
 }
 
 /* GRID */
 .nhanvien-form .row {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0.75rem;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0.75rem;
 }
 
 /* LABEL */
 .nhanvien-form label {
-    font-size: 16px;
-    color: #6b7280;
-    font-weight: 500;
-    margin-bottom: 4px;
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
 
 /* INPUT */
 .nhanvien-form .form-control,
 .nhanvien-form .form-select {
-    height: 32px;
-    border-radius: 999px;
-    border: 1px solid #e5e7eb;
-    padding: 6px 14px;
-    font-size: 16px;
-    line-height: 1.2;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  padding: 6px 14px;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .nhanvien-form textarea.form-control {
-    height: 30px;
-    border-radius: 14px;
+  height: 30px;
+  border-radius: 14px;
 }
 
 /* FOCUS */
 .nhanvien-form .form-control:focus,
 .nhanvien-form .form-select:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
 /* TABS */
 .nhanvien-form .nav-tabs {
-    border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .nhanvien-form .nav-tabs .nav-link {
-    border: none;
-    color: #31446b;
-    font-size: 16px;
+  border: none;
+  color: #31446b;
+  font-size: 16px;
 }
 
 .nhanvien-form .nav-tabs .nav-link.active {
-    color: #0c215a;
-    font-weight: 600;
-    border-bottom: 2px solid #0c215a;
+  color: #0c215a;
+  font-weight: 600;
+  border-bottom: 2px solid #0c215a;
 }
 
 /* LABEL TABS */
 .form-label {
-    margin-bottom: 0.25rem;
-    font-weight: 500;
-    color: #374151;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #374151;
 }
 
 .tab-pane .row {
-    --bs-gutter-x: 1.25rem;
+  --bs-gutter-x: 1.25rem;
 }

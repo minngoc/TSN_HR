@@ -2,9 +2,6 @@
     ViewData["Title"] = "Danh sách Cơ Sở";
 }
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="~/css/datatables-custom.css" />
-
 <div class="coso-page">
 
     <!-- HEADER -->
@@ -100,7 +97,8 @@
                 ],
 
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/vi.json',
+                    emptyTable: "Chưa có thông tin..."
                 }
             });
         });

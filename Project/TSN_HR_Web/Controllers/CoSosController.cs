@@ -28,14 +28,14 @@ namespace TSN_HR_Web.Controllers
         [HttpGet]
         public IActionResult GetData()
         {
-            var query = _context.co_sos
-                .AsNoTracking()
+            var query = _context
+                .co_sos.AsNoTracking()
                 .Select(x => new
                 {
                     id = x.id,
                     ma_co_so = x.ma_co_so,
                     ten_co_so = x.ten_co_so,
-                    dia_chi = x.dia_chi ?? ""
+                    dia_chi = x.dia_chi ?? "",
                 });
 
             return DataTablesResult(query, Request);
@@ -47,19 +47,20 @@ namespace TSN_HR_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await _context.co_sos
-                .AsNoTracking()
+            var model = await _context
+                .co_sos.AsNoTracking()
                 .Where(x => x.id == id)
                 .Select(x => new CoSoCreateViewModel
                 {
                     id = x.id,
-                    ma_co_so = x.ma_co_so,
-                    ten_co_so = x.ten_co_so,
-                    dia_chi = x.dia_chi
+                    maCoSo = x.ma_co_so,
+                    tenCoSo = x.ten_co_so,
+                    diaChi = x.dia_chi,
                 })
                 .FirstOrDefaultAsync();
 
-            if (model == null) return NotFound();
+            if (model == null)
+                return NotFound();
 
             return PartialView("Details", model);
         }
@@ -87,9 +88,9 @@ namespace TSN_HR_Web.Controllers
 
             var entity = new co_so
             {
-                ma_co_so = model.ma_co_so,
-                ten_co_so = model.ten_co_so,
-                dia_chi = model.dia_chi
+                ma_co_so = model.maCoSo,
+                ten_co_so = model.tenCoSo,
+                dia_chi = model.diaChi,
             };
 
             _context.co_sos.Add(entity);
@@ -106,11 +107,12 @@ namespace TSN_HR_Web.Controllers
         public async Task<IActionResult> Update(CoSoCreateViewModel model)
         {
             var entity = await _context.co_sos.FindAsync(model.id);
-            if (entity == null) return NotFound();
+            if (entity == null)
+                return NotFound();
 
-            entity.ma_co_so = model.ma_co_so;
-            entity.ten_co_so = model.ten_co_so;
-            entity.dia_chi = model.dia_chi;
+            entity.ma_co_so = model.maCoSo;
+            entity.ten_co_so = model.tenCoSo;
+            entity.dia_chi = model.diaChi;
 
             await _context.SaveChangesAsync();
             return Ok();
@@ -124,7 +126,8 @@ namespace TSN_HR_Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var entity = await _context.co_sos.FindAsync(id);
-            if (entity == null) return NotFound();
+            if (entity == null)
+                return NotFound();
 
             _context.co_sos.Remove(entity);
             await _context.SaveChangesAsync();

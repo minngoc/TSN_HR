@@ -13,29 +13,29 @@
     <!-- MÃ CƠ SỞ -->
     <div class="mb-3">
         <label class="form-label small fw-medium">Cơ sở</label>
-        <select asp-for="co_so_id"
+        <select asp-for="coSoId"
                 asp-items="ViewBag.CoSoList"
                 class="form-select rounded-pill">
             <option value="">-- Chọn cơ sở --</option>
         </select>
-        <span asp-validation-for="co_so_id" class="invalid-feedback"></span>
+        <span asp-validation-for="coSoId" class="invalid-feedback"></span>
     </div>
 
     <!-- MÃ PHÒNG BAN -->
     <div class="mb-3">
         <label class="form-label small fw-medium">Mã Phòng Ban</label>
-        <input asp-for="ma_bo_phan"
+        <input asp-for="maBoPhan"
                class="form-control rounded-pill"
                placeholder="VD: HC01" />
-        <span asp-validation-for="ma_bo_phan" class="invalid-feedback"></span>
+        <span asp-validation-for="maBoPhan" class="invalid-feedback"></span>
     </div>
 
     <!-- TÊN PHÒNG BAN -->
     <div class="mb-4">
         <label class="form-label small fw-medium">Tên Phòng Ban</label>
-        <input asp-for="ten_bo_phan"
+        <input asp-for="tenBoPhan"
                class="form-control rounded-pill"
                placeholder="Ban Tổ chức Hành chính" />
-        <span asp-validation-for="ten_bo_phan" class="invalid-feedback"></span>
+        <span asp-validation-for="tenBoPhan" class="invalid-feedback"></span>
     </div>
 </form>
