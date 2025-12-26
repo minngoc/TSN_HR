@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TSN_HR_Web.Models.Entities;
@@ -78,13 +79,13 @@ namespace TSN_HR_Web.Controllers
         // =========================================================
         public IActionResult Create()
         {
-            // 1. Tạo trước SƠ YẾU LÝ LỊCH RỖNG
-            var soYeuLyLich = new so_yeu_ly_lich { created_date = DateTime.Now, is_active = true };
-            //sinh mã SYLL
-            soYeuLyLich.ma_so_yeu_ly_lich = $"SYLL{soYeuLyLich.id.ToString().PadLeft(6, '0')}";
+            // // 1. Tạo trước SƠ YẾU LÝ LỊCH RỖNG
+            // var soYeuLyLich = new so_yeu_ly_lich { created_date = DateTime.Now, is_active = true };
+            // //sinh mã SYLL
+            // soYeuLyLich.ma_so_yeu_ly_lich = $"SYLL{soYeuLyLich.id.ToString().PadLeft(6, '0')}";
 
-            _context.so_yeu_ly_liches.Add(soYeuLyLich);
-            _context.SaveChanges();
+            // _context.so_yeu_ly_liches.Add(soYeuLyLich);
+            // _context.SaveChanges();
 
             // 2. Build ViewModel
             /// build thành phần gia đình
@@ -92,7 +93,7 @@ namespace TSN_HR_Web.Controllers
             {
                 ThanhPhanGiaDinh = new ThanhPhanGiaDinhViewModel
                 {
-                    Items = new List<ThanhPhanGiaDinhItemViewModel>()
+                    Items = new List<ThanhPhanGiaDinhItemViewModel>(),
                 },
                 // danh sách phòng ban và chức vụ
                 BoPhanList = _context
@@ -147,7 +148,8 @@ namespace TSN_HR_Web.Controllers
                     })
                     .ToList();
 
-                return PartialView("_NhanVienForm", model);
+                // return PartialView("_NhanVienForm", model);
+                return Json(new { success = false, message = "Dữ liệu không hợp lệ" });
             }
 
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -267,6 +269,11 @@ namespace TSN_HR_Web.Controllers
                         is_active = true,
                     }
                 );
+                var giaDinhItems = string.IsNullOrEmpty(model.ThanhPhanGiaDinhJson)
+                    ? new List<ThanhPhanGiaDinhItemViewModel>()
+                    : JsonSerializer.Deserialize<List<ThanhPhanGiaDinhItemViewModel>>(
+                        model.ThanhPhanGiaDinhJson
+                    );
 
                 await _context.SaveChangesAsync();
 

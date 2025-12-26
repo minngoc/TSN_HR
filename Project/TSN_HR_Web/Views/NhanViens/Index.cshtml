@@ -167,6 +167,12 @@
 
             if (!form.valid()) return;
 
+            // gán dữ liệu tạm vào form
+            const jsonInput = form.find("#ThanhPhanGiaDinhJson");
+            if (jsonInput.length) {
+                jsonInput.val(JSON.stringify(window.thanhPhanGiaDinhTemp));
+            }
+
             $.ajax({
                 url: form.attr("action"),
                 type: "POST",
@@ -230,7 +236,5 @@
                 }
             });
         });
-
-
     </script>
 }

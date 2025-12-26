@@ -84,4 +84,10 @@ public class NhanVienCreateViewModel
     public string? ly_do_nghi { get; set; }
     public string? tien_tro_cap { get; set; }
     public string? loai_ky_ket { get; set; }
+
+    // ============================
+    // 6) Thành phần gia đình
+    // ============================
+    public string? ThanhPhanGiaDinhJson { get; set; }
+
 }

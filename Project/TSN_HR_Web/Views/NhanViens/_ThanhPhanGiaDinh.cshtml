@@ -147,63 +147,27 @@
             return;
         }
 
-        // 1. Push vào mảng tạm
-        window.thanhPhanGiaDinhTemp.push({
+        const item = {
             hoVaTenDem,
             ten,
             ngaySinh,
             quanHe,
             ngheNghiep,
             diaChiCongTac
-        });
+        };
 
-        // 2. Render lại bảng
-        renderThanhPhanGiaDinhTable();
+        // Lưu tạm
+        window.thanhPhanGiaDinhTemp.push(item);
 
-        // 3. Clear input
+        // Thêm vào DataTable
+        window.tpGiaDinhTable.row.add(item).draw();
+
+        // Clear input
         document.querySelector('[name="HoVaTenDem"]').value = "";
         document.querySelector('[name="Ten"]').value = "";
         document.querySelector('[name="NgaySinh"]').value = "";
         document.querySelector('[name="QuanHe"]').value = "";
         document.querySelector('[name="NgheNghiep"]').value = "";
         document.querySelector('[name="DiaChiCongTac"]').value = "";
-    };
-
-    function renderThanhPhanGiaDinhTable() {
-        const tbody = document.getElementById("tpGiaDinhBody");
-        tbody.innerHTML = "";
-
-        if (window.thanhPhanGiaDinhTemp.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="7" class="text-center text-muted">
-                        Chưa có thông tin...
-                    </td>
-                </tr>`;
-            return;
-        }
-
-        window.thanhPhanGiaDinhTemp.forEach((item, index) => {
-            tbody.innerHTML += `
-                <tr>
-                    <td class="text-center">${item.hoVaTenDem}</td>
-                    <td class="text-center">${item.ten}</td>
-                    <td class="text-center">${item.ngaySinh ?? ""}</td>
-                    <td class="text-center">${item.quanHe}</td>
-                    <td class="text-center">${item.ngheNghiep ?? ""}</td>
-                    <td class="text-center">${item.diaChiCongTac ?? ""}</td>
-                    <td class="text-center">
-                        <button class="btn btn-sm btn-danger"
-                                onclick="removeThanhPhanGiaDinh(${index})">
-                            Xóa
-                        </button>
-                    </td>
-                </tr>`;
-        });
-    }
-
-    window.removeThanhPhanGiaDinh = function (index) {
-        window.thanhPhanGiaDinhTemp.splice(index, 1);
-        renderThanhPhanGiaDinhTable();
     };
 </script>

@@ -3,7 +3,7 @@
     bool isReadOnly = ViewBag.ReadOnly == true;
 }
 <div class="nhanvien-form">
-    <input type="hidden" asp-for="id" />
+    <input type="hidden" id="ThanhPhanGiaDinhJson" name="ThanhPhanGiaDinhJson"/>
     @Html.AntiForgeryToken()
 
     <!-- ===== TABS ===== -->

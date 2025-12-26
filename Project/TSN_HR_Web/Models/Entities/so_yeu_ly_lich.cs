@@ -67,5 +67,6 @@ public partial class so_yeu_ly_lich
 
     public virtual ICollection<nhan_vien> nhan_viens { get; set; } = new List<nhan_vien>();
 
-    public virtual ICollection<thanh_phan_gia_dinh> thanh_phan_gia_dinhs { get; set; } = new List<thanh_phan_gia_dinh>();
+    public virtual ICollection<thanh_phan_gia_dinh> thanh_phan_gia_dinhs { get; set; } =
+        new List<thanh_phan_gia_dinh>();
 }
