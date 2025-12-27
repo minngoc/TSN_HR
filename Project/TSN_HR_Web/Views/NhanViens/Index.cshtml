@@ -106,10 +106,10 @@
                         className: 'text-center',
                         render: function (data) {
                             return `
-                                <span class="status-pill">
-                                    ${data}
-                                </span>
-                            `;
+                                    <span class="status-pill">
+                                        ${data}
+                                    </span>
+                                `;
                         }
                     },
                     {
@@ -120,11 +120,11 @@
                         className: 'text-center',
                         render: function (id) {
                             return `
-                                        <button class="btn btn-sm btn-warning text-white"
-                                                onclick="loadNhanVienDetails(${id})">
-                                            Chi tiết
-                                        </button>
-                                    `;
+                                            <button class="btn btn-sm btn-warning text-white"
+                                                    onclick="loadNhanVienDetails(${id})">
+                                                Chi tiết
+                                            </button>
+                                        `;
                         }
                     }
                 ],
@@ -163,34 +163,34 @@
 
         function submitCreateNhanVien() {
             const form = $("#createNhanVienModal form");
-            if (!form.length) return;
+            if (!form.length) {
+                alert("Form không tồn tại. Vui lòng mở lại form.");
+                return;
+            }
 
             if (!form.valid()) return;
 
-            // gán dữ liệu tạm vào form
             const jsonInput = form.find("#ThanhPhanGiaDinhJson");
-            if (jsonInput.length) {
-                jsonInput.val(JSON.stringify(window.thanhPhanGiaDinhTemp));
-            }
+            jsonInput.val(JSON.stringify(window.thanhPhanGiaDinhTemp));
 
             $.ajax({
                 url: form.attr("action"),
                 type: "POST",
                 data: form.serialize(),
                 success: function (res) {
-                    if (res.success) {
+                    if (res.success === true) {
                         $('#createNhanVienModal').modal('hide');
                         nhanVienTable.ajax.reload(null, false);
                     } else {
-                        $("#createModalBody").html(res);
+                        alert(res.message || "Lưu thất bại");
                     }
                 },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                    alert("Lưu nhân viên thất bại. Vui lòng kiểm tra dữ liệu.");
+                error: function () {
+                    alert("Lỗi server");
                 }
             });
         }
+
         $(document).on("submit", "#nhanVienUpdateForm", function (e) {
             e.preventDefault();
 
