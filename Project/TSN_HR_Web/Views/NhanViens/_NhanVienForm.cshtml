@@ -3,7 +3,8 @@
     bool isReadOnly = ViewBag.ReadOnly == true;
 }
 <div class="nhanvien-form">
-    <input type="hidden" asp-for="id" />
+    <input type="hidden" id="ThanhPhanGiaDinhJson" name="ThanhPhanGiaDinhJson" />
+
     @Html.AntiForgeryToken()
 
     <!-- ===== TABS ===== -->
@@ -444,6 +445,7 @@
         <div class="container-fluid px-0 tab-pane fade" id="tab-thanhphangiadinh" role="tabpanel">
             <partial name="_ThanhPhanGiaDinh" model="Model.ThanhPhanGiaDinh" />
         </div>
+
         <!-- ===== TAB: ĐOÀN THỂ ===== -->
         <div class="container-fluid px-0 tab-pane fade" id="tab-doanthe" role="tabpanel">
             <div class="row justify-content-center">
@@ -477,34 +479,11 @@
     </div>
 </div>
 <script>
-    document.addEventListener("change", function (e) {
-        if (e.target && e.target.id === "boPhanSelect") {
-
-            const boPhanId = e.target.value;
-            const chucVuSelect = document.getElementById("chucVuSelect");
-
-            console.log("boPhanId =", boPhanId);
-
-            chucVuSelect.innerHTML = '<option value="">-- Chọn --</option>';
-            chucVuSelect.disabled = true;
-
-            if (!boPhanId) return;
-
-            fetch(`/NhanViens/GetChucVuByBoPhan?boPhanId=${boPhanId}`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log("Chức vụ:", data);
-
-                    data.forEach(cv => {
-                        const opt = document.createElement("option");
-                        opt.value = cv.id;
-                        opt.textContent = cv.ten_chuc_vu;;
-                        chucVuSelect.appendChild(opt);
-                    });
-
-                    chucVuSelect.disabled = false;
-                })
-                .catch(err => console.error(err));
+    document.addEventListener("submit", function (e) {
+        const form = e.target;
+        if (form.classList.contains("nhanvien-create-form")) {
+            document.getElementById("ThanhPhanGiaDinhJson").value =
+                JSON.stringify(window.thanhPhanGiaDinhTemp || []);
         }
     });
 </script>

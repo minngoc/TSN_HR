@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TSN_HR_Web.Models.Entities;
@@ -78,25 +79,14 @@ namespace TSN_HR_Web.Controllers
         // =========================================================
         public IActionResult Create()
         {
-            // 1. Tạo trước SƠ YẾU LÝ LỊCH RỖNG
-            var soYeuLyLich = new so_yeu_ly_lich { created_date = DateTime.Now, is_active = true };
-            //sinh mã SYLL
-            soYeuLyLich.ma_so_yeu_ly_lich = $"SYLL{soYeuLyLich.id.ToString().PadLeft(6, '0')}";
-
-            _context.so_yeu_ly_liches.Add(soYeuLyLich);
-            _context.SaveChanges();
-
-            // 2. Build ViewModel
-            /// build thành phần gia đình
             var model = new NhanVienCreateViewModel
             {
                 ThanhPhanGiaDinh = new ThanhPhanGiaDinhViewModel
                 {
                     Items = new List<ThanhPhanGiaDinhItemViewModel>()
                 },
-                // danh sách phòng ban và chức vụ
-                BoPhanList = _context
-                    .bo_phans.AsNoTracking()
+                BoPhanList = _context.bo_phans
+                    .AsNoTracking()
                     .Where(bp => bp.is_active)
                     .Select(bp => new SelectListItem
                     {
@@ -104,11 +94,10 @@ namespace TSN_HR_Web.Controllers
                         Text = bp.ten_bo_phan,
                     })
                     .ToList(),
-
                 ChucVuList = new List<SelectListItem>(),
             };
-            BuildHocVanTrinhDo(model);
 
+            BuildHocVanTrinhDo(model);
             return View(model);
         }
 
@@ -270,14 +259,59 @@ namespace TSN_HR_Web.Controllers
 
                 await _context.SaveChangesAsync();
 
+                if (!string.IsNullOrEmpty(model.ThanhPhanGiaDinhJson))
+                {
+                    var giaDinhItems = JsonSerializer.Deserialize<
+                        List<ThanhPhanGiaDinhItemViewModel>
+                    >(model.ThanhPhanGiaDinhJson);
+
+                    foreach (var item in giaDinhItems!)
+                    {
+                        _context.thanh_phan_gia_dinhs.Add(
+                            new thanh_phan_gia_dinh
+                            {
+                                so_yeu_ly_lich_id = soYeuLyLich.id,
+
+                                ho_va_ten_dem = item.HoVaTenDem,
+                                ten = item.Ten,
+                                ngay_sinh = !string.IsNullOrEmpty(item.NgaySinh)
+    ? DateOnly.FromDateTime(DateTime.Parse(item.NgaySinh))
+    : null,
+
+                                gioi_tinh = item.GioiTinh,
+                                quan_he = item.QuanHe,
+                                nghe_nghiep = item.NgheNghiep,
+
+                                // map đúng theo entity
+                                dia_chi = item.DiaChiCongTac,
+
+                                created_date = DateTime.Now,
+                                updated_date = DateTime.Now,
+                                is_active = true
+                            }
+                        );
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+
+
                 await transaction.CommitAsync();
                 return Json(new { success = true });
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                return Json(new { success = false, message = ex.Message });
+
+                return Json(new
+                {
+                    success = false,
+                    message = ex.InnerException?.Message ?? ex.Message
+                });
             }
+
+
+
         }
 
         // =========================================================
@@ -321,5 +355,10 @@ namespace TSN_HR_Web.Controllers
                 new("Tiến sĩ", "Tiến sĩ"),
             };
         }
+        private string GenerateSoYeuLyLichCode()
+        {
+            return "SYLL" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+        }
+
     }
 }

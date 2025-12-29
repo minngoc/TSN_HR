@@ -134,76 +134,38 @@
             }
         });
     });
-    window.addThanhPhanGiaDinh = function () {
-        const hoVaTenDem = document.querySelector('[name="HoVaTenDem"]').value;
-        const ten = document.querySelector('[name="Ten"]').value;
-        const ngaySinh = document.querySelector('[name="NgaySinh"]').value;
-        const quanHe = document.querySelector('[name="QuanHe"]').value;
-        const ngheNghiep = document.querySelector('[name="NgheNghiep"]').value;
-        const diaChiCongTac = document.querySelector('[name="DiaChiCongTac"]').value;
+    window.thanhPhanGiaDinhTemp = [];
 
-        if (!hoVaTenDem || !ten || !quanHe) {
+    window.addThanhPhanGiaDinh = function () {
+        const item = {
+            hoVaTenDem: $('[name="HoVaTenDem"]').val(),
+            ten: $('[name="Ten"]').val(),
+            ngaySinh: $('[name="NgaySinh"]').val(),
+            quanHe: $('[name="QuanHe"]').val(),
+            ngheNghiep: $('[name="NgheNghiep"]').val(),
+            diaChiCongTac: $('[name="DiaChiCongTac"]').val(),
+            gioiTinh: $('[name="GioiTinh"]:checked').val() ?? null
+        };
+
+        if (!item.hoVaTenDem || !item.ten || !item.quanHe) {
             alert("Vui lòng nhập đầy đủ Họ tên, Tên và Quan hệ");
             return;
         }
 
-        // 1. Push vào mảng tạm
-        window.thanhPhanGiaDinhTemp.push({
-            hoVaTenDem,
-            ten,
-            ngaySinh,
-            quanHe,
-            ngheNghiep,
-            diaChiCongTac
-        });
+        window.thanhPhanGiaDinhTemp.push(item);
 
-        // 2. Render lại bảng
-        renderThanhPhanGiaDinhTable();
+        //cập nhật DataTable
+        window.tpGiaDinhTable.clear();
+        window.tpGiaDinhTable.rows.add(window.thanhPhanGiaDinhTemp);
+        window.tpGiaDinhTable.draw();
 
-        // 3. Clear input
-        document.querySelector('[name="HoVaTenDem"]').value = "";
-        document.querySelector('[name="Ten"]').value = "";
-        document.querySelector('[name="NgaySinh"]').value = "";
-        document.querySelector('[name="QuanHe"]').value = "";
-        document.querySelector('[name="NgheNghiep"]').value = "";
-        document.querySelector('[name="DiaChiCongTac"]').value = "";
+        //đổ JSON xuống hidden input
+        document.getElementById("ThanhPhanGiaDinhJson").value =
+            JSON.stringify(window.thanhPhanGiaDinhTemp);
+
+        // clear form
+        $('[name="HoVaTenDem"],[name="Ten"],[name="NgaySinh"],[name="QuanHe"],[name="NgheNghiep"],[name="DiaChiCongTac"]').val("");
     };
 
-    function renderThanhPhanGiaDinhTable() {
-        const tbody = document.getElementById("tpGiaDinhBody");
-        tbody.innerHTML = "";
 
-        if (window.thanhPhanGiaDinhTemp.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="7" class="text-center text-muted">
-                        Chưa có thông tin...
-                    </td>
-                </tr>`;
-            return;
-        }
-
-        window.thanhPhanGiaDinhTemp.forEach((item, index) => {
-            tbody.innerHTML += `
-                <tr>
-                    <td class="text-center">${item.hoVaTenDem}</td>
-                    <td class="text-center">${item.ten}</td>
-                    <td class="text-center">${item.ngaySinh ?? ""}</td>
-                    <td class="text-center">${item.quanHe}</td>
-                    <td class="text-center">${item.ngheNghiep ?? ""}</td>
-                    <td class="text-center">${item.diaChiCongTac ?? ""}</td>
-                    <td class="text-center">
-                        <button class="btn btn-sm btn-danger"
-                                onclick="removeThanhPhanGiaDinh(${index})">
-                            Xóa
-                        </button>
-                    </td>
-                </tr>`;
-        });
-    }
-
-    window.removeThanhPhanGiaDinh = function (index) {
-        window.thanhPhanGiaDinhTemp.splice(index, 1);
-        renderThanhPhanGiaDinhTable();
-    };
 </script>

@@ -106,10 +106,10 @@
                         className: 'text-center',
                         render: function (data) {
                             return `
-                                <span class="status-pill">
-                                    ${data}
-                                </span>
-                            `;
+                                                <span class="status-pill">
+                                                    ${data}
+                                                </span>
+                                            `;
                         }
                     },
                     {
@@ -120,11 +120,11 @@
                         className: 'text-center',
                         render: function (id) {
                             return `
-                                        <button class="btn btn-sm btn-warning text-white"
-                                                onclick="loadNhanVienDetails(${id})">
-                                            Chi tiết
-                                        </button>
-                                    `;
+                                                        <button class="btn btn-sm btn-warning text-white"
+                                                                onclick="loadNhanVienDetails(${id})">
+                                                            Chi tiết
+                                                        </button>
+                                                    `;
                         }
                     }
                 ],
@@ -138,6 +138,26 @@
             setTimeout(() => {
                 nhanVienTable.columns.adjust();
             }, 100);
+        });
+        $(document).on("change", "#boPhanSelect", function () {
+            const boPhanId = this.value;
+            const chucVuSelect = $("#chucVuSelect");
+
+            chucVuSelect.html('<option value="">-- Chọn --</option>')
+                .prop("disabled", true);
+
+            if (!boPhanId) return;
+
+            fetch(`/NhanViens/GetChucVuByBoPhan?boPhanId=${boPhanId}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(cv => {
+                        chucVuSelect.append(
+                            `<option value="${cv.id}">${cv.ten_chuc_vu}</option>`
+                        );
+                    });
+                    chucVuSelect.prop("disabled", false);
+                });
         });
         // ===== MODAL CREATE =====
         window.loadCreateForm = function () {
@@ -165,23 +185,25 @@
             const form = $("#createNhanVienModal form");
             if (!form.length) return;
 
-            if (!form.valid()) return;
+            if (window.tpGiaDinhTable) {
+                const data = window.tpGiaDinhTable.rows().data().toArray();
+                $('#ThanhPhanGiaDinhJson').val(JSON.stringify(data));
+            }
 
             $.ajax({
                 url: form.attr("action"),
                 type: "POST",
                 data: form.serialize(),
                 success: function (res) {
-                    if (res.success) {
-                        $('#createNhanVienModal').modal('hide');
+                    if (res.success === true) {
+                        bootstrap.Modal.getInstance(
+                            document.getElementById('createNhanVienModal')
+                        ).hide();
+
                         nhanVienTable.ajax.reload(null, false);
                     } else {
-                        $("#createModalBody").html(res);
+                        alert(res.message);
                     }
-                },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                    alert("Lưu nhân viên thất bại. Vui lòng kiểm tra dữ liệu.");
                 }
             });
         }
