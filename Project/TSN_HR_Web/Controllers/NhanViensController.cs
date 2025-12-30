@@ -83,10 +83,10 @@ namespace TSN_HR_Web.Controllers
             {
                 ThanhPhanGiaDinh = new ThanhPhanGiaDinhViewModel
                 {
-                    Items = new List<ThanhPhanGiaDinhItemViewModel>()
+                    Items = new List<ThanhPhanGiaDinhItemViewModel>(),
                 },
-                BoPhanList = _context.bo_phans
-                    .AsNoTracking()
+                BoPhanList = _context
+                    .bo_phans.AsNoTracking()
                     .Where(bp => bp.is_active)
                     .Select(bp => new SelectListItem
                     {
@@ -227,11 +227,19 @@ namespace TSN_HR_Web.Controllers
                 {
                     so_thang_ky_hd = "36 tháng";
                 }
+                if (!model.ky_hd_tu.HasValue)
+                {
+                    ModelState.AddModelError(
+                        nameof(model.ky_hd_tu),
+                        "Vui lòng chọn ngày bắt đầu hợp đồng"
+                    );
+                    return View(model);
+                }
                 var hopDong = new hop_dong
                 {
                     so_hdld = "TMP",
                     nhan_vien_id = nhanVien.id,
-                    loai_hop_dong_id = model.loai_hop_dong_id.Value,
+                    loai_hop_dong_id = model.loai_hop_dong_id ?? 0,
                     KY_HD_TU = DateOnly.FromDateTime(model.ky_hd_tu.Value),
                     KY_HD_DEN = model.ky_hd_den.HasValue
                         ? DateOnly.FromDateTime(model.ky_hd_den.Value)
@@ -275,8 +283,8 @@ namespace TSN_HR_Web.Controllers
                                 ho_va_ten_dem = item.HoVaTenDem,
                                 ten = item.Ten,
                                 ngay_sinh = !string.IsNullOrEmpty(item.NgaySinh)
-    ? DateOnly.FromDateTime(DateTime.Parse(item.NgaySinh))
-    : null,
+                                    ? DateOnly.FromDateTime(DateTime.Parse(item.NgaySinh))
+                                    : null,
 
                                 gioi_tinh = item.GioiTinh,
                                 quan_he = item.QuanHe,
@@ -287,14 +295,13 @@ namespace TSN_HR_Web.Controllers
 
                                 created_date = DateTime.Now,
                                 updated_date = DateTime.Now,
-                                is_active = true
+                                is_active = true,
                             }
                         );
                     }
 
                     await _context.SaveChangesAsync();
                 }
-
 
                 await transaction.CommitAsync();
                 return Json(new { success = true });
@@ -303,15 +310,10 @@ namespace TSN_HR_Web.Controllers
             {
                 await transaction.RollbackAsync();
 
-                return Json(new
-                {
-                    success = false,
-                    message = ex.InnerException?.Message ?? ex.Message
-                });
+                return Json(
+                    new { success = false, message = ex.InnerException?.Message ?? ex.Message }
+                );
             }
-
-
-
         }
 
         // =========================================================
@@ -355,10 +357,10 @@ namespace TSN_HR_Web.Controllers
                 new("Tiến sĩ", "Tiến sĩ"),
             };
         }
+
         private string GenerateSoYeuLyLichCode()
         {
             return "SYLL" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
-
     }
 }

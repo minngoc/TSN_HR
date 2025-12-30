@@ -30,7 +30,7 @@ namespace TSN_HR_Web.Controllers
                     id = x.id,
                     ma_bo_phan = x.ma_bo_phan,
                     ten_bo_phan = x.ten_bo_phan,
-                    ma_co_so = x.co_so.ma_co_so,
+                    ma_co_so = x.co_so != null ? x.co_so.ma_co_so : "",
                 });
 
             return DataTablesResult(query, Request);

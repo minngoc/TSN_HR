@@ -6,25 +6,27 @@ namespace TSN_HR_Web.Controllers
     {
         protected IActionResult DataTablesResult<T>(IQueryable<T> query, HttpRequest request)
         {
-            var draw = int.Parse(request.Query["draw"]);
-            var start = int.Parse(request.Query["start"]);
-            var length = int.Parse(request.Query["length"]);
+            // ===== Parse DataTables params SAFELY =====
+            int draw = int.TryParse(request.Query["draw"], out var d) ? d : 1;
+            int start = int.TryParse(request.Query["start"], out var s) ? s : 0;
+            int length = int.TryParse(request.Query["length"], out var l) ? l : 10;
 
-            var searchValue = request.Query["search[value]"].ToString();
+            string searchValue = request.Query["search[value]"].ToString();
 
-            // Tổng record
-            var recordsTotal = query.Count();
+            // ===== Total records =====
+            int recordsTotal = query.Count();
 
-            // Search
+            // ===== Search =====
             if (!string.IsNullOrWhiteSpace(searchValue))
             {
-                // chỉ search ToString()
-                query = query.Where(x => x!.ToString()!.Contains(searchValue));
+                query = query.Where(x =>
+                    x != null && x.ToString() != null && x.ToString()!.Contains(searchValue)
+                );
             }
 
-            var recordsFiltered = query.Count();
+            int recordsFiltered = query.Count();
 
-            // Paging
+            // ===== Paging =====
             var data = query.Skip(start).Take(length).ToList();
 
             return Json(

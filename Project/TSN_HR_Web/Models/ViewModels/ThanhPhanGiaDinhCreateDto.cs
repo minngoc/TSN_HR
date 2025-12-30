@@ -9,7 +9,7 @@ namespace TSN_HR_Web.Models.ViewModels
         public string? GioiTinh { get; set; }
         public DateOnly NgaySinh { get; set; }
 
-        public string QuanHe { get; set; }
+        public string? QuanHe { get; set; }
         public string? NgheNghiep { get; set; }
         public string? DiaChiCongTac { get; set; }
     }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace TSN_HR_Web.Models.Entities;
 
+#pragma warning disable CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
 public partial class luong
+#pragma warning restore CS8981 // The type name only contains lower-cased ascii characters. Such names may become reserved for the language.
 {
     public int id { get; set; }
 

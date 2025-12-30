@@ -1,16 +1,17 @@
-Project/TSN_HR_Web/bin/
-Project/TSN_HR_Web/obj/
+## .NET build output (GLOBAL)
+**/bin/
+**/obj/
 
-# Ignore VS settings
+## Visual Studio
 .vs/
 **/.vs/
 
-# Ignore user-specific files
+## User-specific
 *.user
 *.rsuser
 
-# Ignore development appsettings
-Project/TSN_HR_Web/appsettings.Development.json
+## App settings
+**/appsettings.Development.json
 
-# Ignore node modules (if ever used)
+## Node (if any)
 node_modules/

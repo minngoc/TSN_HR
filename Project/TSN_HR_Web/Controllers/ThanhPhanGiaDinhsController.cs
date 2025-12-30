@@ -18,13 +18,13 @@ public class ThanhPhanGiaDinhsController : BaseController
         var entity = new thanh_phan_gia_dinh
         {
             so_yeu_ly_lich_id = dto.SoYeuLyLichId,
-            ho_va_ten_dem = dto.HoVaTenDem,
-            ten = dto.Ten,
-            gioi_tinh = dto.GioiTinh,
+            ho_va_ten_dem = dto.HoVaTenDem ?? "",
+            ten = dto.Ten ?? "",
+            gioi_tinh = dto.GioiTinh ?? "",
             ngay_sinh = dto.NgaySinh,
-            quan_he = dto.QuanHe,
-            nghe_nghiep = dto.NgheNghiep,
-            dia_chi = dto.DiaChiCongTac,
+            quan_he = dto.QuanHe ?? "",
+            nghe_nghiep = dto.NgheNghiep ?? "",
+            dia_chi = dto.DiaChiCongTac ?? "",
             is_active = true,
             created_date = DateTime.Now,
         };

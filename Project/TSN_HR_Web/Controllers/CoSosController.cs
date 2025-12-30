@@ -55,7 +55,7 @@ namespace TSN_HR_Web.Controllers
                     id = x.id,
                     maCoSo = x.ma_co_so,
                     tenCoSo = x.ten_co_so,
-                    diaChi = x.dia_chi,
+                    diaChi = x.dia_chi ?? "",
                 })
                 .FirstOrDefaultAsync();
 
