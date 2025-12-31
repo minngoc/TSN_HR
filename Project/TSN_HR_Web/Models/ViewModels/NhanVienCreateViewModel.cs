@@ -12,13 +12,13 @@ public class NhanVienCreateViewModel
     public string? ho_nv { get; set; }
     public string? ten_nv { get; set; }
     public string? gioi_tinh { get; set; }
-    public DateTime? ngay_sinh { get; set; }
+    public DateOnly? ngay_sinh { get; set; }
     public string? noi_sinh { get; set; }
     public string? nguyen_quan { get; set; }
     public string? dan_toc { get; set; }
     public string? ton_giao { get; set; }
     public string? so_cccd { get; set; }
-    public DateTime? ngay_cap { get; set; }
+    public DateOnly? ngay_cap { get; set; }
     public string? noi_cap { get; set; }
     public string? thuong_tru { get; set; }
     public string? dia_chi { get; set; }
@@ -35,10 +35,9 @@ public class NhanVienCreateViewModel
     public IEnumerable<SelectListItem> HocVanList { get; set; } = new List<SelectListItem>();
 
     public IEnumerable<SelectListItem> TrinhDoList { get; set; } = new List<SelectListItem>();
-    public ThanhPhanGiaDinhViewModel ThanhPhanGiaDinh { get; set; } = new ThanhPhanGiaDinhViewModel();
-    
-    public string? ThanhPhanGiaDinhJson { get; set; }
+    public List<ThanhPhanGiaDinhViewModel> ThanhPhanGiaDinh { get; set; } = new();
 
+    public string? ThanhPhanGiaDinhJson { get; set; }
 
     // ============================
     // 2) BẢO HIỂM → bao_hiem
@@ -50,12 +49,12 @@ public class NhanVienCreateViewModel
     public string? so_bhxh { get; set; }
     public string? so_ksk { get; set; }
     public string? so_bhyt { get; set; }
-    public DateTime? ngay_bhtn { get; set; }
-    public DateTime? ngay_bhxh { get; set; }
+    public DateOnly? ngay_bhtn { get; set; }
+    public DateOnly? ngay_bhxh { get; set; }
     public bool? thay_bhxh { get; set; }
     public string? so_the_cong_doan { get; set; }
-    public DateTime? ng_thu_viec { get; set; }
-    public DateTime? ng_vao_chinh_thuc { get; set; }
+    public DateOnly? ng_thu_viec { get; set; }
+    public DateOnly? ng_vao_chinh_thuc { get; set; }
 
     // ============================
     // 4) BỘ PHẬN / CHỨC VỤ (FK)
@@ -69,8 +68,8 @@ public class NhanVienCreateViewModel
     // 5) HỢP ĐỒNG → hop_dong
     // ============================
     public int? loai_hop_dong_id { get; set; }
-    public DateTime? ky_hd_tu { get; set; }
-    public DateTime? ky_hd_den { get; set; }
+    public DateOnly? ky_hd_tu { get; set; }
+    public DateOnly? ky_hd_den { get; set; }
     public string? so_lan_tai_ky { get; set; }
     public string? so_hdld { get; set; }
     public string? ma_chuc_vu { get; set; }
@@ -81,8 +80,8 @@ public class NhanVienCreateViewModel
     public string? tien { get; set; }
     public string? phu_cap_bhxh { get; set; }
     public string? quyet_dinh_xep_luong { get; set; }
-    public DateTime? ngay_xep_luong { get; set; }
-    public DateTime? ngay_thoi_viec { get; set; }
+    public DateOnly? ngay_xep_luong { get; set; }
+    public DateOnly? ngay_thoi_viec { get; set; }
     public string? so_quyet_dinh_thoi_viec { get; set; }
     public string? ly_do_nghi { get; set; }
     public string? tien_tro_cap { get; set; }

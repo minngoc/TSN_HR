@@ -411,7 +411,6 @@ public partial class TSNHRDbContext : DbContext
             entity.Property(e => e.dien_thoai_home)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.gioi_tinh).HasMaxLength(10);
             entity.Property(e => e.ho_nv).HasMaxLength(50);
             entity.Property(e => e.hoc_van).HasMaxLength(50);
             entity.Property(e => e.is_active).HasDefaultValue(true);

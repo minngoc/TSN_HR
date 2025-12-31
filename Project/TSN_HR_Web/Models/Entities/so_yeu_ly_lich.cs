@@ -9,11 +9,11 @@ public partial class so_yeu_ly_lich
 
     public string ma_so_yeu_ly_lich { get; set; } = null!;
 
-    public string ten_nv { get; set; } = null!;
+    public string? ten_nv { get; set; }
 
-    public string ho_nv { get; set; } = null!;
+    public string? ho_nv { get; set; }
 
-    public string gioi_tinh { get; set; } = null!;
+    public byte? gioi_tinh { get; set; }
 
     public DateOnly? ngay_sinh { get; set; }
 

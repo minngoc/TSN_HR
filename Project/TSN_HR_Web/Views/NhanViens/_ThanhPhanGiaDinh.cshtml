@@ -1,4 +1,4 @@
-@model TSN_HR_Web.Models.ViewModels.ThanhPhanGiaDinhViewModel
+@model List<TSN_HR_Web.Models.ViewModels.ThanhPhanGiaDinhViewModel>
 @{
     bool isReadOnly = ViewBag.ReadOnly == true;
 }
@@ -9,21 +9,21 @@
         <div class="row g-3 mb-2">
             <div class="col-lg-4 col-md-6">
                 <label>Họ và Tên đệm</label>
-                <input asp-for="HoVaTenDem" class="form-control rounded-pill"
+                <input class="form-control rounded-pill"
                     readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
             <div class="col-lg-2 col-md-6">
                 <label>Tên</label>
-                <input asp-for="Ten" class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
+                <input class="form-control rounded-pill" readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
             <div class="col-lg-2 col-md-6 " d-flex align-items-center gap-3">
                 <label class="d-block mb-0">Giới tính</label>
                 <label class="me-2">
-                    <input type="radio" asp-for="GioiTinh" value="1" disabled="@(isReadOnly ? "disabled" : null)" />
+                    <input type="radio" value="1" disabled="@(isReadOnly ? "disabled" : null)" />
                     Nam
                 </label>
                 <label class="me-2">
-                    <input type="radio" asp-for="GioiTinh" value="2" disabled="@(isReadOnly ? "disabled" : null)" /> Nữ
+                    <input type="radio" value="2" disabled="@(isReadOnly ? "disabled" : null)" /> Nữ
                 </label>
             </div>
         </div>
@@ -31,18 +31,18 @@
         <div class="row align-items-center g-3 py-2">
             <div class="col-lg-3 col-md-6">
                 <label>Ngày sinh</label>
-                <input asp-for="NgaySinh" type="date" class="form-control rounded-pill"
+                <input type="date" class="form-control rounded-pill"
                     readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
             <div class="col-lg-2 col-md-6">
                 <label>Quan hệ</label>
-                <input asp-for="QuanHe" class="form-control rounded-pill"
+                <input class="form-control rounded-pill"
                     readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <label>Nghề nghiệp</label>
-                <input asp-for="NgheNghiep" class="form-control rounded-pill"
+                <input class="form-control rounded-pill"
                     readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="row align-items-center g-3 py-2">
             <div class="col-lg-8 col-md-6">
                 <label>Địa chỉ công tác</label>
-                <input asp-for="DiaChiCongTac" class="form-control rounded-pill"
+                <input class="form-control rounded-pill"
                     readonly="@(isReadOnly ? "readonly" : null)" />
             </div>
         </div>
@@ -74,7 +74,7 @@
     window.thanhPhanGiaDinhTemp = [];
     $(function () {
         window.tpGiaDinhTable = $('#tpGiaDinhTable').DataTable({
-            data: @Html.Raw(Json.Serialize(Model.Items)),
+            data: @Html.Raw(Json.Serialize(Model)),
 
             paging: false,
             searching: false,
@@ -166,6 +166,4 @@
         // clear form
         $('[name="HoVaTenDem"],[name="Ten"],[name="NgaySinh"],[name="QuanHe"],[name="NgheNghiep"],[name="DiaChiCongTac"]').val("");
     };
-
-
 </script>
